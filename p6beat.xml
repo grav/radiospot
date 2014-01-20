@@ -1,0 +1,1300 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="da" class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="da" class="ie ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="da" class="ie ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="da" class="ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="da"> <!--<![endif]-->&#13;
+<head>&#13;
+    <link rel="canonical" href="http://www.dr.dk/playlister/p6beat/"/>&#13;
+    <meta charset="utf-8"/>&#13;
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>&#13;
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>&#13;
+    &#13;
+    <title>Playliste - P6 Beatet - 20/01-2014 | P6 BEAT | DR</title>&#13;
+        <meta name="description" content="Musik er livets salt! Forvent det uventede når genredefinitioner og smagsdommeri står for endeligt fald. Et mix af alt det bedste fra P6 BEAT: fra før og nu og langt ud(e) i fremtiden."/>&#13;
+    &#13;
+    <!-- Open Graph Protocol: -->&#13;
+    <meta property="og:title" name="title" content="Playliste - P6 Beatet - 20/01-2014 | P6 BEAT | DR"/>&#13;
+    <meta property="og:description" content="Musik er livets salt! Forvent det uventede når genredefinitioner og smagsdommeri står for endeligt fald. Et mix af alt det bedste fra P6 BEAT: fra før og nu og langt ud(e) i fremtiden."/>&#13;
+    <meta property="og:type" content="tv_show"/>&#13;
+    <meta property="og:url" content="http://www.dr.dk/playlister/p6beat/"/>&#13;
+    <meta property="og:image"/>&#13;
+    <meta property="og:site_name" content="Playliste - P6 Beatet - 20/01-2014 | P6 BEAT | DR - dr.dk"/>&#13;
+    <!--<meta property="fb:app_id" content="135526786459028">-->&#13;
+&#13;
+    <!-- Meta tags from CMS -->&#13;
+&#13;
+    &#13;
+&#13;
+    &#13;
+    <!--[if (lt IE 9)&(!IEMobile 7)]>
+        <link rel="stylesheet" href="/assets/css/005/base-static.fe1b7357aad835a271cab993e5b5c3cfb1d5d1d4.css" media="screen"/>
+    <![endif]-->&#13;
+    &#13;
+        <link rel="stylesheet" href="/assets/css/005/base.fe1b7357aad835a271cab993e5b5c3cfb1d5d1d4.css" media="screen"/>&#13;
+    &#13;
+&#13;
+    <link href="/playlister/Content/radio/styles/base.css" rel="stylesheet" type="text/css"/>&#13;
+    <!-- channel  -->&#13;
+    &#13;
+    <script src="/assets/js/004/base.fe1b7357aad835a271cab993e5b5c3cfb1d5d1d4.js"/>&#13;
+    <script type="text/javascript" src="/drdkTopbar/topbar.js?version=005"/>&#13;
+    <script type="text/javascript" src="http://www.dr.dk/tjenester/cache/addthis.drxml"/>&#13;
+    <script src="/playlister/Content/shared/scripts/dr-getlocation.js"/>&#13;
+    &#13;
+&#13;
+    <script><![CDATA[var addthis_config = { pubid: "ra-4fa905ce71d40806" }]]></script>&#13;
+&#13;
+    &#13;
+&#13;
+</head>&#13;
+&#13;
+<body id="top">&#13;
+    <a href="#access-content" class="skip-link">Gå til indhold</a>&#13;
+    <div class="site-wrapper">&#13;
+        <div class="site-content ">&#13;
+            &#13;
+            &#13;
+            <!--googleon: index-->&#13;
+            &#13;
+<div class="site-id">&#13;
+    <h1><a href="/playlister/">Playlister</a>&#13;
+        <span class="site-logo"/></h1>&#13;
+</div>&#13;
+&#13;
+<div class="dr-site-navigation" role="navigation">&#13;
+    &#13;
+</div>&#13;
+            &#13;
+            &#13;
+&#13;
+&#13;
+&#13;
+&#13;
+<form id="select" method="post" autocomplete="off" class="dr-form boxed dr-ui-options dr-widget-playlist-form">&#13;
+    <h2>Vælg kanal og dato</h2>&#13;
+&#13;
+    <input id="SelectedDate" name="SelectedDate" type="hidden" value="20-01-2014 00:00:00"/>&#13;
+&#13;
+    <fieldset name="subject" class="subject">&#13;
+        <legend id="access-content">Sortér efter kanal og dato.</legend>&#13;
+        <label class="dr-select">&#13;
+            <span>Vælg kanal</span>&#13;
+            <select id="channel" name="channel" title="Kanal">&#13;
+                    <option value="p2">P2</option>&#13;
+                    <option value="p3">P3</option>&#13;
+                    <option value="p4bornholm">P4 Bornholm</option>&#13;
+                    <option value="p4esbjerg">P4 Esbjerg</option>&#13;
+                    <option value="p4fyn">P4 Fyn</option>&#13;
+                    <option value="p4kbh">P4 København</option>&#13;
+                    <option value="p4vest">P4 Midt &amp; Vest</option>&#13;
+                    <option value="p4nord">P4 Nordjylland</option>&#13;
+                    <option value="p4aarhus">P4 Østjylland</option>&#13;
+                    <option value="p4sjaelland">P4 Sjælland</option>&#13;
+                    <option value="p4syd">P4 Syd</option>&#13;
+                    <option value="p4trekanten">P4 Trekanten</option>&#13;
+                    <option value="p5">P5</option>&#13;
+                    <option value="p6beat" selected="selected">P6 BEAT</option>&#13;
+                    <option value="p7mix">P7 MIX</option>&#13;
+                    <option value="p8jazz">P8 JAZZ</option>&#13;
+                    <option value="mama">DR MAMA</option>&#13;
+                    <option value="ramasjangradio">Ramasjang/Ultra Radio</option>&#13;
+            </select>&#13;
+        </label>&#13;
+&#13;
+    </fieldset>&#13;
+&#13;
+    <fieldset name="datepicker" class="date">&#13;
+        <legend>Vælg dato</legend>&#13;
+&#13;
+        <label class="dr-select">&#13;
+            <span>Vælg år</span>&#13;
+            <select name="year" class="date">&#13;
+                <option/>&#13;
+                    <option value="2009" disabled="&quot;disabled&quot;">2009</option>&#13;
+                    <option value="2010">2010</option>&#13;
+                    <option value="2011">2011</option>&#13;
+                    <option value="2012">2012</option>&#13;
+                    <option value="2013">2013</option>&#13;
+                    <option value="2014" selected="selected">2014</option>&#13;
+            </select>&#13;
+        </label>&#13;
+&#13;
+        <label class="dr-select">&#13;
+            <span>Vælg måned</span>&#13;
+            <select name="month" class="date">&#13;
+                <option/>&#13;
+                    <option value="1" selected="selected">Januar</option>&#13;
+                    <option value="2">Februar</option>&#13;
+                    <option value="3">Marts</option>&#13;
+                    <option value="4">April</option>&#13;
+                    <option value="5">Maj</option>&#13;
+                    <option value="6">Juni</option>&#13;
+                    <option value="7">Juli</option>&#13;
+                    <option value="8">August</option>&#13;
+                    <option value="9">September</option>&#13;
+                    <option value="10">Oktober</option>&#13;
+                    <option value="11">November</option>&#13;
+                    <option value="12">December</option>&#13;
+            </select>&#13;
+        </label>&#13;
+&#13;
+        <label class="dr-select">&#13;
+            <span>Vælg dag</span>&#13;
+            <select name="date" class="date">&#13;
+                <option/>&#13;
+                    <option value="1">1</option>&#13;
+                    <option value="2">2</option>&#13;
+                    <option value="3">3</option>&#13;
+                    <option value="4">4</option>&#13;
+                    <option value="5">5</option>&#13;
+                    <option value="6">6</option>&#13;
+                    <option value="7">7</option>&#13;
+                    <option value="8">8</option>&#13;
+                    <option value="9">9</option>&#13;
+                    <option value="10">10</option>&#13;
+                    <option value="11">11</option>&#13;
+                    <option value="12">12</option>&#13;
+                    <option value="13">13</option>&#13;
+                    <option value="14">14</option>&#13;
+                    <option value="15">15</option>&#13;
+                    <option value="16">16</option>&#13;
+                    <option value="17">17</option>&#13;
+                    <option value="18">18</option>&#13;
+                    <option value="19">19</option>&#13;
+                    <option value="20" selected="selected">20</option>&#13;
+                    <option value="21">21</option>&#13;
+                    <option value="22">22</option>&#13;
+                    <option value="23">23</option>&#13;
+                    <option value="24">24</option>&#13;
+                    <option value="25">25</option>&#13;
+                    <option value="26">26</option>&#13;
+                    <option value="27">27</option>&#13;
+                    <option value="28">28</option>&#13;
+                    <option value="29">29</option>&#13;
+                    <option value="30">30</option>&#13;
+                    <option value="31">31</option>&#13;
+            </select>&#13;
+        </label>&#13;
+&#13;
+    </fieldset>&#13;
+    <footer>&#13;
+        <input type="submit" value="OK"/></footer>&#13;
+</form>&#13;
+&#13;
+<div class="combine-layout">&#13;
+        <div class="span-3" id="playlist-programlist">&#13;
+            <h2>Vælg program<span> for P6 BEAT</span></h2>&#13;
+            <ul>&#13;
+<li>&#13;
+                        <time datetime="2014-01-20 04:03">05:03</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/p6-beatet-1765">P6 Beatet </a>&#13;
+                    </li>&#13;
+<li>&#13;
+                        <time datetime="2014-01-20 06:05">07:05</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/morgenbeatet-614">Morgenbeatet </a>&#13;
+                    </li>&#13;
+<li>&#13;
+                        <time datetime="2014-01-20 08:05">09:05</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/formiddagen-pa-p6-beat-369">Formiddagen på P6 BEAT </a>&#13;
+                    </li>&#13;
+<li>&#13;
+                        <time datetime="2014-01-20 11:03">12:03</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/p6-beat-med-camilla-jane-lea-98">P6 BEAT med Camilla Jane Lea </a>&#13;
+                    </li>&#13;
+<li>&#13;
+                        <time datetime="2014-01-20 14:03">15:03</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/musikmagasinet-91">Musikmagasinet </a>&#13;
+                    </li>&#13;
+<li>&#13;
+                        <time datetime="2014-01-20 17:03">18:03</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/det-elektriske-barometer-82">Det Elektriske Barometer </a>&#13;
+                    </li>&#13;
+<li class="active live">&#13;
+                        <time datetime="2014-01-20 19:03">20:03</time>&#13;
+                        <a href="/playlister/p6beat/2014-01-20/p6-beatet-1766">P6 Beatet </a>&#13;
+                    </li>&#13;
+            </ul>&#13;
+            <!-- end.programs -->&#13;
+        </div>&#13;
+        <div class="span-9 program" id="playlist-program" itemscope="" itemtype="http://schema.org/MusicPlaylist">&#13;
+                <div class="dr-spot">&#13;
+                    <h2 class="dr-spot-wrapper">&#13;
+                        <span class="image-wrap ratio-16-9" role="presentation" aria-hidden="true">&#13;
+                            <noscript data-alt="" data-src="http://www.dr.dk/mu/programcard/imageuri/p6-beatet-1766"><img alt="" src="http://www.dr.dk/mu/programcard/imageuri/p6-beatet-1766"/></noscript>&#13;
+                        </span>&#13;
+                        <div class="heading-xxlarge"><span>P6 </span><span>Beatet </span></div>&#13;
+                    </h2>&#13;
+                </div>&#13;
+            <div class="playlist-program-details">&#13;
+                <time class="metainfo" datetime="2014-01-20 19:03">P6 BEAT, I dag&#13;
+                        ,  537 min.&#13;
+                </time>&#13;
+                    <p data-maxlines="5" data-readmore="true" class="teasertext">Musik er livets salt! Forvent det uventede når genredefinitioner og smagsdommeri står for endeligt fald. Et mix af alt det bedste fra P6 BEAT: fra før og nu og langt ud(e) i fremtiden.</p>&#13;
+&#13;
+                <span class="program-actions">&#13;
+                        <!--a href="/radio/player?Html.ConvertChannelSourceUrlToEpgName(Model.SelectedChannel.SourceUrl).ToUpper()" class="dr-icon-audio" rel="dr-netradio-launch">Hør live</a--> &#13;
+                    <!--a href="" class="dr-icon-link-inverted">Besøg programsiden</a-->&#13;
+                </span>&#13;
+            </div>&#13;
+            <!--Cake: p6-beatet-1766-->&#13;
+&#13;
+&#13;
+<div class="section dr-playlist-time tab mute-heading" data-playlistupdateurl="http://www.dr.dk/playlister/playlist/tracklistupdate?episodePartId=244180372813&amp;lastMusaId={LastMusaId}" data-islive="False">&#13;
+    <h2>Playliste</h2>&#13;
+    <ul class="playlist-items">&#13;
+
+
+    <li class="track" data-trackid="2363630-1-3" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10406282/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 00m 05s" data-fulltime="2014-01-20 19:03:05Z">20:03</time>
+&#13;
+&#13;
+<span class="accessibility-label">Dominos med The Big Pink </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Dominos/2363630-1-3">Dominos</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">The Big Pink</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Dominos/2363630-1-3" class="accessibility-label">Mere information om "Dominos"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2369713-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10487084/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 03m 49s" data-fulltime="2014-01-20 19:06:49Z">20:06</time>
+&#13;
+&#13;
+<span class="accessibility-label">Helena Beat med Foster The People </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Helena+Beat/2369713-1-1">Helena Beat</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Foster The People</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Helena+Beat/2369713-1-1" class="accessibility-label">Mere information om "Helena Beat"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008117-1-3" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10285865/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 07m 53s" data-fulltime="2014-01-20 19:10:53Z">20:10</time>
+&#13;
+&#13;
+<span class="accessibility-label">One For The Road med Arctic Monkeys  featuring        <span class="name">Josh Homme</span>&#13;
+</span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/One+For+The+Road/9008117-1-3">One For The Road</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Arctic Monkeys</span>&#13;
+                <abbr title="featuring" class="label">feat.</abbr>&#13;
+        <span class="name">Josh Homme</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/One+For+The+Road/9008117-1-3" class="accessibility-label">Mere information om "One For The Road"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2270143-1-7" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/3000331/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 11m 16s" data-fulltime="2014-01-20 19:14:16Z">20:14</time>
+&#13;
+&#13;
+<span class="accessibility-label">Just med Radiohead </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Just/2270143-1-7">Just</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Radiohead</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Just/2270143-1-7" class="accessibility-label">Mere information om "Just"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9007627-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10596644/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 15m 10s" data-fulltime="2014-01-20 19:18:10Z">20:18</time>
+&#13;
+&#13;
+<span class="accessibility-label">Phoenix med Kill J </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Phoenix/9007627-1-1">Phoenix</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Kill J</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Phoenix/9007627-1-1" class="accessibility-label">Mere information om "Phoenix"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9000296-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/113751/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 18m 34s" data-fulltime="2014-01-20 19:21:34Z">20:21</time>
+&#13;
+&#13;
+<span class="accessibility-label">With Every Heartbeat med Robyn  featuring        <span class="name">Kleerup</span>&#13;
+</span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/With+Every+Heartbeat/9000296-1-1">With Every Heartbeat</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Robyn</span>&#13;
+                <abbr title="featuring" class="label">feat.</abbr>&#13;
+        <span class="name">Kleerup</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/With+Every+Heartbeat/9000296-1-1" class="accessibility-label">Mere information om "With Every Heartbeat"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008212-1-7" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10464529/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 22m 23s" data-fulltime="2014-01-20 19:25:23Z">20:25</time>
+&#13;
+&#13;
+<span class="accessibility-label">I Don't Know How med Best Coast </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/I+Don%27t+Know+How/9008212-1-7">I Don't Know How</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Best Coast</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/I+Don%27t+Know+How/9008212-1-7" class="accessibility-label">Mere information om "I Don't Know How"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9003220-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10092958/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 25m 46s" data-fulltime="2014-01-20 19:28:46Z">20:28</time>
+&#13;
+&#13;
+<span class="accessibility-label">Midnight City med M83 </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Midnight+City/9003220-1-1">Midnight City</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">M83</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Midnight+City/9003220-1-1" class="accessibility-label">Mere information om "Midnight City"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9005615-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10537788/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 29m 34s" data-fulltime="2014-01-20 19:32:34Z">20:32</time>
+&#13;
+&#13;
+<span class="accessibility-label">Pilgrim med MØ </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Pilgrim/9005615-1-1">Pilgrim</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">MØ</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Pilgrim/9005615-1-1" class="accessibility-label">Mere information om "Pilgrim"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2373174-1-4" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10012070/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 33m 22s" data-fulltime="2014-01-20 19:36:22Z">20:36</time>
+&#13;
+&#13;
+<span class="accessibility-label">Trying To Be Cool med Phoenix </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Trying+To+Be+Cool/2373174-1-4">Trying To Be Cool</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Phoenix</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Trying+To+Be+Cool/2373174-1-4" class="accessibility-label">Mere information om "Trying To Be Cool"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2344211-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10253845/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 37m 06s" data-fulltime="2014-01-20 19:40:06Z">20:40</time>
+&#13;
+&#13;
+<span class="accessibility-label">Helicopter med Bloc Party </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Helicopter/2344211-1-1">Helicopter</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Bloc Party</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Helicopter/2344211-1-1" class="accessibility-label">Mere information om "Helicopter"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9007634-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10183198/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 40m 32s" data-fulltime="2014-01-20 19:43:32Z">20:43</time>
+&#13;
+&#13;
+<span class="accessibility-label">Man On A Wire med Thomas Dybdahl </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Man+On+A+Wire/9007634-1-1">Man On A Wire</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Thomas Dybdahl</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Man+On+A+Wire/9007634-1-1" class="accessibility-label">Mere information om "Man On A Wire"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2231693-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/69081/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 43m 49s" data-fulltime="2014-01-20 19:46:49Z">20:46</time>
+&#13;
+&#13;
+<span class="accessibility-label">Give it away med Red Hot Chili Peppers </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Give+it+away/2231693-1-1">Give it away</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Red Hot Chili Peppers</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Give+it+away/2231693-1-1" class="accessibility-label">Mere information om "Give it away"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9003749-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10594332/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 48m 29s" data-fulltime="2014-01-20 19:51:29Z">20:51</time>
+&#13;
+&#13;
+<span class="accessibility-label">Anywhere With You med Hymns From Nineveh </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Anywhere+With+You/9003749-1-1">Anywhere With You</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Hymns From Nineveh</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Anywhere+With+You/9003749-1-1" class="accessibility-label">Mere information om "Anywhere With You"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008629-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10535303/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 51m 55s" data-fulltime="2014-01-20 19:54:55Z">20:54</time>
+&#13;
+&#13;
+<span class="accessibility-label">Slumville Sunrise med Jake Bugg </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Slumville+Sunrise/9008629-1-1">Slumville Sunrise</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Jake Bugg</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Slumville+Sunrise/9008629-1-1" class="accessibility-label">Mere information om "Slumville Sunrise"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2326979-1-7" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/5020723/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="00h 54m 45s" data-fulltime="2014-01-20 19:57:45Z">20:57</time>
+&#13;
+&#13;
+<span class="accessibility-label">Jernskjorten med Malk De Koijn </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Jernskjorten/2326979-1-7">Jernskjorten</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Malk De Koijn</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Jernskjorten/2326979-1-7" class="accessibility-label">Mere information om "Jernskjorten"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2333369-1-2" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/172926/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 00m 05s" data-fulltime="2014-01-20 20:03:05Z">21:03</time>
+&#13;
+&#13;
+<span class="accessibility-label">The Seed med The Roots </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/The+Seed/2333369-1-2">The Seed</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">The Roots</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/The+Seed/2333369-1-2" class="accessibility-label">Mere information om "The Seed"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008187-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10593416/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 04m 26s" data-fulltime="2014-01-20 20:07:26Z">21:07</time>
+&#13;
+&#13;
+<span class="accessibility-label">What A Shame med The Strypes </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/What+A+Shame/9008187-1-1">What A Shame</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">The Strypes</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/What+A+Shame/9008187-1-1" class="accessibility-label">Mere information om "What A Shame"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2307548-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/3007601/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 06m 50s" data-fulltime="2014-01-20 20:09:50Z">21:09</time>
+&#13;
+&#13;
+<span class="accessibility-label">Coffee &amp; TV med Blur </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Coffee+%26+TV/2307548-1-1">Coffee &amp; TV</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Blur</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Coffee+%26+TV/2307548-1-1" class="accessibility-label">Mere information om "Coffee &amp; TV"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008750-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/112588/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 11m 40s" data-fulltime="2014-01-20 20:14:40Z">21:14</time>
+&#13;
+&#13;
+<span class="accessibility-label">Loud Like Love med Placebo </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Loud+Like+Love/9008750-1-1">Loud Like Love</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Placebo</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Loud+Like+Love/9008750-1-1" class="accessibility-label">Mere information om "Loud Like Love"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2367976-1-4" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10453226/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 16m 27s" data-fulltime="2014-01-20 20:19:27Z">21:19</time>
+&#13;
+&#13;
+<span class="accessibility-label">Just So med Agnes Obel </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Just+So/2367976-1-4">Just So</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Agnes Obel</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Just+So/2367976-1-4" class="accessibility-label">Mere information om "Just So"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9006585-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10092797/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 19m 58s" data-fulltime="2014-01-20 20:22:58Z">21:22</time>
+&#13;
+&#13;
+<span class="accessibility-label">One Way Trigger med The Strokes </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/One+Way+Trigger/9006585-1-1">One Way Trigger</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">The Strokes</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/One+Way+Trigger/9006585-1-1" class="accessibility-label">Mere information om "One Way Trigger"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008075-1-2" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/2005163/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 23m 55s" data-fulltime="2014-01-20 20:26:55Z">21:26</time>
+&#13;
+&#13;
+<span class="accessibility-label">Another Toe In The Ocean med Pixies </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Another+Toe+In+The+Ocean/9008075-1-2">Another Toe In The Ocean</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Pixies</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Another+Toe+In+The+Ocean/9008075-1-2" class="accessibility-label">Mere information om "Another Toe In The Ocean"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2355554-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10338555/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 27m 31s" data-fulltime="2014-01-20 20:30:31Z">21:30</time>
+&#13;
+&#13;
+<span class="accessibility-label">D.A.N.C.E. med Justice </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/D.A.N.C.E./2355554-1-1">D.A.N.C.E.</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Justice</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/D.A.N.C.E./2355554-1-1" class="accessibility-label">Mere information om "D.A.N.C.E."</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008477-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10253989/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 30m 33s" data-fulltime="2014-01-20 20:33:33Z">21:33</time>
+&#13;
+&#13;
+<span class="accessibility-label">Afterlife med Arcade Fire </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Afterlife/9008477-1-1">Afterlife</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Arcade Fire</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Afterlife/9008477-1-1" class="accessibility-label">Mere information om "Afterlife"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9002083-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10016674/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 34m 40s" data-fulltime="2014-01-20 20:37:40Z">21:37</time>
+&#13;
+&#13;
+<span class="accessibility-label">Runaway med Kanye West  featuring        <span class="name">Pusha T</span>&#13;
+</span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Runaway/9002083-1-1">Runaway</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Kanye West</span>&#13;
+                <abbr title="featuring" class="label">feat.</abbr>&#13;
+        <span class="name">Pusha T</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Runaway/9002083-1-1" class="accessibility-label">Mere information om "Runaway"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9004471-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10030819/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 40m 17s" data-fulltime="2014-01-20 20:43:17Z">21:43</time>
+&#13;
+&#13;
+<span class="accessibility-label">Sunrise med Kasper Bjørke </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Sunrise/9004471-1-1">Sunrise</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Kasper Bjørke</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Sunrise/9004471-1-1" class="accessibility-label">Mere information om "Sunrise"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2240830-1-7" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/57971/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 44m 10s" data-fulltime="2014-01-20 20:47:10Z">21:47</time>
+&#13;
+&#13;
+<span class="accessibility-label">You're The One For Me, Fatty med Morrissey </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/You%27re+The+One+For+Me%2c+Fatty/2240830-1-7">You're The One For Me, Fatty</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Morrissey</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/You%27re+The+One+For+Me%2c+Fatty/2240830-1-7" class="accessibility-label">Mere information om "You're The One For Me, Fatty"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2373975-1-5" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10357190/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 47m 10s" data-fulltime="2014-01-20 20:50:10Z">21:50</time>
+&#13;
+&#13;
+<span class="accessibility-label">Your Life Is A Lie med MGMT </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Your+Life+Is+A+Lie/2373975-1-5">Your Life Is A Lie</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">MGMT</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Your+Life+Is+A+Lie/2373975-1-5" class="accessibility-label">Mere information om "Your Life Is A Lie"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2358897-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10343544/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 49m 12s" data-fulltime="2014-01-20 20:52:12Z">21:52</time>
+&#13;
+&#13;
+<span class="accessibility-label">Yours truly med As In Rebekkamaria </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Yours+truly/2358897-1-1">Yours truly</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">As In Rebekkamaria</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Yours+truly/2358897-1-1" class="accessibility-label">Mere information om "Yours truly"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9007923-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10237092/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 52m 06s" data-fulltime="2014-01-20 20:55:06Z">21:55</time>
+&#13;
+&#13;
+<span class="accessibility-label">Mercy med TV On The Radio </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Mercy/9007923-1-1">Mercy</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">TV On The Radio</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Mercy/9007923-1-1" class="accessibility-label">Mere information om "Mercy"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2372681-1-3" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10359998/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="01h 55m 03s" data-fulltime="2014-01-20 20:58:03Z">21:58</time>
+&#13;
+&#13;
+<span class="accessibility-label">My Number med Foals </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/My+Number/2372681-1-3">My Number</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Foals</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/My+Number/2372681-1-3" class="accessibility-label">Mere information om "My Number"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2361966-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10257558/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 00m 05s" data-fulltime="2014-01-20 21:03:05Z">22:03</time>
+&#13;
+&#13;
+<span class="accessibility-label">The Plot med WhoMadeWho </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/The+Plot/2361966-1-1">The Plot</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">WhoMadeWho</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/The+Plot/2361966-1-1" class="accessibility-label">Mere information om "The Plot"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2373501-1-3" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10098716/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 03m 59s" data-fulltime="2014-01-20 21:06:59Z">22:06</time>
+&#13;
+&#13;
+<span class="accessibility-label">GMF med John Grant  featuring        <span class="name">Sinead O'Connor</span>&#13;
+</span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/GMF/2373501-1-3">GMF</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">John Grant</span>&#13;
+                <abbr title="featuring" class="label">feat.</abbr>&#13;
+        <span class="name">Sinead O'Connor</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/GMF/2373501-1-3" class="accessibility-label">Mere information om "GMF"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008420-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10558841/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 09m 10s" data-fulltime="2014-01-20 21:12:10Z">22:12</time>
+&#13;
+&#13;
+<span class="accessibility-label">Torrent  med Ásgeir </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Torrent+/9008420-1-1">Torrent </a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Ásgeir</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Torrent+/9008420-1-1" class="accessibility-label">Mere information om "Torrent "</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2253722-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/3011790/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 12m 13s" data-fulltime="2014-01-20 21:15:13Z">22:15</time>
+&#13;
+&#13;
+<span class="accessibility-label">Human Behaviour med Björk </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Human+Behaviour/2253722-1-1">Human Behaviour</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Björk</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Human+Behaviour/2253722-1-1" class="accessibility-label">Mere information om "Human Behaviour"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9006832-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10374893/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 16m 25s" data-fulltime="2014-01-20 21:19:25Z">22:19</time>
+&#13;
+&#13;
+<span class="accessibility-label">Never Wanted Your Love med She &amp; Him </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Never+Wanted+Your+Love/9006832-1-1">Never Wanted Your Love</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">She &amp; Him</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Never+Wanted+Your+Love/9006832-1-1" class="accessibility-label">Mere information om "Never Wanted Your Love"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2356087-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10180391/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 19m 36s" data-fulltime="2014-01-20 21:22:36Z">22:22</time>
+&#13;
+&#13;
+<span class="accessibility-label">Hey girl med Figurines </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Hey+girl/2356087-1-1">Hey girl</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Figurines</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Hey+girl/2356087-1-1" class="accessibility-label">Mere information om "Hey girl"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008463-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10445580/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 22m 03s" data-fulltime="2014-01-20 21:25:03Z">22:25</time>
+&#13;
+&#13;
+<span class="accessibility-label">Give Me Nothing med Mont Oliver </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Give+Me+Nothing/9008463-1-1">Give Me Nothing</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Mont Oliver</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Give+Me+Nothing/9008463-1-1" class="accessibility-label">Mere information om "Give Me Nothing"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9002062-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10452504/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 25m 27s" data-fulltime="2014-01-20 21:28:27Z">22:28</time>
+&#13;
+&#13;
+<span class="accessibility-label">Undertow med Warpaint </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Undertow/9002062-1-1">Undertow</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Warpaint</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Undertow/9002062-1-1" class="accessibility-label">Mere information om "Undertow"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9006924-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/53793/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 29m 27s" data-fulltime="2014-01-20 21:32:27Z">22:32</time>
+&#13;
+&#13;
+<span class="accessibility-label">Soothe My Soul  med Depeche Mode </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Soothe+My+Soul+/9006924-1-1">Soothe My Soul </a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Depeche Mode</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Soothe+My+Soul+/9006924-1-1" class="accessibility-label">Mere information om "Soothe My Soul "</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9007393-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10418817/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 33m 23s" data-fulltime="2014-01-20 21:36:23Z">22:36</time>
+&#13;
+&#13;
+<span class="accessibility-label">Overgrown  med James Blake </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Overgrown+/9007393-1-1">Overgrown </a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">James Blake</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Overgrown+/9007393-1-1" class="accessibility-label">Mere information om "Overgrown "</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2329508-1-2" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/4024267/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 36m 54s" data-fulltime="2014-01-20 21:39:54Z">22:39</time>
+&#13;
+&#13;
+<span class="accessibility-label">No One Knows med Queens Of The Stone Age </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/No+One+Knows/2329508-1-2">No One Knows</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Queens Of The Stone Age</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/No+One+Knows/2329508-1-2" class="accessibility-label">Mere information om "No One Knows"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9008421-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10218559/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 41m 07s" data-fulltime="2014-01-20 21:44:07Z">22:44</time>
+&#13;
+&#13;
+<span class="accessibility-label">Evil Eye  med Franz Ferdinand </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Evil+Eye+/9008421-1-1">Evil Eye </a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Franz Ferdinand</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Evil+Eye+/9008421-1-1" class="accessibility-label">Mere information om "Evil Eye "</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2232835-1-3" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/50139/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 43m 54s" data-fulltime="2014-01-20 21:46:54Z">22:46</time>
+&#13;
+&#13;
+<span class="accessibility-label">Come As You Are med Nirvana </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Come+As+You+Are/2232835-1-3">Come As You Are</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Nirvana</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Come+As+You+Are/2232835-1-3" class="accessibility-label">Mere information om "Come As You Are"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2365410-1-7" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/37526/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 47m 26s" data-fulltime="2014-01-20 21:50:26Z">22:50</time>
+&#13;
+&#13;
+<span class="accessibility-label">Pursuit Of Misery med Kashmir </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Pursuit+Of+Misery/2365410-1-7">Pursuit Of Misery</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Kashmir</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Pursuit+Of+Misery/2365410-1-7" class="accessibility-label">Mere information om "Pursuit Of Misery"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2373611-1-9" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10361810/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 51m 14s" data-fulltime="2014-01-20 21:54:14Z">22:54</time>
+&#13;
+&#13;
+<span class="accessibility-label">Worship You med Vampire Weekend </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Worship+You/2373611-1-9">Worship You</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Vampire Weekend</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Worship+You/2373611-1-9" class="accessibility-label">Mere information om "Worship You"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2326307-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/3016727/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="02h 54m 33s" data-fulltime="2014-01-20 21:57:33Z">22:57</time>
+&#13;
+&#13;
+<span class="accessibility-label">Lazy med X-Press 2 </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Lazy/2326307-1-1">Lazy</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">X-Press 2</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Lazy/2326307-1-1" class="accessibility-label">Mere information om "Lazy"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9005396-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10487187/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 02m 05s" data-fulltime="2014-01-20 22:05:05Z">23:05</time>
+&#13;
+&#13;
+<span class="accessibility-label">Jesus Fever med Kurt Vile </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Jesus+Fever/9005396-1-1">Jesus Fever</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Kurt Vile</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Jesus+Fever/9005396-1-1" class="accessibility-label">Mere information om "Jesus Fever"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2373628-1-8" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10276069/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 05m 42s" data-fulltime="2014-01-20 22:08:42Z">23:08</time>
+&#13;
+&#13;
+<span class="accessibility-label">Graceless med The National </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Graceless/2373628-1-8">Graceless</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">The National</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Graceless/2373628-1-8" class="accessibility-label">Mere information om "Graceless"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2261638-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/63927/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 10m 11s" data-fulltime="2014-01-20 22:13:11Z">23:13</time>
+&#13;
+&#13;
+<span class="accessibility-label">Rocks med Primal Scream </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Rocks/2261638-1-1">Rocks</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Primal Scream</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Rocks/2261638-1-1" class="accessibility-label">Mere information om "Rocks"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9007669-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10535784/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 13m 35s" data-fulltime="2014-01-20 22:16:35Z">23:16</time>
+&#13;
+&#13;
+<span class="accessibility-label">Madeleine Defoe med Son Of Caesar </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Madeleine+Defoe/9007669-1-1">Madeleine Defoe</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Son Of Caesar</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Madeleine+Defoe/9007669-1-1" class="accessibility-label">Mere information om "Madeleine Defoe"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="9006978-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10371385/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 17m 15s" data-fulltime="2014-01-20 22:20:15Z">23:20</time>
+&#13;
+&#13;
+<span class="accessibility-label">Iodine med When Saints Go Machine </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Iodine/9006978-1-1">Iodine</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">When Saints Go Machine</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Iodine/9006978-1-1" class="accessibility-label">Mere information om "Iodine"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2374246-1-4" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/10489701/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 20m 48s" data-fulltime="2014-01-20 22:23:48Z">23:23</time>
+&#13;
+&#13;
+<span class="accessibility-label">High Road med Cults </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/High+Road/2374246-1-4">High Road</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Cults</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/High+Road/2374246-1-4" class="accessibility-label">Mere information om "High Road"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+    <li class="track" data-trackid="2332333-1-1" data-artistimageurls="http://www.dr.dk/musik/kunstner/async/5002905/GetArtistPictureJson" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording">
+            <time datetime="03h 25m 14s" data-fulltime="2014-01-20 22:28:14Z">23:28</time>
+&#13;
+&#13;
+<span class="accessibility-label">Times Like These med Foo Fighters </span>&#13;
+    <div class="trackInfo" aria-hidden="true" role="presentation">        <span class="track" itemprop="name">&#13;
+                <a href="http://www.dr.dk/musik/titel/Times+Like+These/2332333-1-1">Times Like These</a>&#13;
+        </span>&#13;
+            <span class="name" itemprop="byArtist">Foo Fighters</span>&#13;
+</div>&#13;
+    <a href="http://www.dr.dk/musik/titel/Times+Like+These/2332333-1-1" class="accessibility-label">Mere information om "Times Like These"</a>&#13;
+        
+        <div class="trackDetails">
+            
+
+        </div>
+
+    </li>&#13;
+&#13;
+    </ul>&#13;
+</div>&#13;
+&#13;
+        </div>&#13;
+</div>&#13;
+&#13;
+<div class="span-3 aside">&#13;
+    <div> </div>&#13;
+</div>&#13;
+&#13;
+&#13;
+&#13;
+&#13;
+            <!--googleoff: index-->&#13;
+            <div class="section dr-site-footer-help mute-heading">&#13;
+    <h2>Kontakt og hjælp</h2>&#13;
+    <div class="combine-layout">&#13;
+        <div class="span-4 site-footer-contact">&#13;
+            <ul>&#13;
+                <li><a href="http://drdk.uservoice.com">Kontakt os</a></li>&#13;
+                <li><a href="http://www.dr.dk/OmDR/Kontakt_DR/spoergsmaal/Aktuelle+spoergsmaal.htm">Spørgsmål og svar</a></li>&#13;
+            </ul>&#13;
+        </div>&#13;
+        <div class="span-8 site-footer-help">&#13;
+            <ul>&#13;
+                <li><a href="http://www.dr.dk/OmDR/digitalradio/20110314090010.htm" class="dr-icon-arrow-right-boxed">Digital radio</a></li>&#13;
+                <li><a href="http://www.dr.dk/hjaelp/DR+Netradio/driftstatus.htm" class="dr-icon-arrow-right-boxed">Driftsstatus</a></li>&#13;
+                <li><a href="http://www.dr.dk/OmDR/Modtagelse/Radio/20091026132153.htm" class="dr-icon-arrow-right-boxed">Modtagelse af radio</a></li>&#13;
+                <li><a href="http://www.dr.dk/Mobil/Apps/radioapp.htm" class="dr-icon-arrow-right-boxed">Netradio på dr.dk og apps</a></li>&#13;
+                <li><a href="http://www.dr.dk/hjaelp/DR%20Netradio/20111020145139.htm" class="dr-icon-arrow-right-boxed">Direkte links til DR's kanaler</a></li>&#13;
+            </ul>&#13;
+        </div>&#13;
+    </div>&#13;
+</div>&#13;
+&#13;
+            &#13;
+        </div>&#13;
+    </div>&#13;
+    &#13;
+    &#13;
+&#13;
+    <script src="http://www.dr.dk/drWebStat/drWebStat.js" type="text/javascript"/>&#13;
+    &#13;
+        <script src="/playlister/Content/tv/scripts/tv-build.js"/>&#13;
+    &#13;
+    &#13;
+</body>&#13;
+</html>
