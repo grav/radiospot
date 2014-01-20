@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		308A6074881F0243A27A25BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
+		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
+		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
+		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
+		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
+		308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */; };
+		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
+		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
+		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
+		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
+		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
+		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
+		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		308A61FD9AFB37049C1406DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 308A603AB19EC15929F9C856 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 308A630DA0180F150B28E081;
+			remoteInfo = "dr-ng";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		308A604B78835DAA916D4703 /* dr-ngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dr-ngTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
+		308A6534CE4F9A8E24227C05 /* dr_ngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dr_ngTests.m; sourceTree = "<group>"; };
+		308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		308A665732BAA5B9AFB642E8 /* dr-ngTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ngTests-Info.plist"; sourceTree = "<group>"; };
+		308A66EDA0BE3AA13A079F6A /* dr-ng-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ng-Info.plist"; sourceTree = "<group>"; };
+		308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dr-ng-Prefix.pch"; sourceTree = "<group>"; };
+		308A67C052B3C8C906BA873F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		308A67DB7E3D17BD7EBD6426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		308A6AAF8D5C665089F4C989 /* dr-ng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dr-ng.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
+		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		308A6F6288EDBC80429C93B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		308A6F9312E5891AE2CA464C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		964942FB652848D1B87A5BFB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		308A63FD8341531A17266A3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */,
+				308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */,
+				308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		308A6D71563530EB6F59D0CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A6074881F0243A27A25BD /* Foundation.framework in Frameworks */,
+				308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */,
+				308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */,
+				454B70DA4756466CB2791EAA /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		308A610F6C1B7753F8440C45 = {
+			isa = PBXGroup;
+			children = (
+				308A6A4CCFFA494FA1D85DEB /* Products */,
+				308A6C63C23D8DB483E10326 /* Frameworks */,
+				308A6DB60C6C7DA17DDA0597 /* dr-ng */,
+				308A61D9F43DB8D9A24FDDC0 /* dr-ngTests */,
+				BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		308A61D9F43DB8D9A24FDDC0 /* dr-ngTests */ = {
+			isa = PBXGroup;
+			children = (
+				308A6822AA19741B3535AD62 /* Supporting Files */,
+				308A6534CE4F9A8E24227C05 /* dr_ngTests.m */,
+			);
+			path = "dr-ngTests";
+			sourceTree = "<group>";
+		};
+		308A6822AA19741B3535AD62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				308A665732BAA5B9AFB642E8 /* dr-ngTests-Info.plist */,
+				308A6F9B14332E3F2A60E480 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		308A6A4CCFFA494FA1D85DEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				308A6AAF8D5C665089F4C989 /* dr-ng.app */,
+				308A604B78835DAA916D4703 /* dr-ngTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		308A6C63C23D8DB483E10326 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				308A6F6288EDBC80429C93B7 /* Foundation.framework */,
+				308A67C052B3C8C906BA873F /* CoreGraphics.framework */,
+				308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */,
+				308A694204B38545106A0520 /* XCTest.framework */,
+				964942FB652848D1B87A5BFB /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		308A6DB60C6C7DA17DDA0597 /* dr-ng */ = {
+			isa = PBXGroup;
+			children = (
+				308A6DF32B949846F763F7AA /* Supporting Files */,
+				308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */,
+				308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */,
+				308A61140F6E6E058EC06C31 /* Images.xcassets */,
+			);
+			path = "dr-ng";
+			sourceTree = "<group>";
+		};
+		308A6DF32B949846F763F7AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				308A66EDA0BE3AA13A079F6A /* dr-ng-Info.plist */,
+				308A6EE853A9FA6B616570F3 /* InfoPlist.strings */,
+				308A6F9312E5891AE2CA464C /* main.m */,
+				308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		308A630DA0180F150B28E081 /* dr-ng */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "dr-ng" */;
+			buildPhases = (
+				9201EE69B1574BE4BA23A7FB /* Check Pods Manifest.lock */,
+				308A64FC02FF9FD95CBBA2CA /* Sources */,
+				308A6D71563530EB6F59D0CC /* Frameworks */,
+				308A6920792AB62623AC805E /* Resources */,
+				71A8BF0C46CC49D58883450F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "dr-ng";
+			productName = "dr-ng";
+			productReference = 308A6AAF8D5C665089F4C989 /* dr-ng.app */;
+			productType = "com.apple.product-type.application";
+		};
+		308A6A2E4FE41A9CB60A0624 /* dr-ngTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 308A6E97119C0EF062100762 /* Build configuration list for PBXNativeTarget "dr-ngTests" */;
+			buildPhases = (
+				308A67FCA22BFC743ECF1A13 /* Sources */,
+				308A63FD8341531A17266A3B /* Frameworks */,
+				308A610F8C91B910D34777B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				308A6BF2D7818FC9A99BE526 /* PBXTargetDependency */,
+			);
+			name = "dr-ngTests";
+			productName = "dr-ngTests";
+			productReference = 308A604B78835DAA916D4703 /* dr-ngTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		308A603AB19EC15929F9C856 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Betafunk;
+			};
+			buildConfigurationList = 308A6E8A9350C23593930443 /* Build configuration list for PBXProject "dr-ng" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 308A610F6C1B7753F8440C45;
+			productRefGroup = 308A6A4CCFFA494FA1D85DEB /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+			);
+			projectRoot = "";
+			targets = (
+				308A630DA0180F150B28E081 /* dr-ng */,
+				308A6A2E4FE41A9CB60A0624 /* dr-ngTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		308A610F8C91B910D34777B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		308A6920792AB62623AC805E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */,
+				308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71A8BF0C46CC49D58883450F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9201EE69B1574BE4BA23A7FB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		308A64FC02FF9FD95CBBA2CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A61F0BB3F407D034C6405 /* main.m in Sources */,
+				308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		308A67FCA22BFC743ECF1A13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		308A6BF2D7818FC9A99BE526 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 308A630DA0180F150B28E081 /* dr-ng */;
+			targetProxy = 308A61FD9AFB37049C1406DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		308A6EE853A9FA6B616570F3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				308A6F4D2DA04317096591DB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		308A6F9B14332E3F2A60E480 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				308A67DB7E3D17BD7EBD6426 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		308A630910C546C3049B86F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		308A671AA09104BA74775075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
+				INFOPLIST_FILE = "dr-ngTests/dr-ngTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		308A6A22F8BC360C626A2038 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		308A6E64FAFA043628A99AD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
+				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		308A6F5BB36879E3BA271570 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
+				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		308A6F7D395C2D655AE06181 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
+				INFOPLIST_FILE = "dr-ngTests/dr-ngTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		308A6E8A9350C23593930443 /* Build configuration list for PBXProject "dr-ng" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				308A6A22F8BC360C626A2038 /* Release */,
+				308A630910C546C3049B86F4 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		308A6E97119C0EF062100762 /* Build configuration list for PBXNativeTarget "dr-ngTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				308A6F7D395C2D655AE06181 /* Release */,
+				308A671AA09104BA74775075 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "dr-ng" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				308A6F5BB36879E3BA271570 /* Release */,
+				308A6E64FAFA043628A99AD6 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 308A603AB19EC15929F9C856 /* Project object */;
+}
