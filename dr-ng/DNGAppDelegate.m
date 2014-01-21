@@ -7,13 +7,7 @@
 //
 
 #import "DNGAppDelegate.h"
-#import "ReactiveCocoa.h"
-#import "HTMLReader.h"
-
-static NSString *const kURL = @"http://www.dr.dk/playlister/p6beat/2014-1-20";
-static NSString *const kTime = @".track time";
-static NSString *const kTrackName = @".track .trackInfo a";
-static NSString *const kArtist = @".track .name";
+#import "CSSSelectorViewController.h"
 
 @interface DNGAppDelegate ()
 @property(nonatomic, copy) NSString *html;
@@ -27,36 +21,8 @@ static NSString *const kArtist = @".track .name";
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
-    NSError *error;
-    self.html = [NSString stringWithContentsOfURL:[NSURL URLWithString:kURL] encoding:kCFStringEncodingUTF8 error:&error];
-    NSCAssert(!error, @"error: %@",error);
-
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 60, self.window.frame.size.width, 50)];
-    textField.backgroundColor = [UIColor yellowColor] ;
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    [self.window addSubview:textField];
-
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 120,100,50)];
-    btn.backgroundColor = [UIColor greenColor];
-    [btn setTitle:@"eval" forState:UIControlStateNormal];
-    [self.window addSubview:btn];
-
-    btn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        HTMLDocument *document = [HTMLDocument documentWithString:self.html];
-        @try {
-            NSArray *array = [document nodesMatchingSelector:textField.text];
-            NSLog(@"%@ returned %d nodes:",textField.text, array.count);
-            [array enumerateObjectsUsingBlock:^(HTMLElementNode *node, NSUInteger idx, BOOL *stop) {
-                NSLog(@"%@",node.innerHTML);
-            }];
-
-        } @catch(NSException *e) {
-            NSLog(@"error: %@",e);
-        }
-
-        return [RACSignal empty];
-    }];
+    UIViewController *vc = [[CSSSelectorViewController alloc] init];
+    self.window.rootViewController = vc;
 
     return YES;
 }
