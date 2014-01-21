@@ -20,12 +20,11 @@ static NSString *const kArtist = @".track .name";
 + (RACSignal *)trackSignalForChannel:(NSString *)channel {
 
 
-    NSDate *date = [NSDate date];
-    NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d",date.mt_year,date.mt_monthOfYear,date.mt_dayOfMonth];
-    NSString *urlString = [NSString stringWithFormat:kURL, channel, dateStr];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    return [[[RACSignal interval:5 onScheduler:[RACScheduler currentScheduler]] flattenMap:^RACStream *(id value) {
+    return [[[RACSignal interval:5 onScheduler:[RACScheduler currentScheduler]] flattenMap:^RACStream *(NSDate *date) {
+        NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d",date.mt_year,date.mt_monthOfYear,date.mt_dayOfMonth];
+        NSString *urlString = [NSString stringWithFormat:kURL, channel, dateStr];
         return [[[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
             RACTupleUnpack(AFHTTPRequestOperation *operation, NSDictionary *response) = tuple;
             return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
