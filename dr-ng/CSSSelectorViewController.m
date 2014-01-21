@@ -8,9 +8,6 @@
 #import "HTMLReader.h"
 
 static NSString *const kURL = @"http://www.dr.dk/playlister/p6beat/2014-1-20";
-static NSString *const kTime = @".track time";
-static NSString *const kTrackName = @".track .trackInfo a";
-static NSString *const kArtist = @".track .name";
 
 @interface CSSSelectorViewController ()
 @property(nonatomic, copy) NSString *html;

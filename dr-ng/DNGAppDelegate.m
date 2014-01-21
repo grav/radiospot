@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
+#import <ReactiveCocoa/ReactiveCocoa/RACSignal.h>
+#import "AFHTTPRequestOperationManager+RACSupport.h"
 #import "DNGAppDelegate.h"
-#import "CSSSelectorViewController.h"
-
+#import "PlaylistReader.h"
+#import "NSDate+MTDates.h"
 @interface DNGAppDelegate ()
 @property(nonatomic, copy) NSString *html;
 @end
@@ -21,8 +23,19 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    UIViewController *vc = [[CSSSelectorViewController alloc] init];
-    self.window.rootViewController = vc;
+//    UIViewController *vc = [[CSSSelectorViewController alloc] init];
+//    self.window.rootViewController = vc;
+
+    RACSignal *trackSignal = [PlaylistReader trackSignalForChannel:kP6Beat];
+
+    [trackSignal subscribeNext:^(id x) {
+       NSLog(@"next: %@",x);
+    } error:^(NSError *error) {
+        NSLog(@"error: %@",error);
+    } completed:^{
+        NSLog(@"completed");
+    }];
+
 
     return YES;
 }
