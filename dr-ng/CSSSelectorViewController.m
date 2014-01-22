@@ -6,8 +6,7 @@
 #import "CSSSelectorViewController.h"
 #import "ReactiveCocoa.h"
 #import "HTMLReader.h"
-
-static NSString *const kURL = @"http://www.dr.dk/playlister/p6beat/2014-1-20";
+#import "PlaylistReader.h"
 
 @interface CSSSelectorViewController ()
 @property(nonatomic, copy) NSString *html;
@@ -20,7 +19,8 @@ static NSString *const kURL = @"http://www.dr.dk/playlister/p6beat/2014-1-20";
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSError *error;
-    self.html = [NSString stringWithContentsOfURL:[NSURL URLWithString:kURL] encoding:kCFStringEncodingUTF8 error:&error];
+    NSString *url = [PlaylistReader urlForChannel:kP6Beat date:[NSDate date]];
+    self.html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:kCFStringEncodingUTF8 error:&error];
     NSCAssert(!error, @"error: %@",error);
 
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, 50)];
@@ -28,13 +28,8 @@ static NSString *const kURL = @"http://www.dr.dk/playlister/p6beat/2014-1-20";
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:textField];
 
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 120,100,50)];
-    btn.backgroundColor = [UIColor greenColor];
-    [btn setTitle:@"eval" forState:UIControlStateNormal];
-    [self.view addSubview:btn];
-
-    btn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        HTMLDocument *document = [HTMLDocument documentWithString:self.html];
+    HTMLDocument *document = [HTMLDocument documentWithString:self.html];
+    [textField.rac_textSignal subscribeNext:^(id x) {
         @try {
             NSArray *array = [document nodesMatchingSelector:textField.text];
             NSLog(@"%@ returned %d nodes:",textField.text, array.count);
@@ -46,8 +41,8 @@ static NSString *const kURL = @"http://www.dr.dk/playlister/p6beat/2014-1-20";
             NSLog(@"error: %@",e);
         }
 
-        return [RACSignal empty];
     }];
+
 }
 
 

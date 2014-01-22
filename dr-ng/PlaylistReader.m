@@ -12,7 +12,7 @@
 static NSString *const kURL = @"http://www.dr.dk/playlister/%@/%@";
 static NSString *const kTime = @".track time";
 static NSString *const kTrackName = @".track .trackInfo a";
-static NSString *const kArtist = @".track .name";
+static NSString *const kArtist = @".trackInfo .name:nth-of-type(1)";
 
 @implementation PlaylistReader {
 
@@ -23,8 +23,7 @@ static NSString *const kArtist = @".track .name";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     return [[[RACSignal interval:5 onScheduler:[RACScheduler currentScheduler]] flattenMap:^RACStream *(NSDate *date) {
-        NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d",date.mt_year,date.mt_monthOfYear,date.mt_dayOfMonth];
-        NSString *urlString = [NSString stringWithFormat:kURL, channel, dateStr];
+        NSString *urlString= [self urlForChannel:channel date:date];
         return [[[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
             RACTupleUnpack(AFHTTPRequestOperation *operation, NSDictionary *response) = tuple;
             return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
@@ -38,10 +37,16 @@ static NSString *const kArtist = @".track .name";
             }];
 
             return [RACSequence zip:sequences reduce:^id(NSString *trackName, NSString *artist, NSString *time) {
-                return @[trackName, artist, time];
-            }].array;
+                return [RACTuple tupleWithObjectsFromArray:@[trackName, artist, time]];
+            }].array.lastObject;
         }];
     }] distinctUntilChanged];
+}
+
++ (NSString *)urlForChannel:(NSString *)channel date:(NSDate *)date {
+    NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d",date.mt_year,date.mt_monthOfYear,date.mt_dayOfMonth];
+    NSString *urlString = [NSString stringWithFormat:kURL, channel, dateStr];
+    return urlString;
 }
 
 

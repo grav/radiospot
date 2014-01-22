@@ -10,7 +10,10 @@
 #import "AFHTTPRequestOperationManager+RACSupport.h"
 #import "DNGAppDelegate.h"
 #import "PlaylistReader.h"
-#import "NSDate+MTDates.h"
+#import "CocoaLibSpotify.h"
+#import "PlayerViewController.h"
+#import "CSSSelectorViewController.h"
+
 @interface DNGAppDelegate ()
 @property(nonatomic, copy) NSString *html;
 @end
@@ -23,20 +26,9 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    UIViewController *vc = [[PlayerViewController alloc] init];
 //    UIViewController *vc = [[CSSSelectorViewController alloc] init];
-//    self.window.rootViewController = vc;
-
-    RACSignal *trackSignal = [PlaylistReader trackSignalForChannel:kP6Beat];
-
-    [trackSignal subscribeNext:^(id x) {
-       NSLog(@"next: %@",x);
-    } error:^(NSError *error) {
-        NSLog(@"error: %@",error);
-    } completed:^{
-        NSLog(@"completed");
-    }];
-
-
+    self.window.rootViewController = vc;
     return YES;
 }
 
