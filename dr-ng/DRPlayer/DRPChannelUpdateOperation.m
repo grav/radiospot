@@ -121,6 +121,7 @@
                     [downloadTask resume];
                     
                     [self.channelArray addObject:newChannel];
+                    NSLog(@"%@",newChannel);
                 }
             }
         }
