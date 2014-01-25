@@ -3,15 +3,19 @@
 // Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
 #include "appkey.c"
 #import "ReactiveCocoa.h"
 #import "PlaylistReader.h"
-
+#import "DRPChannelUpdateOperation.h"
+#import "DRPConstants.h"
+#import "DRPChannel.h"
 
 @interface PlayerViewController ()
 @property(nonatomic, strong) SPPlaybackManager *playbackManager;
+@property(nonatomic, strong) AVPlayer *player;
 @end
 
 @implementation PlayerViewController {
@@ -33,9 +37,20 @@ NSString *const SpotifyUsername = @"113192706";
        	}
         [SPSession sharedSession].delegate = self;
 
-        if([SPSession sharedSession].connectionState != SP_CONNECTION_STATE_LOGGED_IN){
-            [self performSelector:@selector(spotifyLogin) withObject:nil afterDelay:2];
-        }
+//        if([SPSession sharedSession].connectionState != SP_CONNECTION_STATE_LOGGED_IN){
+//            [self performSelector:@selector(spotifyLogin) withObject:nil afterDelay:2];
+//        }
+
+
+        NSOperation *op = [[DRPChannelUpdateOperation alloc] init];
+        [op start];
+
+        [[NSNotificationCenter defaultCenter] addObserverForName:ChannelUpdateOperationDidFinish object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            DRPChannel *channel = ((NSArray *)note.object).firstObject;
+            self.player = [[AVPlayer alloc] initWithURL:channel.streamQualityHighURL];
+            [self.player play];
+        }];
+
     }
     return self;
 }
@@ -43,6 +58,8 @@ NSString *const SpotifyUsername = @"113192706";
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
+#pragma mark - drplay
 
 #pragma mark spot
 

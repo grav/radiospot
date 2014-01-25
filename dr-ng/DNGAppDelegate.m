@@ -19,24 +19,18 @@
 
 @interface DNGAppDelegate ()
 @property(nonatomic, copy) NSString *html;
-@property(nonatomic, strong) DRPChannelUpdateOperation *op;
 @end
 
 @implementation DNGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    self.op = [[DRPChannelUpdateOperation alloc] init];
-    [self.op start];
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-//    UIViewController *vc = [[PlayerViewController alloc] init];
-//    UIViewController *vc = [[CSSSelectorViewController alloc] init];
-//    self.window.rootViewController = vc;
+    UIViewController *vc = [[PlayerViewController alloc] init];
+    self.window.rootViewController = vc;
     return YES;
 }
 

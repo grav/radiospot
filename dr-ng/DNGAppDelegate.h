@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class TFHpple;
 @class DRPChannelUpdateOperation;
 
 @interface DNGAppDelegate : UIResponder <UIApplicationDelegate>

@@ -7,6 +7,7 @@
 #import "SPSession.h"
 
 @class SPPlaybackManager;
+@class AVPlayer;
 
 
 @interface PlayerViewController : UIViewController <SPSessionDelegate>
