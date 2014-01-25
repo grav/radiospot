@@ -6,16 +6,9 @@
 //  Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa/RACSignal.h>
-#import "AFHTTPRequestOperationManager+RACSupport.h"
 #import "DNGAppDelegate.h"
-#import "PlaylistReader.h"
 #import "CocoaLibSpotify.h"
-#import "DRPChannelUpdateOperation.h"
 #import "PlayerViewController.h"
-#import "CSSSelectorViewController.h"
-
-#import "DRPChannelUpdateOperation.h"
 
 @interface DNGAppDelegate ()
 @property(nonatomic, copy) NSString *html;
@@ -31,6 +24,7 @@
     [self.window makeKeyAndVisible];
     UIViewController *vc = [[PlayerViewController alloc] init];
     self.window.rootViewController = vc;
+    vc.view.frame = self.window.bounds;
     return YES;
 }
 

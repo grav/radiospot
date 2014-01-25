@@ -12,10 +12,12 @@
 #import "DRPChannelUpdateOperation.h"
 #import "DRPConstants.h"
 #import "DRPChannel.h"
+#import "ChannelCell.h"
 
-@interface PlayerViewController ()
+@interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) SPPlaybackManager *playbackManager;
 @property(nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) NSArray *channels;
 @end
 
 @implementation PlayerViewController {
@@ -27,28 +29,28 @@ NSString *const SpotifyUsername = @"113192706";
     self = [super init];
     if(self){
         NSError *error = nil;
-       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
-       											   userAgent:@"dk.betafunk.splif"
-       										   loadingPolicy:SPAsyncLoadingManual
-       												   error:&error];
+//       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
+//       											   userAgent:@"dk.betafunk.splif"
+//       										   loadingPolicy:SPAsyncLoadingManual
+//       												   error:&error];
        	if (error != nil) {
        		NSLog(@"CocoaLibSpotify init failed: %@", error);
        		abort();
        	}
-        [SPSession sharedSession].delegate = self;
-
-//        if([SPSession sharedSession].connectionState != SP_CONNECTION_STATE_LOGGED_IN){
-//            [self performSelector:@selector(spotifyLogin) withObject:nil afterDelay:2];
-//        }
-
+//        [SPSession sharedSession].delegate = self;
 
         NSOperation *op = [[DRPChannelUpdateOperation alloc] init];
         [op start];
 
         [[NSNotificationCenter defaultCenter] addObserverForName:ChannelUpdateOperationDidFinish object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            DRPChannel *channel = ((NSArray *)note.object).firstObject;
-            self.player = [[AVPlayer alloc] initWithURL:channel.streamQualityHighURL];
+            NSArray *channels = note.object;
+            self.channels = [channels.rac_sequence filter:^BOOL(DRPChannel *channel) {
+                return channel.type == DRPChannelRadioType;
+            }].array;
+            DRPChannel *channel = self.channels[0];
+            self.player = [AVPlayer playerWithURL:channel.streamQualityHighURL];
             [self.player play];
+
         }];
 
     }
@@ -57,9 +59,41 @@ NSString *const SpotifyUsername = @"113192706";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UITableView *tableView = [UITableView new];
+    tableView.dataSource = self; tableView.delegate = self;
+    [self.view addSubview:tableView];
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.height.equalTo(self.view).dividedBy(2);
+    }];
+
 }
 
-#pragma mark - drplay
+#pragma mark tblview
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.channels.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ChannelCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseId];
+    if(!cell){
+        cell = [ChannelCell new];
+    }
+    [cell configure:self.channels[(NSUInteger) indexPath.row]];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DRPChannel *channel = self.channels[(NSUInteger) indexPath.row];
+    NSError *error;
+    self.player = [AVPlayer playerWithPlayerItem:[AVPlayerItem playerItemWithURL:channel.streamQualityHighURL]];
+    NSLog(@"%@",error);
+    [self.player play];
+}
+
 
 #pragma mark spot
 

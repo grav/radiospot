@@ -16,6 +16,7 @@
 		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
 		308A6660A47A834E74EC53AC /* DRPChannelUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A62BA6831F52724EB8879 /* DRPChannelUpdateOperation.m */; };
 		308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */; };
+		308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63F772362AD7F7517DA4 /* ChannelCell.m */; };
 		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
 		308A6940EAE933315932CB8D /* DRPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A68A2A674B491F779BB23 /* DRPConstants.m */; };
 		308A69F6FF8D6D33E7F0C289 /* CSSSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63E9703FD853270A98FC /* CSSSelectorViewController.m */; };
@@ -51,8 +52,10 @@
 		308A638A4B6F864B16AC4D92 /* UIColor+DRPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DRPAdditions.h"; sourceTree = "<group>"; };
 		308A63E9703FD853270A98FC /* CSSSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorViewController.m; sourceTree = "<group>"; };
 		308A63EFA8D9CB54E7A682BB /* DRPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPConstants.h; sourceTree = "<group>"; };
+		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		308A648306866D60FE152C0F /* NSAttributedString+DRPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+DRPAdditions.h"; sourceTree = "<group>"; };
+		308A64848B7D6473184EBBB2 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
 		308A6534CE4F9A8E24227C05 /* dr_ngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dr_ngTests.m; sourceTree = "<group>"; };
 		308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -191,6 +194,8 @@
 				308A6C4D1785746DAEA58C1C /* PlaylistReader.m */,
 				308A69BE642E72AECF137AE5 /* PlaylistReader.h */,
 				308A63353EEECD7A627770A4 /* DRPlayer */,
+				308A63F772362AD7F7517DA4 /* ChannelCell.m */,
+				308A64848B7D6473184EBBB2 /* ChannelCell.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				308A6B7ABF5C1FE9A9E177F9 /* DRPChannel.m in Sources */,
 				308A624F2CCD7D983F28F7DD /* UIColor+DRPAdditions.m in Sources */,
 				308A6B6BB35B682D1C581D59 /* NSAttributedString+DRPAdditions.m in Sources */,
+				308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
