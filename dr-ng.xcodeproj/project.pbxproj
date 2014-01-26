@@ -22,6 +22,7 @@
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
+		308A6DBE450F94DD562E1DEE /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A612BD5E1F323F3A2B7D5 /* PlaylistReader.m */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
 		308A6E95527C759DB964F8BF /* FallbackPlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6C4D1785746DAEA58C1C /* FallbackPlaylistReader.m */; };
 		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		308A604B78835DAA916D4703 /* dr-ngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dr-ngTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		308A612BD5E1F323F3A2B7D5 /* PlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistReader.m; sourceTree = "<group>"; };
 		308A61B5812D288FA29D19E0 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		308A63E9703FD853270A98FC /* CSSSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorViewController.m; sourceTree = "<group>"; };
 		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		308A6BA42E649278158146BA /* CSSSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorViewController.h; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6C4D1785746DAEA58C1C /* FallbackPlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallbackPlaylistReader.m; sourceTree = "<group>"; };
+		308A6CEFEF967F91538DCB6D /* PlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistReader.h; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
 		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A6F6288EDBC80429C93B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +104,8 @@
 				308A6DB60C6C7DA17DDA0597 /* dr-ng */,
 				308A61D9F43DB8D9A24FDDC0 /* dr-ngTests */,
 				BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */,
+				308A612BD5E1F323F3A2B7D5 /* PlaylistReader.m */,
+				308A6CEFEF967F91538DCB6D /* PlaylistReader.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +311,7 @@
 				308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */,
 				308A6E95527C759DB964F8BF /* FallbackPlaylistReader.m in Sources */,
 				308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */,
+				308A6DBE450F94DD562E1DEE /* PlaylistReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,10 @@ typedef enum {
     ChannelP8Jazz
 } Channel;
 
+static NSString *const kTitle = @"title";
+static NSString *const kArtist = @"artist";
+
+
 @protocol Playlist <NSObject>
 @property (nonatomic) Channel channel;
 @property (nonatomic, copy, readonly) NSString *currentTrack;

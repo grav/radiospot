@@ -10,12 +10,12 @@
 #import "HTMLReader.h"
 
 static NSString *const kURL = @"http://www.dr.dk/playlister/%@/%@";
-static NSString *const kTime = @".track time";
-static NSString *const kTrackName = @".track .trackInfo a";
-static NSString *const kArtist = @".trackInfo .name:nth-of-type(1)";
+static NSString *const kCSSTime = @".track time";
+static NSString *const kCSSTrackName = @".track .trackInfo a";
+static NSString *const kCSSArtist = @".trackInfo .name:nth-of-type(1)";
 
 @interface FallbackPlaylistReader ()
-@property (nonatomic, copy, readwrite) NSString *   currentTrack;
+@property (nonatomic, copy, readwrite) NSString *currentTrack;
 @end
 
 @implementation FallbackPlaylistReader {
@@ -39,7 +39,7 @@ static NSString *const kArtist = @".trackInfo .name:nth-of-type(1)";
             }] map:^id(NSString *htmlString) {
                 HTMLDocument *document = [HTMLDocument documentWithString:htmlString];
 
-                RACSequence *sequences = [@[kTrackName, kArtist, kTime].rac_sequence map:^id(NSString *selector) {
+                RACSequence *sequences = [@[kCSSTrackName, kCSSArtist, kCSSTime].rac_sequence map:^id(NSString *selector) {
                     return [[document nodesMatchingSelector:selector].rac_sequence map:^id(HTMLNode *node) {
                         return node.innerHTML;
                     }];

@@ -10,9 +10,7 @@
 #import "ReactiveCocoa.h"
 #import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
-#import "Playlist.h"
-
-static NSString *const kTracklistUrl = @"http://www.dr.dk/info/musik/service/TrackInfoJsonService.svc/TrackInfo/%@";
+#import "PlaylistReader.h"
 
 static NSString *const kChannelId = @"channelid";
 
@@ -31,7 +29,7 @@ NSString *const SpotifyUsername = @"113192706";
 - (instancetype)init{
     self = [super init];
     if(self){
-        self.playlist = [[FallbackPlaylistReader alloc] init]; // TODO - first try creating regular playlistReader
+        self.playlist = [[PlaylistReader alloc] init]; // TODO - use fallback if it fails
 
         [RACObserve(self.playlist, currentTrack) subscribeNext:^(id x) {
             NSLog(@"%@",x);
@@ -65,21 +63,17 @@ NSString *const SpotifyUsername = @"113192706";
                 @{
                         kName:@"P2",
                         kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
-                        kTracklistId : @"P2",
                         kChannelId :@(ChannelP2)
                 },
                 @{
                         kName:@"P6 Beat",
                         kUrl:@"http://drradio3-lh.akamaihd.net/i/p6beat_9@143533/master.m3u8",
                         kChannelId:@(ChannelP6Beat),
-                        kTracklistId:@"P6B",
-                        kFallbackTracklistId :@"p6beat"
                 },
                 @{
                         kName:@"P8 Jazz",
                         kUrl:@"http://drradio2-lh.akamaihd.net/i/p8jazz_9@143524/master.m3u8",
-                        kChannelId:@(ChannelP8Jazz),
-                        kTracklistId:@"P8J",
+                        kChannelId:@(ChannelP8Jazz)
                 }
         ];
     }
