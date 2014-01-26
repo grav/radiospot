@@ -8,16 +8,19 @@
 #import "CocoaLibSpotify.h"
 #include "appkey.c"
 #import "ReactiveCocoa.h"
-#import "PlaylistReader.h"
+#import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
-
+#import "Playlist.h"
 
 static NSString *const kTracklistUrl = @"http://www.dr.dk/info/musik/service/TrackInfoJsonService.svc/TrackInfo/%@";
+
+static NSString *const kChannelId = @"channelid";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) SPPlaybackManager *playbackManager;
 @property(nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) NSArray *channels;
+@property (nonatomic, strong) id<Playlist> playlist;
 @end
 
 @implementation PlayerViewController {
@@ -28,15 +31,21 @@ NSString *const SpotifyUsername = @"113192706";
 - (instancetype)init{
     self = [super init];
     if(self){
-        NSError *error = nil;
+        self.playlist = [[FallbackPlaylistReader alloc] init]; // TODO - first try creating regular playlistReader
+
+        [RACObserve(self.playlist, currentTrack) subscribeNext:^(id x) {
+            NSLog(@"%@",x);
+        }];
+
+//        NSError *error = nil;
 //       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
 //       											   userAgent:@"dk.betafunk.splif"
 //       										   loadingPolicy:SPAsyncLoadingManual
 //       												   error:&error];
-       	if (error != nil) {
-       		NSLog(@"CocoaLibSpotify init failed: %@", error);
-       		abort();
-       	}
+//       	if (error != nil) {
+//       		NSLog(@"CocoaLibSpotify init failed: %@", error);
+//       		abort();
+//       	}
 //        [SPSession sharedSession].delegate = self;
 
 //        NSOperation *op = [[DRPChannelUpdateOperation alloc] init];
@@ -56,17 +65,20 @@ NSString *const SpotifyUsername = @"113192706";
                 @{
                         kName:@"P2",
                         kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
-                        kTracklistId : @"P2"
+                        kTracklistId : @"P2",
+                        kChannelId :@(ChannelP2)
                 },
                 @{
                         kName:@"P6 Beat",
                         kUrl:@"http://drradio3-lh.akamaihd.net/i/p6beat_9@143533/master.m3u8",
+                        kChannelId:@(ChannelP6Beat),
                         kTracklistId:@"P6B",
                         kFallbackTracklistId :@"p6beat"
                 },
                 @{
                         kName:@"P8 Jazz",
                         kUrl:@"http://drradio2-lh.akamaihd.net/i/p8jazz_9@143524/master.m3u8",
+                        kChannelId:@(ChannelP8Jazz),
                         kTracklistId:@"P8J",
                 }
         ];
@@ -107,6 +119,7 @@ NSString *const SpotifyUsername = @"113192706";
     NSDictionary *channel = self.channels[(NSUInteger) indexPath.row];
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
     [self.player play];
+    self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
 }
 
 
@@ -125,28 +138,28 @@ NSString *const SpotifyUsername = @"113192706";
 - (void)sessionDidLoginSuccessfully:(SPSession *)aSession {
     NSLog(@"logged in");
     
-    self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
-    RACSignal *trackSignal = [PlaylistReader trackSignalForChannel:kP3];
-
-    [trackSignal subscribeNext:^(RACTuple *tuple) {
-        RACTupleUnpack(NSString *trackName, NSString *artist,NSString *time) = tuple;
-        NSLog(@"Found new: %@ - %@",artist, trackName);
-        NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",artist,trackName];
-
-        SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
-        [SPAsyncLoading waitUntilLoaded:search timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
-            NSLog(@"Playing first of search results: %@",search.tracks);
-            [self.playbackManager playTrack:search.tracks.firstObject callback:^(NSError *error) {
-                if (error) NSLog(@"error: %@", error);
-            }];
-
-            NSLog(@"%@",search.tracks);
-        }];
-    } error:^(NSError *error) {
-        NSLog(@"error: %@",error);
-    } completed:^{
-        NSLog(@"completed");
-    }];
+//    self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
+//    RACSignal *trackSignal = [FallbackPlaylistReader trackSignalForChannel:kP3];
+//
+//    [trackSignal subscribeNext:^(RACTuple *tuple) {
+//        RACTupleUnpack(NSString *trackName, NSString *artist,NSString *time) = tuple;
+//        NSLog(@"Found new: %@ - %@",artist, trackName);
+//        NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",artist,trackName];
+//
+//        SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
+//        [SPAsyncLoading waitUntilLoaded:search timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+//            NSLog(@"Playing first of search results: %@",search.tracks);
+//            [self.playbackManager playTrack:search.tracks.firstObject callback:^(NSError *error) {
+//                if (error) NSLog(@"error: %@", error);
+//            }];
+//
+//            NSLog(@"%@",search.tracks);
+//        }];
+//    } error:^(NSError *error) {
+//        NSLog(@"error: %@",error);
+//    } completed:^{
+//        NSLog(@"completed");
+//    }];
 
 
 }

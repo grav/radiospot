@@ -6,7 +6,7 @@
 #import "CSSSelectorViewController.h"
 #import "ReactiveCocoa.h"
 #import "HTMLReader.h"
-#import "PlaylistReader.h"
+#import "FallbackPlaylistReader.h"
 
 @interface CSSSelectorViewController ()
 @property(nonatomic, copy) NSString *html;
@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSError *error;
-    NSString *url = [PlaylistReader urlForChannel:kP6Beat date:[NSDate date]];
+    NSString *url;// = [FallbackPlaylistReader urlForChannel:kP6Beat date:[NSDate date]];
     self.html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:kCFStringEncodingUTF8 error:&error];
     NSCAssert(!error, @"error: %@",error);
 

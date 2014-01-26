@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class DRPChannelUpdateOperation;
-
 @interface DNGAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
