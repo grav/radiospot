@@ -4,8 +4,7 @@
 //
 
 #import "ChannelCell.h"
-#import "DRPChannel.h"
-
+#import "PlayerViewController.h"
 
 @implementation ChannelCell {
 
@@ -20,9 +19,9 @@
 }
 
 
-- (void)configure:(DRPChannel *)channel {
-    self.textLabel.text = channel.name;
-    self.imageView.image = [UIImage imageWithContentsOfFile:channel.iconLocalURL.absoluteString];
+- (void)configure:(NSDictionary *)channel {
+    self.textLabel.text = channel[kName];
+//    self.imageView.image = [UIImage imageWithContentsOfFile:channel.iconLocalURL.absoluteString];
 }
 
 @end

@@ -9,24 +9,18 @@
 /* Begin PBXBuildFile section */
 		308A6074881F0243A27A25BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
-		308A624F2CCD7D983F28F7DD /* UIColor+DRPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6C538440843327D76D53 /* UIColor+DRPAdditions.m */; };
 		308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 308A666714D52EBFEB4E7462 /* spotify_password.txt */; };
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
 		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
-		308A6660A47A834E74EC53AC /* DRPChannelUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A62BA6831F52724EB8879 /* DRPChannelUpdateOperation.m */; };
 		308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */; };
 		308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63F772362AD7F7517DA4 /* ChannelCell.m */; };
 		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
-		308A6940EAE933315932CB8D /* DRPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A68A2A674B491F779BB23 /* DRPConstants.m */; };
 		308A69F6FF8D6D33E7F0C289 /* CSSSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63E9703FD853270A98FC /* CSSSelectorViewController.m */; };
 		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
-		308A6B6BB35B682D1C581D59 /* NSAttributedString+DRPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A634B4116713E71255640 /* NSAttributedString+DRPAdditions.m */; };
-		308A6B7ABF5C1FE9A9E177F9 /* DRPChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6DD5660C5E159BF44ABC /* DRPChannel.m */; };
 		308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */; };
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
-		308A6CB20D7F86C17020E95D /* NSString+DRPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6DBD9986395DEF1F3471 /* NSString+DRPAdditions.m */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
 		308A6E95527C759DB964F8BF /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6C4D1785746DAEA58C1C /* PlaylistReader.m */; };
@@ -46,15 +40,9 @@
 /* Begin PBXFileReference section */
 		308A604B78835DAA916D4703 /* dr-ngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dr-ngTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		308A61865F41ADB60C781260 /* NSString+DRPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DRPAdditions.h"; sourceTree = "<group>"; };
-		308A62BA6831F52724EB8879 /* DRPChannelUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPChannelUpdateOperation.m; sourceTree = "<group>"; };
-		308A634B4116713E71255640 /* NSAttributedString+DRPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+DRPAdditions.m"; sourceTree = "<group>"; };
-		308A638A4B6F864B16AC4D92 /* UIColor+DRPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DRPAdditions.h"; sourceTree = "<group>"; };
 		308A63E9703FD853270A98FC /* CSSSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorViewController.m; sourceTree = "<group>"; };
-		308A63EFA8D9CB54E7A682BB /* DRPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPConstants.h; sourceTree = "<group>"; };
 		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
-		308A648306866D60FE152C0F /* NSAttributedString+DRPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+DRPAdditions.h"; sourceTree = "<group>"; };
 		308A64848B7D6473184EBBB2 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
 		308A6534CE4F9A8E24227C05 /* dr_ngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dr_ngTests.m; sourceTree = "<group>"; };
@@ -65,22 +53,16 @@
 		308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dr-ng-Prefix.pch"; sourceTree = "<group>"; };
 		308A67C052B3C8C906BA873F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		308A67DB7E3D17BD7EBD6426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		308A68A2A674B491F779BB23 /* DRPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPConstants.m; sourceTree = "<group>"; };
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A69BE642E72AECF137AE5 /* PlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistReader.h; sourceTree = "<group>"; };
 		308A6AAF8D5C665089F4C989 /* dr-ng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dr-ng.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		308A6B562632436057A358CA /* DRPChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPChannel.h; sourceTree = "<group>"; };
 		308A6BA42E649278158146BA /* CSSSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorViewController.h; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6C4D1785746DAEA58C1C /* PlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistReader.m; sourceTree = "<group>"; };
-		308A6C538440843327D76D53 /* UIColor+DRPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DRPAdditions.m"; sourceTree = "<group>"; };
-		308A6DBD9986395DEF1F3471 /* NSString+DRPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DRPAdditions.m"; sourceTree = "<group>"; };
-		308A6DD5660C5E159BF44ABC /* DRPChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRPChannel.m; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
 		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A6F6288EDBC80429C93B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		308A6F9312E5891AE2CA464C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		308A6FE988E622E5EDFF6240 /* DRPChannelUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRPChannelUpdateOperation.h; sourceTree = "<group>"; };
 		964942FB652848D1B87A5BFB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,25 +112,6 @@
 			path = "dr-ngTests";
 			sourceTree = "<group>";
 		};
-		308A63353EEECD7A627770A4 /* DRPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				308A6FE988E622E5EDFF6240 /* DRPChannelUpdateOperation.h */,
-				308A62BA6831F52724EB8879 /* DRPChannelUpdateOperation.m */,
-				308A68A2A674B491F779BB23 /* DRPConstants.m */,
-				308A63EFA8D9CB54E7A682BB /* DRPConstants.h */,
-				308A6DBD9986395DEF1F3471 /* NSString+DRPAdditions.m */,
-				308A61865F41ADB60C781260 /* NSString+DRPAdditions.h */,
-				308A6B562632436057A358CA /* DRPChannel.h */,
-				308A6DD5660C5E159BF44ABC /* DRPChannel.m */,
-				308A6C538440843327D76D53 /* UIColor+DRPAdditions.m */,
-				308A638A4B6F864B16AC4D92 /* UIColor+DRPAdditions.h */,
-				308A634B4116713E71255640 /* NSAttributedString+DRPAdditions.m */,
-				308A648306866D60FE152C0F /* NSAttributedString+DRPAdditions.h */,
-			);
-			path = DRPlayer;
-			sourceTree = "<group>";
-		};
 		308A6822AA19741B3535AD62 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +156,6 @@
 				308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */,
 				308A6C4D1785746DAEA58C1C /* PlaylistReader.m */,
 				308A69BE642E72AECF137AE5 /* PlaylistReader.h */,
-				308A63353EEECD7A627770A4 /* DRPlayer */,
 				308A63F772362AD7F7517DA4 /* ChannelCell.m */,
 				308A64848B7D6473184EBBB2 /* ChannelCell.h */,
 			);
@@ -269,8 +231,6 @@
 			mainGroup = 308A610F6C1B7753F8440C45;
 			productRefGroup = 308A6A4CCFFA494FA1D85DEB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				308A630DA0180F150B28E081 /* dr-ng */,
@@ -343,12 +303,6 @@
 				308A69F6FF8D6D33E7F0C289 /* CSSSelectorViewController.m in Sources */,
 				308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */,
 				308A6E95527C759DB964F8BF /* PlaylistReader.m in Sources */,
-				308A6660A47A834E74EC53AC /* DRPChannelUpdateOperation.m in Sources */,
-				308A6940EAE933315932CB8D /* DRPConstants.m in Sources */,
-				308A6CB20D7F86C17020E95D /* NSString+DRPAdditions.m in Sources */,
-				308A6B7ABF5C1FE9A9E177F9 /* DRPChannel.m in Sources */,
-				308A624F2CCD7D983F28F7DD /* UIColor+DRPAdditions.m in Sources */,
-				308A6B6BB35B682D1C581D59 /* NSAttributedString+DRPAdditions.m in Sources */,
 				308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,7 +441,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
 				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -501,7 +457,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
 				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -540,6 +498,7 @@
 				308A671AA09104BA74775075 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "dr-ng" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +507,7 @@
 				308A6E64FAFA043628A99AD6 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

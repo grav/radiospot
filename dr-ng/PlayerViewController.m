@@ -9,10 +9,10 @@
 #include "appkey.c"
 #import "ReactiveCocoa.h"
 #import "PlaylistReader.h"
-#import "DRPChannelUpdateOperation.h"
-#import "DRPConstants.h"
-#import "DRPChannel.h"
 #import "ChannelCell.h"
+
+
+static NSString *const kTracklistUrl = @"http://www.dr.dk/info/musik/service/TrackInfoJsonService.svc/TrackInfo/%@";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) SPPlaybackManager *playbackManager;
@@ -39,20 +39,37 @@ NSString *const SpotifyUsername = @"113192706";
        	}
 //        [SPSession sharedSession].delegate = self;
 
-        NSOperation *op = [[DRPChannelUpdateOperation alloc] init];
-        [op start];
-
-        [[NSNotificationCenter defaultCenter] addObserverForName:ChannelUpdateOperationDidFinish object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-            NSArray *channels = note.object;
-            self.channels = [channels.rac_sequence filter:^BOOL(DRPChannel *channel) {
-                return channel.type == DRPChannelRadioType;
-            }].array;
-            DRPChannel *channel = self.channels[0];
-            self.player = [AVPlayer playerWithURL:channel.streamQualityHighURL];
-            [self.player play];
-
-        }];
-
+//        NSOperation *op = [[DRPChannelUpdateOperation alloc] init];
+//        [op start];
+//
+//        [[NSNotificationCenter defaultCenter] addObserverForName:ChannelUpdateOperationDidFinish object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+//            NSArray *channels = note.object;
+//            self.channels = [channels.rac_sequence filter:^BOOL(DRPChannel *channel) {
+//                return channel.type == DRPChannelRadioType;
+//            }].array;
+//            DRPChannel *channel = self.channels[0];
+//            self.player = [AVPlayer playerWithURL:channel.streamQualityHighURL];
+//            [self.player play];
+//
+//        }];
+        self.channels = @[
+                @{
+                        kName:@"P2",
+                        kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
+                        kTracklistId : @"P2"
+                },
+                @{
+                        kName:@"P6 Beat",
+                        kUrl:@"http://drradio3-lh.akamaihd.net/i/p6beat_9@143533/master.m3u8",
+                        kTracklistId:@"P6B",
+                        kFallbackTracklistId :@"p6beat"
+                },
+                @{
+                        kName:@"P8 Jazz",
+                        kUrl:@"http://drradio2-lh.akamaihd.net/i/p8jazz_9@143524/master.m3u8",
+                        kTracklistId:@"P8J",
+                }
+        ];
     }
     return self;
 }
@@ -87,10 +104,8 @@ NSString *const SpotifyUsername = @"113192706";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DRPChannel *channel = self.channels[(NSUInteger) indexPath.row];
-    NSError *error;
-    self.player = [AVPlayer playerWithPlayerItem:[AVPlayerItem playerItemWithURL:channel.streamQualityHighURL]];
-    NSLog(@"%@",error);
+    NSDictionary *channel = self.channels[(NSUInteger) indexPath.row];
+    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
     [self.player play];
 }
 

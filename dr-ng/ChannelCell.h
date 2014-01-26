@@ -12,6 +12,6 @@
 static NSString *const ReuseId = @"ReuseID";
 
 @interface ChannelCell : UITableViewCell
-- (void)configure:(DRPChannel*)channel;
+- (void)configure:(NSDictionary*)channel;
 
 @end
