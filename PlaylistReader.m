@@ -36,15 +36,37 @@
             RACTupleUnpack(NSDate *date,NSNumber *channelNumber) = aTuple;
             Channel channel = (Channel) channelNumber.integerValue;
             NSString *urlString = [PlaylistReader urlForChannel:channel];
-            return [[[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
+            return [[[[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
                 RACTupleUnpack(AFHTTPRequestOperation *operation, NSDictionary *response) = tuple;
                 return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
             }] map:^id(NSString *htmlString) {
                 NSDictionary *json = [htmlString objectFromJSONString];
 
-                NSDictionary *track = ((NSArray *)json[@"tracks"]).firstObject;
-                return track?@{kTitle:track[@"title"], kArtist:track[@"artist"]}:nil;
+                NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
+                return track ? @{kTitle : track[@"title"], kArtist : track[@"artist"]} : nil;
 
+            }] filter:^BOOL(NSDictionary *track) {
+                // Filter out junk
+                // that for some reason is returned quite often
+                return ![track isEqualToDictionary:@{ // p6 junk
+                            kTitle:@"The Light (Plane To Spain)",
+                            kArtist:@"The William Blakes"}] &&
+                        ![track isEqualToDictionary:@{  // p8 junk
+                            kTitle:@"Magnetic",
+                            kArtist:@"Terence Blanchard"
+                        }] &&
+                        ![track isEqualToDictionary:@{   //p2 junk
+                                kTitle:@"Allegro vivace",
+                                kArtist:@"Iván Fischer"
+                        }] &&
+                        ![track isEqualToDictionary:@{ // p3 junk
+                                kTitle:@"Burhan g",
+                                kArtist:@"Burhan G"
+                        }] &&
+                        ![track isEqualToDictionary:@{  // p7 junk
+                                kTitle:@"Hung up",
+                                kArtist:@"Madonna"
+                        }];
             }];
         }] distinctUntilChanged];
     }
