@@ -9,7 +9,7 @@
 #import "JSONKit.h"
 
 @interface PlaylistReader ()
-@property (nonatomic, copy, readwrite) NSString *currentTrack;
+@property (nonatomic, copy, readwrite) NSDictionary *currentTrack;
 @end
 
 @implementation PlaylistReader {

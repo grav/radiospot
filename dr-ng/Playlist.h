@@ -19,5 +19,5 @@ static NSString *const kArtist = @"artist";
 
 @protocol Playlist <NSObject>
 @property (nonatomic) Channel channel;
-@property (nonatomic, copy, readonly) NSString *currentTrack;
+@property (nonatomic, copy, readonly) NSDictionary *currentTrack;
 @end

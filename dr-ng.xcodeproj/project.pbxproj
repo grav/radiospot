@@ -227,6 +227,15 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = Betafunk;
+				TargetAttributes = {
+					308A630DA0180F150B28E081 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 308A6E8A9350C23593930443 /* Build configuration list for PBXProject "dr-ng" */;
 			compatibilityVersion = "Xcode 3.2";

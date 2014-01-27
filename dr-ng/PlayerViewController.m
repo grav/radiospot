@@ -11,8 +11,10 @@
 #import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
 #import "PlaylistReader.h"
-
+#import "NSString+UrlEncode.h"
 static NSString *const kChannelId = @"channelid";
+
+static NSString *const kPlaylistName = @"dr-ng";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) SPPlaybackManager *playbackManager;
@@ -31,30 +33,18 @@ NSString *const SpotifyUsername = @"113192706";
     if(self){
         self.playlist = [[PlaylistReader alloc] init]; // TODO - use fallback if it fails
 
-//        NSError *error = nil;
-//       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
-//       											   userAgent:@"dk.betafunk.splif"
-//       										   loadingPolicy:SPAsyncLoadingManual
-//       												   error:&error];
-//       	if (error != nil) {
-//       		NSLog(@"CocoaLibSpotify init failed: %@", error);
-//       		abort();
-//       	}
-//        [SPSession sharedSession].delegate = self;
+        NSError *error = nil;
+       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
+       											   userAgent:@"dk.betafunk.splif"
+       										   loadingPolicy:SPAsyncLoadingManual
+       												   error:&error];
+       	if (error != nil) {
+       		NSLog(@"CocoaLibSpotify init failed: %@", error);
+       		abort();
+       	}
+        [SPSession sharedSession].delegate = self;
+        [self spotifyLogin];
 
-//        NSOperation *op = [[DRPChannelUpdateOperation alloc] init];
-//        [op start];
-//
-//        [[NSNotificationCenter defaultCenter] addObserverForName:ChannelUpdateOperationDidFinish object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-//            NSArray *channels = note.object;
-//            self.channels = [channels.rac_sequence filter:^BOOL(DRPChannel *channel) {
-//                return channel.type == DRPChannelRadioType;
-//            }].array;
-//            DRPChannel *channel = self.channels[0];
-//            self.player = [AVPlayer playerWithURL:channel.streamQualityHighURL];
-//            [self.player play];
-//
-//        }];
         self.channels = @[
                 @{
                         kName:@"P2",
@@ -78,17 +68,43 @@ NSString *const SpotifyUsername = @"113192706";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UILabel *label = [UILabel new];
-    [self.view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
+
+
+    UIButton *button = [UIButton new];
+    button.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
+        return @(track!=nil);
+    }] signalBlock:^RACSignal *(id input) {
+        [self addTrack:self.playlist.currentTrack];
+//        NSDictionary *currentTrack = ;
+//        NSString *searchString = [[NSString stringWithFormat:@"%@ %@", currentTrack[kArtist], currentTrack[kTitle]] urlEncode];
+//        NSString *url = [NSString stringWithFormat:@"spotify:search:%@",searchString];
+//        BOOL result = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//        NSLog(@"opening %@ returned %@",url,result?@"yes":@"no");
+        return [RACSignal empty];
+    }];
+    [button setTitle:@"Open in Spotify" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithRed:0 green:0.8 blue:0 alpha:1] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(10);
         make.height.equalTo(@50);
     }];
 
-    RAC(label,text) = [RACObserve(self.playlist, currentTrack) map:^id(NSDictionary *track) {
-        return track ? [NSString stringWithFormat:@"%@ - %@",track[kArtist],track[kTitle]] : @"";
+    UILabel *label = [UILabel new];
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(button.mas_top).offset(10);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(10);
+        make.height.equalTo(@50);
+    }];
+
+    RAC(label,text) = [currentTrackS map:^id(NSDictionary *track) {
+        return track ? [NSString stringWithFormat:@"%@ - %@", track[kArtist], track[kTitle]] : @"";
     }];
 
     UITableView *tableView = [UITableView new];
@@ -138,32 +154,51 @@ NSString *const SpotifyUsername = @"113192706";
                                     password:spotifyPassword];
 }
 
-- (void)sessionDidLoginSuccessfully:(SPSession *)aSession {
-    NSLog(@"logged in");
-    
-//    self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
-//    RACSignal *trackSignal = [FallbackPlaylistReader trackSignalForChannel:kP3];
-//
-//    [trackSignal subscribeNext:^(RACTuple *tuple) {
-//        RACTupleUnpack(NSString *trackName, NSString *artist,NSString *time) = tuple;
-//        NSLog(@"Found new: %@ - %@",artist, trackName);
-//        NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",artist,trackName];
-//
-//        SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
-//        [SPAsyncLoading waitUntilLoaded:search timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
-//            NSLog(@"Playing first of search results: %@",search.tracks);
-//            [self.playbackManager playTrack:search.tracks.firstObject callback:^(NSError *error) {
-//                if (error) NSLog(@"error: %@", error);
-//            }];
-//
-//            NSLog(@"%@",search.tracks);
-//        }];
-//    } error:^(NSError *error) {
-//        NSLog(@"error: %@",error);
-//    } completed:^{
-//        NSLog(@"completed");
-//    }];
+- (void)addTrack:(NSDictionary *)track
+{
+    NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
+    NSLog(@"searching spotify for '%@'...",searchQuery);
 
+    SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
+    SPPlaylistContainer *playlistContainer = [[SPSession sharedSession] userPlaylists];
+    [SPAsyncLoading waitUntilLoaded:@[
+            search,
+            playlistContainer]
+                            timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+
+        if(!search.tracks.count) {
+            NSLog(@"no search results");
+            return;
+        }
+
+        [SPAsyncLoading waitUntilLoaded:playlistContainer.flattenedPlaylists timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+            __block SPPlaylist *foundPlaylist;
+            [playlistContainer.flattenedPlaylists enumerateObjectsUsingBlock:^(SPPlaylist *playlist, NSUInteger idx, BOOL *stop) {
+                if ([playlist.name isEqualToString:kPlaylistName]) {
+                    foundPlaylist = playlist;
+                    *stop = YES;
+                }
+            }];
+            void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
+                [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
+                    NSLog(@"%@", error?error:@"added track to playlist");
+                }];
+
+            };
+            if(!foundPlaylist){
+                NSLog(@"creating playlist %@",kPlaylistName);
+                [playlistContainer createPlaylistWithName:kPlaylistName callback:addItem];
+            } else {
+                addItem(foundPlaylist);
+            }
+        }];
+    }];
+
+}
+
+- (void)sessionDidLoginSuccessfully:(SPSession *)aSession {
+
+    NSLog(@"logged in!");
 
 }
 

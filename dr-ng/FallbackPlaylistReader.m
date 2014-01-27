@@ -15,7 +15,7 @@ static NSString *const kCSSTrackName = @".track .trackInfo a";
 static NSString *const kCSSArtist = @".trackInfo .name:nth-of-type(1)";
 
 @interface FallbackPlaylistReader ()
-@property (nonatomic, copy, readwrite) NSString *currentTrack;
+@property (nonatomic, copy, readwrite) NSDictionary *currentTrack;
 @end
 
 @implementation FallbackPlaylistReader {

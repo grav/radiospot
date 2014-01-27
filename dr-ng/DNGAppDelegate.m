@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "DNGAppDelegate.h"
 #import "CocoaLibSpotify.h"
 #import "PlayerViewController.h"
@@ -17,7 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -45,6 +47,9 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:NULL];
+    [[AVAudioSession sharedInstance] setActive:YES error:NULL];
+
 
 }
 
