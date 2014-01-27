@@ -18,12 +18,19 @@
 
 @synthesize channel = _channel;
 
+
++ (NSArray *)blacklistedNames
+{
+    // TODO - remove artist name if one of the following
+    return @[@"Intet navn",@"Diverse kunstnere"];
+}
+
 - (id)init {
     self = [super init];
     if (self) {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        RACSignal *periodicSignal = [RACSignal interval:5 onScheduler:[RACScheduler currentScheduler]];
+        RACSignal *periodicSignal = [RACSignal interval:10 onScheduler:[RACScheduler currentScheduler]];
 
         RAC(self,currentTrack) = [[[RACSignal combineLatest:@[periodicSignal, RACObserve(self, channel)]] flattenMap:^RACStream *(RACTuple *aTuple) {
             RACTupleUnpack(NSDate *date,NSNumber *channelNumber) = aTuple;
