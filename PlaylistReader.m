@@ -21,7 +21,6 @@
 
 + (NSArray *)blacklistedNames
 {
-    // TODO - remove artist name if one of the following
     return @[@"Intet navn",@"Diverse kunstnere"];
 }
 
@@ -43,7 +42,9 @@
                 NSDictionary *json = [htmlString objectFromJSONString];
 
                 NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
-                return track ? @{kTitle : track[@"title"], kArtist : track[@"artist"]} : nil;
+                // filter out 'meta' artist names
+                NSString *artist = (track && [[PlaylistReader blacklistedNames] containsObject:track[@"artist"]]) ? @"" : track[@"artist"];
+                return track ? @{kTitle : track[@"title"], kArtist : artist} : nil;
 
             }] filter:^BOOL(NSDictionary *track) {
                 // Filter out junk
