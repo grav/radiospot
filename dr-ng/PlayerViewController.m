@@ -7,20 +7,18 @@
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
 #include "appkey.c"
-#import "ReactiveCocoa.h"
 #import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
 #import "PlaylistReader.h"
-#import "NSString+UrlEncode.h"
 static NSString *const kChannelId = @"channelid";
 
 static NSString *const kPlaylistName = @"dr-ng";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
-@property(nonatomic, strong) SPPlaybackManager *playbackManager;
 @property(nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) id<Playlist> playlist;
+@property(nonatomic, strong) UIButton *addToSpotBtn;
 @end
 
 @implementation PlayerViewController {
@@ -52,9 +50,19 @@ NSString *const SpotifyUsername = @"113192706";
                         kChannelId :@(ChannelP2)
                 },
                 @{
+                        kName:@"P3",
+                        kUrl :@"http://drradio3-lh.akamaihd.net/i/p3_9@143506/master.m3u8",
+                        kChannelId :@(ChannelP3)
+                },
+                @{
                         kName:@"P6 Beat",
                         kUrl:@"http://drradio3-lh.akamaihd.net/i/p6beat_9@143533/master.m3u8",
                         kChannelId:@(ChannelP6Beat),
+                },
+                @{
+                        kName:@"P7 Mix",
+                        kUrl:@"http://drradio1-lh.akamaihd.net/i/p7mix_9@143522/master.m3u8",
+                        kChannelId:@(ChannelP7Mix),
                 },
                 @{
                         kName:@"P8 Jazz",
@@ -72,22 +80,19 @@ NSString *const SpotifyUsername = @"113192706";
     RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
 
 
-    UIButton *button = [UIButton new];
-    button.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
+    self.addToSpotBtn = [UIButton new];
+    self.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
         return @(track!=nil);
     }] signalBlock:^RACSignal *(id input) {
         [self addTrack:self.playlist.currentTrack];
-//        NSDictionary *currentTrack = ;
-//        NSString *searchString = [[NSString stringWithFormat:@"%@ %@", currentTrack[kArtist], currentTrack[kTitle]] urlEncode];
-//        NSString *url = [NSString stringWithFormat:@"spotify:search:%@",searchString];
-//        BOOL result = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-//        NSLog(@"opening %@ returned %@",url,result?@"yes":@"no");
         return [RACSignal empty];
     }];
-    [button setTitle:@"Open in Spotify" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithRed:0 green:0.8 blue:0 alpha:1] forState:UIControlStateNormal];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.addToSpotBtn setTitle:@"Add to Spotify" forState:UIControlStateNormal];
+    [self.addToSpotBtn setTitleColor:[UIColor colorWithRed:0 green:0.8 blue:0 alpha:1] forState:UIControlStateNormal];
+    [self.addToSpotBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
+
+    [self.view addSubview:self.addToSpotBtn];
+    [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(10);
@@ -97,7 +102,7 @@ NSString *const SpotifyUsername = @"113192706";
     UILabel *label = [UILabel new];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(button.mas_top).offset(10);
+        make.bottom.equalTo(self.addToSpotBtn.mas_top).offset(10);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(10);
         make.height.equalTo(@50);
@@ -156,6 +161,7 @@ NSString *const SpotifyUsername = @"113192706";
 
 - (void)addTrack:(NSDictionary *)track
 {
+    self.addToSpotBtn.enabled = NO;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
@@ -182,6 +188,7 @@ NSString *const SpotifyUsername = @"113192706";
             void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
                 [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
                     NSLog(@"%@", error?error:@"added track to playlist");
+                    self.addToSpotBtn.enabled = YES;
                 }];
 
             };
