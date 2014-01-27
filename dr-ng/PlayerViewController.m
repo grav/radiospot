@@ -31,10 +31,6 @@ NSString *const SpotifyUsername = @"113192706";
     if(self){
         self.playlist = [[PlaylistReader alloc] init]; // TODO - use fallback if it fails
 
-        [RACObserve(self.playlist, currentTrack) subscribeNext:^(id x) {
-            NSLog(@"%@",x);
-        }];
-
 //        NSError *error = nil;
 //       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
 //       											   userAgent:@"dk.betafunk.splif"
@@ -82,6 +78,19 @@ NSString *const SpotifyUsername = @"113192706";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UILabel *label = [UILabel new];
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(10);
+        make.height.equalTo(@50);
+    }];
+
+    RAC(label,text) = [RACObserve(self.playlist, currentTrack) map:^id(NSDictionary *track) {
+        return track ? [NSString stringWithFormat:@"%@ - %@",track[kArtist],track[kTitle]] : @"";
+    }];
+
     UITableView *tableView = [UITableView new];
     tableView.dataSource = self; tableView.delegate = self;
     [self.view addSubview:tableView];
@@ -89,7 +98,7 @@ NSString *const SpotifyUsername = @"113192706";
         make.top.equalTo(self.view);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
-        make.height.equalTo(self.view).dividedBy(2);
+        make.bottom.equalTo(label.mas_top);
     }];
 
 }

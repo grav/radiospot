@@ -16,6 +16,7 @@
 
 }
 
+@synthesize channel = _channel;
 
 - (id)init {
     self = [super init];
@@ -35,7 +36,7 @@
                 NSDictionary *json = [htmlString objectFromJSONString];
 
                 NSDictionary *track = ((NSArray *)json[@"tracks"]).firstObject;
-                return @{kTitle:track[@"title"], kArtist:track[@"artist"]};
+                return track?@{kTitle:track[@"title"], kArtist:track[@"artist"]}:nil;
 
             }];
         }] distinctUntilChanged];
@@ -43,14 +44,6 @@
     return self;
 }
 
-
-- (Channel)channel {
-    return ChannelP3;
-}
-
-- (void)setChannel:(Channel)channel {
-
-}
 
 + (NSString *)urlForChannel:(Channel)channel {
 

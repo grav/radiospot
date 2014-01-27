@@ -25,11 +25,6 @@
     self.window.rootViewController = vc;
     vc.view.frame = self.window.bounds;
 
-//    NSString *jsonString = @"{\"serverTime\":\"2014-01-26T08:35:56\",\"tracks\":[{\"artist\":\"Claus Waidtløw Quartet\",\"artistId\":\"5024368\",\"displayArtist\":\"Claus Waidtløw Quartet\",\"genre\":\"Jazz\",\"lastFM\":\"\",\"recordedYear\":\"2012\",\"releaseYear\":\"2013\",\"start\":\"2014-01-26T08:32:27\",\"title\":\"Sightseeing\",\"trackId\":\"2372984-1-4\",\"workTitle\":null},{\"artist\":\"John Coltrane\",\"artistId\":\"14957\",\"displayArtist\":\"John Coltrane\",\"genre\":null,\"lastFM\":\"\",\"recordedYear\":\"1962\",\"releaseYear\":\"Ukendt år\",\"start\":\"2014-01-26T08:28:14\",\"title\":\"In A Sentimental Mood\",\"trackId\":\"2236172-1-11\",\"workTitle\":null},{\"artist\":\"DR Big Bandet\",\"artistId\":\"164950\",\"displayArtist\":\"DR Big Bandet & Etta Cameron\",\"genre\":\"Jazz\",\"lastFM\":\"\",\"recordedYear\":\"2003\",\"releaseYear\":\"2003\",\"start\":\"2014-01-26T08:24:42\",\"title\":\"Time's gettin' tougher than tough\",\"trackId\":\"2338173-1-7\",\"workTitle\":null},{\"artist\":\"Kjeld Lauritsen\",\"artistId\":\"149185\",\"displayArtist\":\"Kjeld Lauritsen, Espen Laub von Lillienskjold & Jan Harbeck\",\"genre\":\"Jazz\",\"lastFM\":\"\",\"recordedYear\":\"2013\",\"releaseYear\":\"2013\",\"start\":\"2014-01-26T08:19:08\",\"title\":\"Salvation\",\"trackId\":\"2374562-1-3\",\"workTitle\":null},{\"artist\":\"Jimmy Scott\",\"artistId\":\"50868\",\"displayArtist\":\"Jimmy Scott\",\"genre\":null,\"lastFM\":\"\",\"recordedYear\":\"2000\",\"releaseYear\":\"Ukendt år\",\"start\":\"2014-01-26T08:14:55\",\"title\":\"There Will Never Be Another You\",\"trackId\":\"2315072-1-5\",\"workTitle\":null}]}";
-//
-//    id obj = [jsonString objectFromJSONString];
-
-//    NSLog(@"%@",obj);
     return YES;
 }
 
