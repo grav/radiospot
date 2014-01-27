@@ -8,3 +8,4 @@ pod "CocoaLibSpotify"
 pod "MTDates"
 pod "JSONKit", :git => 'https://github.com/juliaPetryshena/JSONKit'
 pod "NSString-UrlEncode"
+pod "NoticeView"

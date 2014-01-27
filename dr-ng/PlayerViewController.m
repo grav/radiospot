@@ -10,6 +10,9 @@
 #import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
 #import "PlaylistReader.h"
+#import "WBSuccessNoticeView.h"
+#import "WBErrorNoticeView.h"
+
 static NSString *const kChannelId = @"channelid";
 
 static NSString *const kPlaylistName = @"dr-ng";
@@ -187,6 +190,12 @@ NSString *const SpotifyUsername = @"113192706";
             }];
             void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
                 [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
+                    if(!error){
+                        [[WBSuccessNoticeView successNoticeInView:self.view title:@"Added track to playlist"] show];
+                    } else {
+                        [[WBErrorNoticeView errorNoticeInView:self.view title:@"Problem adding track" message:[error description]] show];
+                    }
+
                     NSLog(@"%@", error?error:@"added track to playlist");
                     self.addToSpotBtn.enabled = YES;
                 }];
