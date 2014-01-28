@@ -18,16 +18,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setupAudio];
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     UIViewController *vc = [[PlayerViewController alloc] init];
     self.window.rootViewController = vc;
-    vc.view.frame = self.window.bounds;
+    vc.view.frame = [[UIScreen mainScreen] applicationFrame];
 
     return YES;
+}
+
+- (void)setupAudio {
+    NSError *setCategoryErr = nil;
+    NSError *activationErr  = nil;
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:&setCategoryErr];
+    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -46,9 +54,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:NULL];
-    [[AVAudioSession sharedInstance] setActive:YES error:NULL];
 
 
 }
@@ -56,6 +61,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self setupAudio];
 
 }
 
