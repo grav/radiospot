@@ -32,7 +32,7 @@ NSString *const SpotifyUsername = @"113192706";
 - (instancetype)init{
     self = [super init];
     if(self){
-        self.playlist = [[PlaylistReader alloc] init]; // TODO - use fallback if it fails
+        self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
 
         NSError *error = nil;
        	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
@@ -176,6 +176,8 @@ NSString *const SpotifyUsername = @"113192706";
                             timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
 
         if(!search.tracks.count) {
+            [[WBErrorNoticeView errorNoticeInView:self.view title:@"Not found on Spotify" message:nil] show];
+
             NSLog(@"no search results");
             return;
         }
