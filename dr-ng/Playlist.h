@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
+    ChannelNoChannel,
     ChannelP2,
     ChannelP3,
     ChannelP6Beat,

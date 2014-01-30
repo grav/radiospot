@@ -27,11 +27,18 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.channel = ChannelNoChannel;
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         RACSignal *periodicSignal = [RACSignal interval:10 onScheduler:[RACScheduler currentScheduler]];
 
-        RAC(self,currentTrack) = [[[RACSignal combineLatest:@[periodicSignal, RACObserve(self, channel)]] flattenMap:^RACStream *(RACTuple *aTuple) {
+        RAC(self,currentTrack) = [[[[RACSignal combineLatest:@[periodicSignal, RACObserve(self, channel)]]
+                filter:^BOOL(RACTuple *tuple){
+                    RACTupleUnpack(NSDate *date,NSNumber *channelNumber) = tuple;
+                    return ChannelNoChannel != channelNumber.integerValue;
+                }]
+
+                flattenMap:^RACStream *(RACTuple *aTuple) {
             RACTupleUnpack(NSDate *date,NSNumber *channelNumber) = aTuple;
             Channel channel = (Channel) channelNumber.integerValue;
             NSString *urlString = [PlaylistReader urlForChannel:channel];
