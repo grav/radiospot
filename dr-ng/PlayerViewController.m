@@ -125,6 +125,10 @@ NSString *const SpotifyUsername = @"113192706";
         make.bottom.equalTo(label.mas_top);
     }];
 
+    [[RACSignal interval:4 onScheduler:[RACScheduler currentScheduler]] subscribeNext:^(id x) {
+        NSLog(@"%@",(__bridge NSString *)CMTimeCopyDescription(NULL, self.player.currentTime));
+    }];
+
 }
 
 #pragma mark tblview
@@ -142,11 +146,75 @@ NSString *const SpotifyUsername = @"113192706";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *channel = self.channels[(NSUInteger) indexPath.row];
+- (void)playChannel:(NSDictionary*)channel
+{
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
     [self.player play];
+    [RACObserve(self.player, status) subscribeNext:^(id x) {
+        NSLog(@"self.player.status: %@",x);
+    }];
+
+    [RACObserve(self.player, rate) subscribeNext:^(id x) {
+        NSLog(@"rate: %@",x);
+    }];
+
+    [RACObserve(self.player, currentItem) subscribeNext:^(id x) {
+        NSLog(@"current item: %@",x);
+    }];
+
+    [RACObserve(self.player, error) subscribeNext:^(id x) {
+        NSLog(@"error: %@",x);
+    }];
+
+    [RACObserve(self.player, currentTime) subscribeNext:^(id x) {
+        NSLog(@"current time: %@",x);
+    }];
+
+
+    // item
+    [RACObserve(self.player.currentItem, error) subscribeNext:^(id x) {
+        NSLog(@"item error: %@ ",x);
+    }];
+
+    [RACObserve(self.player.currentItem, status) subscribeNext:^(id x) {
+        NSLog(@"item status: %@",x);
+    }];
+
+    [RACObserve(self.player.currentItem, playbackBufferEmpty) subscribeNext:^(id x) {
+        NSLog(@"item buffer empty: %@",x);
+    }];
+    [RACObserve(self.player.currentItem, playbackBufferFull) subscribeNext:^(id x) {
+        NSLog(@"item buffer full: %@",x);
+    }];
+    [RACObserve(self.player.currentItem, playbackLikelyToKeepUp) subscribeNext:^(id x) {
+        NSLog(@"item buffer likely to keep up: %@",x);
+    }];
+
+    [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp)
+            throttle:4]
+            filter:^BOOL(NSNumber *n) {
+            return !n.boolValue;
+            }]
+            subscribeNext:^(id x) {
+                NSLog(@"===== buffer empty- lets restart =====");
+                [[WBErrorNoticeView errorNoticeInView:self.view title:@"Trying to restart" message:nil] show];
+                
+                [self performSelector:@selector(playChannel:) withObject:channel afterDelay:1];
+    }];
+
+    [[RACObserve(self.player.currentItem, loadedTimeRanges) map:^id(NSArray *timeranges) {
+        CMTimeRange range = [timeranges.firstObject CMTimeRangeValue];
+        return @(CMTimeGetSeconds(range.duration));
+    }] subscribeNext:^(id x) {
+        NSLog(@"duration: %@",x);
+    }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *channel = self.channels[(NSUInteger) indexPath.row];
     self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
+    [self playChannel:channel];
+
 }
 
 
