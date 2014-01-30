@@ -22,6 +22,7 @@
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
+		308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A64FAAA0F025D5C718C74 /* nobeep.wav */; };
 		308A6DBE450F94DD562E1DEE /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A612BD5E1F323F3A2B7D5 /* PlaylistReader.m */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
 		308A6E95527C759DB964F8BF /* FallbackPlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6C4D1785746DAEA58C1C /* FallbackPlaylistReader.m */; };
@@ -48,6 +49,7 @@
 		308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		308A64848B7D6473184EBBB2 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
+		308A64FAAA0F025D5C718C74 /* nobeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nobeep.wav; sourceTree = "<group>"; };
 		308A6534CE4F9A8E24227C05 /* dr_ngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dr_ngTests.m; sourceTree = "<group>"; };
 		308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		308A665732BAA5B9AFB642E8 /* dr-ngTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ngTests-Info.plist"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				308A6EE853A9FA6B616570F3 /* InfoPlist.strings */,
 				308A6F9312E5891AE2CA464C /* main.m */,
 				308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */,
+				308A64FAAA0F025D5C718C74 /* nobeep.wav */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */,
 				308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */,
 				308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */,
+				308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

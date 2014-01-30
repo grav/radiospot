@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class AVAudioPlayer;
+
 @interface DNGAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
