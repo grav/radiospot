@@ -19,9 +19,8 @@
 @synthesize channel = _channel;
 
 
-+ (NSArray *)blacklistedNames
-{
-    return @[@"Intet navn",@"Diverse kunstnere"];
+- (NSString *)filterOutBlacklistedNames:(NSString *)name{
+    return [@[@"Intet navn",@"Diverse kunstnere"] containsObject:name] ? nil : name;
 }
 
 - (id)init {
@@ -50,8 +49,17 @@
 
                 NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
                 // filter out 'meta' artist names
-                NSString *artist = (track && [[PlaylistReader blacklistedNames] containsObject:track[@"artist"]]) ? @"" : track[@"artist"];
-                return track ? @{kTitle : track[@"title"], kArtist : artist} : nil;
+                __block NSString *artist;
+
+                [@[@"artist", @"displayArtist"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    *stop = [self filterOutBlacklistedNames:track[obj]]!=nil;
+                    artist = track[obj] ?: @"";
+                }];
+
+                return track ? @{
+                        kTitle : track[@"title"],
+                        kArtist : artist
+                } : nil;
 
             }] filter:^BOOL(NSDictionary *track) {
                 // Filter out junk
