@@ -25,7 +25,6 @@
 		308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A64FAAA0F025D5C718C74 /* nobeep.wav */; };
 		308A6DBE450F94DD562E1DEE /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A612BD5E1F323F3A2B7D5 /* PlaylistReader.m */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
-		308A6E95527C759DB964F8BF /* FallbackPlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6C4D1785746DAEA58C1C /* FallbackPlaylistReader.m */; };
 		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -322,7 +321,6 @@
 				308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */,
 				308A69F6FF8D6D33E7F0C289 /* CSSSelectorViewController.m in Sources */,
 				308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */,
-				308A6E95527C759DB964F8BF /* FallbackPlaylistReader.m in Sources */,
 				308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */,
 				308A6DBE450F94DD562E1DEE /* PlaylistReader.m in Sources */,
 			);
@@ -370,7 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -424,7 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
