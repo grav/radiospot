@@ -52,8 +52,9 @@
                 __block NSString *artist;
 
                 [@[@"artist", @"displayArtist"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    *stop = [self filterOutBlacklistedNames:track[obj]]!=nil;
-                    artist = track[obj] ?: @"";
+                    NSString *artistName = [self filterOutBlacklistedNames:track[obj]];
+                    *stop = artistName != nil;
+                    artist = artistName ?: @"";
                 }];
 
                 return track ? @{
