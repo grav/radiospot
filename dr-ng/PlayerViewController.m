@@ -12,6 +12,7 @@
 #import "PlaylistReader.h"
 #import "WBSuccessNoticeView.h"
 #import "WBErrorNoticeView.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 static NSString *const kChannelId = @"channelid";
 
@@ -22,6 +23,7 @@ static NSString *const kPlaylistName = @"dr-ng";
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) id<Playlist> playlist;
 @property(nonatomic, strong) UIButton *addToSpotBtn;
+@property (nonatomic, strong) AVAudioPlayer *spotifyAddingSuccessPlayer;
 @end
 
 @implementation PlayerViewController {
@@ -32,6 +34,20 @@ NSString *const SpotifyUsername = @"113192706";
 - (instancetype)init{
     self = [super init];
     if(self){
+
+        RACSignal *remoteControlSignal = [[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
+            return tuple.first;
+        }];
+
+        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
+        }] subscribeNext:^(id x) {
+            if(self.playlist.currentTrack){
+                [self addTrack:self.playlist.currentTrack];
+            }
+        }];
+
+
         self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
 
         NSError *error = nil;
@@ -130,9 +146,14 @@ NSString *const SpotifyUsername = @"113192706";
         make.right.equalTo(self.view).offset(-10);
     }];
 
-    RAC(label,text) = [currentTrackS map:^id(NSDictionary *track) {
+    RAC(label,text) = [[currentTrackS map:^id(NSDictionary *track) {
         return track ? [NSString stringWithFormat:@"%@ - %@", track[kArtist], track[kTitle]] : @" ";
+    }] doNext:^(NSString *s) {
+        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
+                 MPMediaItemPropertyTitle : s
+        }];
     }];
+
 
 
     self.addToSpotBtn = [UIButton new];
@@ -219,6 +240,13 @@ NSString *const SpotifyUsername = @"113192706";
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *channel = self.channels[(NSUInteger) indexPath.row];
     self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
@@ -272,8 +300,16 @@ NSString *const SpotifyUsername = @"113192706";
                     if(!error){
                         NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'",kPlaylistName];
                         [[WBSuccessNoticeView successNoticeInView:self.view title:info] show];
+                        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground){
+                            NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
+                            [self playSound:url];
+                        }
                     } else {
                         [[WBErrorNoticeView errorNoticeInView:self.view title:@"Problem adding track" message:[error description]] show];
+                        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground){
+                            NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
+                            [self playSound:url];
+                        }
                     }
 
                     NSLog(@"%@", error?error:@"added track to playlist");
@@ -292,10 +328,21 @@ NSString *const SpotifyUsername = @"113192706";
 
 }
 
+- (void)playSound:(NSURL *)url {
+    NSError *error;
+    self.spotifyAddingSuccessPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url
+                                                                             error:&error];
+    [self.spotifyAddingSuccessPlayer play];
+}
+
 - (void)sessionDidLoginSuccessfully:(SPSession *)aSession {
 
     NSLog(@"logged in!");
 
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
 }
 
 @end

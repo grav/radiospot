@@ -13,13 +13,16 @@
 		308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 308A666714D52EBFEB4E7462 /* spotify_password.txt */; };
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
 		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
+		308A65585D601D209E3BDB0D /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A6CB09935CAB47D6B6B4C /* fail.wav */; };
 		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
 		308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */; };
+		308A67C87C774233CEECD377 /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A644339A3C1AC90315B75 /* success.wav */; };
 		308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63F772362AD7F7517DA4 /* ChannelCell.m */; };
 		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
 		308A69F6FF8D6D33E7F0C289 /* CSSSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63E9703FD853270A98FC /* CSSSelectorViewController.m */; };
 		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
 		308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */; };
+		308A6BE6237CF1DF6A648312 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */; };
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
@@ -45,6 +48,7 @@
 		308A61B5812D288FA29D19E0 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		308A63E9703FD853270A98FC /* CSSSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorViewController.m; sourceTree = "<group>"; };
 		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
+		308A644339A3C1AC90315B75 /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
 		308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		308A64848B7D6473184EBBB2 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
@@ -63,7 +67,9 @@
 		308A6AAF8D5C665089F4C989 /* dr-ng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dr-ng.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6BA42E649278158146BA /* CSSSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorViewController.h; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		308A6C4D1785746DAEA58C1C /* FallbackPlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallbackPlaylistReader.m; sourceTree = "<group>"; };
+		308A6CB09935CAB47D6B6B4C /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
 		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A6F6288EDBC80429C93B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,6 +97,7 @@
 				308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */,
 				308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */,
 				454B70DA4756466CB2791EAA /* libPods.a in Frameworks */,
+				308A6BE6237CF1DF6A648312 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +151,7 @@
 				308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */,
 				308A694204B38545106A0520 /* XCTest.framework */,
 				964942FB652848D1B87A5BFB /* libPods.a */,
+				308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,6 +186,8 @@
 				308A6F9312E5891AE2CA464C /* main.m */,
 				308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */,
 				308A64FAAA0F025D5C718C74 /* nobeep.wav */,
+				308A6CB09935CAB47D6B6B4C /* fail.wav */,
+				308A644339A3C1AC90315B75 /* success.wav */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -274,6 +284,8 @@
 				308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */,
 				308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */,
 				308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */,
+				308A65585D601D209E3BDB0D /* fail.wav in Resources */,
+				308A67C87C774233CEECD377 /* success.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,10 +380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -425,10 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7s,
-					armv7,
-				);
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
