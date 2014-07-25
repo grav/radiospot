@@ -13,6 +13,7 @@
 - (id)init {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ReuseId];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
     }
 
     return self;

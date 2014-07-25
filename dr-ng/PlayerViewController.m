@@ -110,6 +110,30 @@ NSString *const SpotifyUsername = @"113192706";
 
     RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
 
+    UITableView *tableView = [UITableView new];
+    tableView.dataSource = self; tableView.delegate = self;
+    [self.view addSubview:tableView];
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+    }];
+    tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+
+    UILabel *label = [UILabel new];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont boldSystemFontOfSize:12];
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(tableView.mas_bottom).offset(10);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
+    }];
+
+    RAC(label,text) = [currentTrackS map:^id(NSDictionary *track) {
+        return track ? [NSString stringWithFormat:@"%@ - %@", track[kArtist], track[kTitle]] : @" ";
+    }];
+
 
     self.addToSpotBtn = [UIButton new];
     self.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
@@ -118,40 +142,20 @@ NSString *const SpotifyUsername = @"113192706";
         [self addTrack:self.playlist.currentTrack];
         return [RACSignal empty];
     }];
+    [self.addToSpotBtn setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
     [self.addToSpotBtn setTitle:@"Add to Spotify" forState:UIControlStateNormal];
+    [self.addToSpotBtn setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
     [self.addToSpotBtn setTitleColor:[UIColor colorWithRed:0 green:0.8 blue:0 alpha:1] forState:UIControlStateNormal];
     [self.addToSpotBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
 
     [self.view addSubview:self.addToSpotBtn];
     [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view);
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(10);
-        make.height.equalTo(@50);
+        make.top.equalTo(label.mas_bottom).offset(10);
+        make.bottom.equalTo(self.view).offset(-10);
+        make.left.equalTo(self.view).offset(40);
+        make.right.equalTo(self.view).offset(-40);
     }];
 
-    UILabel *label = [UILabel new];
-    [self.view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.addToSpotBtn.mas_top).offset(10);
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(10);
-        make.height.equalTo(@50);
-    }];
-
-    RAC(label,text) = [currentTrackS map:^id(NSDictionary *track) {
-        return track ? [NSString stringWithFormat:@"%@ - %@", track[kArtist], track[kTitle]] : @"";
-    }];
-
-    UITableView *tableView = [UITableView new];
-    tableView.dataSource = self; tableView.delegate = self;
-    [self.view addSubview:tableView];
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.bottom.equalTo(label.mas_top);
-    }];
 
     [[RACSignal interval:4 onScheduler:[RACScheduler currentScheduler]] subscribeNext:^(id x) {
         NSLog(@"%@",(__bridge NSString *)CMTimeCopyDescription(NULL, self.player.currentTime));
