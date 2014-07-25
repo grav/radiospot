@@ -177,46 +177,10 @@ NSString *const SpotifyUsername = @"113192706";
 - (void)playChannel:(NSDictionary*)channel
 {
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
+    [self startLogging];
+
     [self.player play];
-    [RACObserve(self.player, status) subscribeNext:^(id x) {
-        NSLog(@"self.player.status: %@",x);
-    }];
 
-    [RACObserve(self.player, rate) subscribeNext:^(id x) {
-        NSLog(@"rate: %@",x);
-    }];
-
-    [RACObserve(self.player, currentItem) subscribeNext:^(id x) {
-        NSLog(@"current item: %@",x);
-    }];
-
-    [RACObserve(self.player, error) subscribeNext:^(id x) {
-        NSLog(@"error: %@",x);
-    }];
-
-    [RACObserve(self.player, currentTime) subscribeNext:^(id x) {
-        NSLog(@"current time: %@",x);
-    }];
-
-
-    // item
-    [RACObserve(self.player.currentItem, error) subscribeNext:^(id x) {
-        NSLog(@"item error: %@ ",x);
-    }];
-
-    [RACObserve(self.player.currentItem, status) subscribeNext:^(id x) {
-        NSLog(@"item status: %@",x);
-    }];
-
-    [RACObserve(self.player.currentItem, playbackBufferEmpty) subscribeNext:^(id x) {
-        NSLog(@"item buffer empty: %@",x);
-    }];
-    [RACObserve(self.player.currentItem, playbackBufferFull) subscribeNext:^(id x) {
-        NSLog(@"item buffer full: %@",x);
-    }];
-    [RACObserve(self.player.currentItem, playbackLikelyToKeepUp) subscribeNext:^(id x) {
-        NSLog(@"item buffer likely to keep up: %@",x);
-    }];
 
     [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp)
             throttle:4]
@@ -229,6 +193,23 @@ NSString *const SpotifyUsername = @"113192706";
                 
                 [self performSelector:@selector(playChannel:) withObject:channel afterDelay:1];
     }];
+
+}
+
+- (void)startLogging {
+    [@[@"status", @"rate", @"currentItem", @"error", @"currentTime"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[self.player rac_valuesForKeyPath:obj observer:self.player] subscribeNext:^(id x) {
+            NSLog(@"%@: %@",obj,x);
+        }];
+    }];
+
+    [@[@"error", @"status", @"playbackBufferEmpty", @"playbackBufferFull", @"playbackLikelyToKeepUp"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[self.player.currentItem rac_valuesForKeyPath:obj
+                                              observer:self.player.currentItem] subscribeNext:^(id x) {
+            NSLog(@"currentItem %@: %@",obj,x);
+        }];
+    }];
+
 
     [[RACObserve(self.player.currentItem, loadedTimeRanges) map:^id(NSArray *timeranges) {
         CMTimeRange range = [timeranges.firstObject CMTimeRangeValue];
