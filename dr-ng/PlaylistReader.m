@@ -66,6 +66,7 @@ static const double kPollInterval = 10.0;
                     NSNumber *channelNumber = aTuple.second;
                     Channel channel = (Channel) channelNumber.integerValue;
                     NSString *urlString = [PlaylistReader urlForChannel:channel];
+                    if(!urlString) return [RACSignal return:nil];
                     RACSignal *serviceResponse = [[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
                         AFHTTPRequestOperation *operation = tuple.first;
                         return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
