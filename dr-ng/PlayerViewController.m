@@ -182,11 +182,7 @@ NSString *const SpotifyUsername = @"113192706";
     [self.player play];
 
 
-    [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp)
-            throttle:4]
-            filter:^BOOL(NSNumber *n) {
-            return !n.boolValue;
-            }]
+    [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:4] ignore:@YES]
             subscribeNext:^(id x) {
                 NSLog(@"===== buffer empty- lets restart =====");
                 [[WBErrorNoticeView errorNoticeInView:self.view title:@"Trying to restart" message:nil] show];
