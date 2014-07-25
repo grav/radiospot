@@ -5,22 +5,45 @@
 
 #import <AFNetworking-RACExtensions/AFHTTPRequestOperationManager+RACSupport.h>
 #import "PlaylistReader.h"
-#import "AFNetworking.h"
 #import "JSONKit.h"
 
+static const double kPollInterval = 10.0;
+
 @interface PlaylistReader ()
-@property (nonatomic, copy, readwrite) NSDictionary *currentTrack;
+@property(nonatomic, copy, readwrite) NSDictionary *currentTrack;
 @end
 
 @implementation PlaylistReader {
-
+    
 }
 
 @synthesize channel = _channel;
 
+// Weird junk that came from the service at one point
+- (NSArray *)junkTracks {
+    return @[
+            @{ // p6 junk
+                    kTitle : @"The Light (Plane To Spain)",
+                    kArtist : @"The William Blakes"}, @{  // p8 junk
+                    kTitle : @"Magnetic",
+                    kArtist : @"Terence Blanchard"
+            }, 
+            @{   //p2 junk
+                    kTitle : @"Allegro vivace",
+                    kArtist : @"Iván Fischer"
+            }, 
+            @{ // p3 junk
+                    kTitle : @"Burhan g",
+                    kArtist : @"Burhan G"
+            }, 
+            @{  // p7 junk
+                    kTitle : @"Hung up",
+                    kArtist : @"Madonna"
+            }];    
+}
 
-- (NSString *)filterOutBlacklistedNames:(NSString *)name{
-    return [@[@"Intet navn",@"Diverse kunstnere"] containsObject:name] ? nil : name;
+- (NSString *)filterOutBlacklistedNames:(NSString *)name {
+    return [@[@"Intet navn", @"Diverse kunstnere"] containsObject:name] ? nil : name;
 }
 
 - (id)init {
@@ -29,82 +52,64 @@
         self.channel = ChannelNoChannel;
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        RACSignal *periodicSignal = [RACSignal interval:10 onScheduler:[RACScheduler currentScheduler]];
+        RACSignal *periodicSignal = [[RACSignal interval:kPollInterval
+                                             onScheduler:[RACScheduler currentScheduler]] startWith:[NSDate date]];
 
-        RAC(self,currentTrack) = [[[[RACSignal combineLatest:@[periodicSignal, RACObserve(self, channel)]]
+        RACSignal *channelS = [[RACSignal combineLatest:@[periodicSignal, RACObserve(self, channel)]]
                 filter:^BOOL(RACTuple *tuple){
-                    RACTupleUnpack(NSDate *date,NSNumber *channelNumber) = tuple;
+                    NSNumber *channelNumber = tuple.second;
                     return ChannelNoChannel != channelNumber.integerValue;
-                }]
+                }];
+        RAC(self, currentTrack) = [[channelS
 
                 flattenMap:^RACStream *(RACTuple *aTuple) {
-            RACTupleUnpack(NSDate *date,NSNumber *channelNumber) = aTuple;
-            Channel channel = (Channel) channelNumber.integerValue;
-            NSString *urlString = [PlaylistReader urlForChannel:channel];
-            return [[[[[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
-                RACTupleUnpack(AFHTTPRequestOperation *operation, NSDictionary *response) = tuple;
-                return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-            }] map:^id(NSString *htmlString) {
-                NSDictionary *json = [htmlString objectFromJSONString];
+                    NSNumber *channelNumber = aTuple.second;
+                    Channel channel = (Channel) channelNumber.integerValue;
+                    NSString *urlString = [PlaylistReader urlForChannel:channel];
+                    RACSignal *serviceResponse = [[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
+                        AFHTTPRequestOperation *operation = tuple.first;
+                        return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+                    }];
+                    return [[serviceResponse map:^id(NSString *htmlString) {
+                        NSDictionary *json = [htmlString objectFromJSONString];
 
-                NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
-                // filter out 'meta' artist names
-                __block NSString *artist;
+                        NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
+                        // filter out 'meta' artist names
+                        __block NSString *artist;
 
-                [@[@"artist", @"displayArtist"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    NSString *artistName = [self filterOutBlacklistedNames:track[obj]];
-                    *stop = artistName != nil;
-                    artist = artistName ?: @"";
-                }];
-
-                return track ? @{
-                        kTitle : track[@"title"],
-                        kArtist : artist
-                } : nil;
-
-            }] filter:^BOOL(NSDictionary *track) {
-                // Filter out junk
-                // that for some reason is returned quite often
-                return ![track isEqualToDictionary:@{ // p6 junk
-                        kTitle : @"The Light (Plane To Spain)",
-                        kArtist : @"The William Blakes"}] &&
-                        ![track isEqualToDictionary:@{  // p8 junk
-                                kTitle : @"Magnetic",
-                                kArtist : @"Terence Blanchard"
-                        }] &&
-                        ![track isEqualToDictionary:@{   //p2 junk
-                                kTitle : @"Allegro vivace",
-                                kArtist : @"Iván Fischer"
-                        }] &&
-                        ![track isEqualToDictionary:@{ // p3 junk
-                                kTitle : @"Burhan g",
-                                kArtist : @"Burhan G"
-                        }] &&
-                        ![track isEqualToDictionary:@{  // p7 junk
-                                kTitle : @"Hung up",
-                                kArtist : @"Madonna"
+                        [@[@"artist", @"displayArtist"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                            NSString *artistName = [self filterOutBlacklistedNames:track[obj]];
+                            *stop = artistName != nil;
+                            artist = artistName ?: @"";
                         }];
-            }] catchTo:[RACSignal empty]];
-        }] distinctUntilChanged];
+
+                        return track ? @{
+                                kTitle : track[@"title"],
+                                kArtist : artist
+                        } : nil;
+
+                    }]  catchTo:[RACSignal empty]];
+                }] distinctUntilChanged];
     }
     return self;
 }
 
 
 + (NSString *)urlForChannel:(Channel)channel {
+    NSDictionary *channelStrs = @{
+            @(ChannelP1) : @"P1",
+            @(ChannelP2) : @"P2",
+            @(ChannelP3) : @"P3",
+            @(ChannelP5) : @"P5",
+            @(ChannelP6Beat) : @"P6B",
+            @(ChannelP7Mix) : @"P7M",
+            @(ChannelP8Jazz) : @"P8J",
 
-    NSString *channelStr;
-    switch (channel){
+    };
+    NSString *channelStr = channelStrs[@(channel)];
 
-        case ChannelP2:channelStr=@"P2";break;
-        case ChannelP3:channelStr=@"P3";break;
-        case ChannelP6Beat:channelStr=@"P6B";break;
-        case ChannelP7Mix:channelStr=@"P7M";break;
-        case ChannelP8Jazz:channelStr=@"P8J";break;
-    }
-
-    NSString *urlString = [NSString stringWithFormat:@"http://www.dr.dk/info/musik/service/TrackInfoJsonService.svc/TrackInfo/%@", channelStr];
-    return urlString;
+    return channelStr ? [NSString stringWithFormat:@"http://www.dr.dk/info/musik/service/TrackInfoJsonService.svc/TrackInfo/%@",
+                                                     channelStr] : nil;
 }
 
 @end

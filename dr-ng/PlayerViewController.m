@@ -48,6 +48,11 @@ NSString *const SpotifyUsername = @"113192706";
 
         self.channels = @[
                 @{
+                        kName:@"P1",
+                        kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
+                        kChannelId :@(ChannelP1)
+                },
+                @{
                         kName:@"P2",
                         kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
                         kChannelId :@(ChannelP2)
@@ -55,6 +60,11 @@ NSString *const SpotifyUsername = @"113192706";
                 @{
                         kName:@"P3",
                         kUrl :@"http://drradio3-lh.akamaihd.net/i/p3_9@143506/master.m3u8",
+                        kChannelId :@(ChannelP3)
+                },
+                @{
+                        kName:@"P5",
+                        kUrl :@"http://drradio1-lh.akamaihd.net/i/p5_9@143530/master.m3u8",
                         kChannelId :@(ChannelP3)
                 },
                 @{
@@ -71,7 +81,25 @@ NSString *const SpotifyUsername = @"113192706";
                         kName:@"P8 Jazz",
                         kUrl:@"http://drradio2-lh.akamaihd.net/i/p8jazz_9@143524/master.m3u8",
                         kChannelId:@(ChannelP8Jazz)
-                }
+                },
+                @{
+                        kName:@"DR MAMA",
+                        kUrl:@"http://drradio3-lh.akamaihd.net/i/drmama_9@143520/master.m3u8",
+                        kChannelId:@(ChannelP8Jazz)
+
+                },
+                @{
+                        kName:@"DR Ramasjang/Ultra Radio",
+                        kUrl:@"http://drradio3-lh.akamaihd.net/i/ramasjang_9@143529/master.m3u8",
+                        kChannelId:@(ChannelP8Jazz)
+
+                },
+                @{
+                        kName:@"DR Nyheder",
+                        kUrl:@"http://drradio2-lh.akamaihd.net/i/drnyheder_9@143532/master.m3u8",
+                        kChannelId:@(ChannelP8Jazz)
+
+                },
         ];
     }
     return self;

@@ -5,14 +5,19 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, Channel) {
     ChannelNoChannel,
+    ChannelP1,
     ChannelP2,
     ChannelP3,
+    ChannelP5,
     ChannelP6Beat,
     ChannelP7Mix,
-    ChannelP8Jazz
-} Channel;
+    ChannelP8Jazz,
+    ChannelDRMama,
+    ChannelRamasjang,
+    ChannelDRNyheder,
+} ;
 
 static NSString *const kTitle = @"title";
 static NSString *const kArtist = @"artist";
