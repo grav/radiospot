@@ -266,7 +266,8 @@ NSString *const SpotifyUsername = @"113192706";
             void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
                 [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
                     if(!error){
-                        [[WBSuccessNoticeView successNoticeInView:self.view title:@"Added track to playlist"] show];
+                        NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'",kPlaylistName];
+                        [[WBSuccessNoticeView successNoticeInView:self.view title:info] show];
                     } else {
                         [[WBErrorNoticeView errorNoticeInView:self.view title:@"Problem adding track" message:[error description]] show];
                     }
