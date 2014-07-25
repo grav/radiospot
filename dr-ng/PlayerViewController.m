@@ -49,7 +49,7 @@ NSString *const SpotifyUsername = @"113192706";
         self.channels = @[
                 @{
                         kName:@"P1",
-                        kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
+                        kUrl :@"http://drradio1-lh.akamaihd.net/i/p1_9@143503/master.m3u8",
                         kChannelId :@(ChannelP1)
                 },
                 @{
@@ -65,7 +65,7 @@ NSString *const SpotifyUsername = @"113192706";
                 @{
                         kName:@"P5",
                         kUrl :@"http://drradio1-lh.akamaihd.net/i/p5_9@143530/master.m3u8",
-                        kChannelId :@(ChannelP3)
+                        kChannelId :@(ChannelP5)
                 },
                 @{
                         kName:@"P6 Beat",
@@ -85,13 +85,13 @@ NSString *const SpotifyUsername = @"113192706";
                 @{
                         kName:@"DR MAMA",
                         kUrl:@"http://drradio3-lh.akamaihd.net/i/drmama_9@143520/master.m3u8",
-                        kChannelId:@(ChannelP8Jazz)
+                        kChannelId:@(ChannelDRMama)
 
                 },
                 @{
                         kName:@"DR Ramasjang/Ultra Radio",
                         kUrl:@"http://drradio3-lh.akamaihd.net/i/ramasjang_9@143529/master.m3u8",
-                        kChannelId:@(ChannelP8Jazz)
+                        kChannelId:@(ChannelRamasjang)
 
                 },
                 @{
