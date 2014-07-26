@@ -16,10 +16,11 @@
 @property (nonatomic, strong) SPPlaybackManager *playbackManager;
 @property(nonatomic) BOOL wantsPresentingViewController;
 @property (nonatomic, strong) RACSignal *session;
+
 @end
 
 @implementation BTFSpotify {
-
+    BOOL _didCreateSession;
 }
 
 - (SPPlaybackManager *)playbackManager {
@@ -37,6 +38,8 @@
             if (session) {
                 return [RACSignal return:session];
             } else {
+                NSCAssert(!_didCreateSession, @"already tried creating session");
+                _didCreateSession = YES;
                 NSError *error;
 
                 BOOL result = [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey
