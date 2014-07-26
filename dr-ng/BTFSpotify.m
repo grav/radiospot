@@ -15,6 +15,7 @@
 @interface BTFSpotify () <SPSessionDelegate>
 @property (nonatomic, strong) SPPlaybackManager *playbackManager;
 @property(nonatomic) BOOL wantsPresentingViewController;
+@property (nonatomic, strong) RACSignal *session;
 @end
 
 @implementation BTFSpotify {
@@ -30,51 +31,55 @@
 
 
 - (RACSignal *)session{
-    return [[[RACSignal return:[SPSession sharedSession]] flattenMap:^RACStream *(SPSession *session) {
-        if (session) {
-            return [RACSignal return:session];
-        } else {
-            NSError *error;
-
-            BOOL result = [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey
-                                                                                              length:g_appkey_size]
-                                                                     userAgent:@"dk.betafunk.splif"
-                                                                 loadingPolicy:SPAsyncLoadingManual
-                                                                         error:&error];
-            NSCAssert(result, @"");
-            // TODO - might want to handle error nicer here
-
-
-            NSLog(@"Logging in...");
-            session = [SPSession sharedSession];
-            session.delegate = self;
-
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSDictionary *storedCredentials = [defaults valueForKey:@"SpotifyUsers"];
-            id key = [[storedCredentials allKeys] firstObject];
-
-            // TODO - handle case where storedCredentials is too old!
-            if (key) {
-                NSString *pw = storedCredentials[key];
-                [session attemptLoginWithUserName:key existingCredential:pw];
+    if(!_session){
+        NSLog(@"no _session");
+        _session = [[RACSignal return:[SPSession sharedSession]] flattenMap:^RACStream *(SPSession *session) {
+            if (session) {
+                return [RACSignal return:session];
             } else {
-                // TODO - handle case where user cancels - we'll never complete then!
-                self.wantsPresentingViewController = YES;
-                [[[RACObserve(self, presentingViewController) ignore:nil] delay:1] subscribeNext:^(UIViewController *presentingVC) {
-                    UIViewController *loginVC = [SPLoginViewController loginControllerForSession:session];
-                    [presentingVC presentViewController:loginVC animated:YES completion:nil];
-                }];
-            }
-            RACSignal *didSucceed = [[self rac_signalForSelector:@selector(sessionDidLoginSuccessfully:)] flattenMap:^RACStream *(RACTuple *tuple) {
-                return [self load:tuple.first];
-            }];
-            RACSignal *didFail = [[self rac_signalForSelector:@selector(session:didFailToLoginWithError:)] flattenMap:^RACStream *(RACTuple *tuple) {
-                return [RACSignal error:tuple.second];
-            }];
+                NSError *error;
 
-            return [RACSignal merge:@[didSucceed, didFail]];
-        }
-    }] replayLazily];
+                BOOL result = [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey
+                                                                                                  length:g_appkey_size]
+                                                                         userAgent:@"dk.betafunk.splif"
+                                                                     loadingPolicy:SPAsyncLoadingManual
+                                                                             error:&error];
+                NSCAssert(result, @"");
+                // TODO - might want to handle error nicer here
+
+
+                NSLog(@"Logging in...");
+                session = [SPSession sharedSession];
+                session.delegate = self;
+
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSDictionary *storedCredentials = [defaults valueForKey:@"SpotifyUsers"];
+                id key = [[storedCredentials allKeys] firstObject];
+
+                // TODO - handle case where storedCredentials is too old!
+                if (key) {
+                    NSString *pw = storedCredentials[key];
+                    [session attemptLoginWithUserName:key existingCredential:pw];
+                } else {
+                    // TODO - handle case where user cancels - we'll never complete then!
+                    self.wantsPresentingViewController = YES;
+                    [[[RACObserve(self, presentingViewController) ignore:nil] delay:1] subscribeNext:^(UIViewController *presentingVC) {
+                        UIViewController *loginVC = [SPLoginViewController loginControllerForSession:session];
+                        [presentingVC presentViewController:loginVC animated:YES completion:nil];
+                    }];
+                }
+                RACSignal *didSucceed = [[self rac_signalForSelector:@selector(sessionDidLoginSuccessfully:)] flattenMap:^RACStream *(RACTuple *tuple) {
+                    return [self load:tuple.first];
+                }];
+                RACSignal *didFail = [[self rac_signalForSelector:@selector(session:didFailToLoginWithError:)] flattenMap:^RACStream *(RACTuple *tuple) {
+                    return [RACSignal error:tuple.second];
+                }];
+
+                return [RACSignal merge:@[didSucceed, didFail]];
+            }
+        }];
+    }
+    return _session;
 }
 
 - (void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error {
