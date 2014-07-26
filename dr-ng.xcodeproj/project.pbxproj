@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		308A6074881F0243A27A25BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A693067FD49A828A61CA9 /* PlaylistReader.m */; };
+		308A61CA04967E0F67F70A89 /* BTFSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6AA92428DEB5A3124BFA /* BTFSpotify.m */; };
 		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
 		308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 308A666714D52EBFEB4E7462 /* spotify_password.txt */; };
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
@@ -64,6 +65,8 @@
 		308A693067FD49A828A61CA9 /* PlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistReader.m; sourceTree = "<group>"; };
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A69BE642E72AECF137AE5 /* FallbackPlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallbackPlaylistReader.h; sourceTree = "<group>"; };
+		308A69F29FF9897EC620B6CB /* BTFSpotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFSpotify.h; sourceTree = "<group>"; };
+		308A6AA92428DEB5A3124BFA /* BTFSpotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFSpotify.m; sourceTree = "<group>"; };
 		308A6AAF8D5C665089F4C989 /* dr-ng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dr-ng.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6BA42E649278158146BA /* CSSSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorViewController.h; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				308A61B5812D288FA29D19E0 /* Playlist.h */,
 				308A693067FD49A828A61CA9 /* PlaylistReader.m */,
 				308A60A2CD38A9C95DEAAAA4 /* PlaylistReader.h */,
+				308A69F29FF9897EC620B6CB /* BTFSpotify.h */,
+				308A6AA92428DEB5A3124BFA /* BTFSpotify.m */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */,
 				308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */,
 				308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */,
+				308A61CA04967E0F67F70A89 /* BTFSpotify.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +481,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -491,6 +498,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

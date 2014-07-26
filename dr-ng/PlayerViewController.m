@@ -6,12 +6,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
-#include "appkey.c"
 #import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
 #import "PlaylistReader.h"
 #import "WBSuccessNoticeView.h"
 #import "WBErrorNoticeView.h"
+#import "BTFSpotify.h"
+#import "NSArray+Functional.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 static NSString *const kChannelId = @"channelid";
@@ -24,12 +25,12 @@ static NSString *const kPlaylistName = @"dr-ng";
 @property (nonatomic, strong) id<Playlist> playlist;
 @property(nonatomic, strong) UIButton *addToSpotBtn;
 @property (nonatomic, strong) AVAudioPlayer *spotifyAddingSuccessPlayer;
+@property(nonatomic, strong) BTFSpotify *btfSpotify;
 @end
 
 @implementation PlayerViewController {
 
 }
-NSString *const SpotifyUsername = @"113192706";
 
 - (instancetype)init{
     self = [super init];
@@ -49,18 +50,6 @@ NSString *const SpotifyUsername = @"113192706";
 
 
         self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
-
-        NSError *error = nil;
-       	[SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_appkey length:g_appkey_size]
-       											   userAgent:@"dk.betafunk.splif"
-       										   loadingPolicy:SPAsyncLoadingManual
-       												   error:&error];
-       	if (error != nil) {
-       		NSLog(@"CocoaLibSpotify init failed: %@", error);
-       		abort();
-       	}
-        [SPSession sharedSession].delegate = self;
-        [self spotifyLogin];
 
         self.channels = @[
                 @{
@@ -117,6 +106,11 @@ NSString *const SpotifyUsername = @"113192706";
 
                 },
         ];
+        
+        self.btfSpotify = [BTFSpotify new];
+
+
+
     }
     return self;
 }
@@ -242,6 +236,7 @@ NSString *const SpotifyUsername = @"113192706";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.btfSpotify.presentingViewController = self;
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
 }
@@ -257,74 +252,93 @@ NSString *const SpotifyUsername = @"113192706";
 
 #pragma mark spot
 
-- (void)spotifyLogin {
-    NSError *error;
-    NSString *passwordFilePath = [NSString stringWithFormat:@"%@/spotify_password.txt",[[NSBundle mainBundle] resourcePath]];
-    NSString *spotifyPassword = [NSString stringWithContentsOfFile:passwordFilePath encoding:NSUTF8StringEncoding error:&error];
-    NSCAssert(!error,@"Error reading from %@: %@", passwordFilePath,error);
-    NSLog(@"Logging in...");
-    [[SPSession sharedSession] attemptLoginWithUserName:SpotifyUsername
-                                    password:spotifyPassword];
-}
-
 - (void)addTrack:(NSDictionary *)track
 {
     self.addToSpotBtn.enabled = NO;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
-    SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
-    SPPlaylistContainer *playlistContainer = [[SPSession sharedSession] userPlaylists];
-    [SPAsyncLoading waitUntilLoaded:@[
-            search,
-            playlistContainer]
-                            timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+    RACSignal *playlist = [[self.btfSpotify allPlaylists] flattenMap:^RACStream *(NSArray *playlists) {
+        SPPlaylist *playlist1 = [[playlists filterUsingBlock:^BOOL(id obj) {
+            return [playlist.name isEqualToString:kPlaylistName];
+        }] firstObject];
+        return playlist1 ? [RACSignal return:playlist1] : [self.btfSpotify createPlaylist:kPlaylistName];
+    }];
 
-        if(!search.tracks.count) {
-            [[WBErrorNoticeView errorNoticeInView:self.view title:@"Not found on Spotify" message:nil] show];
-
-            NSLog(@"no search results");
-            return;
-        }
-
-        [SPAsyncLoading waitUntilLoaded:playlistContainer.flattenedPlaylists timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
-            __block SPPlaylist *foundPlaylist;
-            [playlistContainer.flattenedPlaylists enumerateObjectsUsingBlock:^(SPPlaylist *playlist, NSUInteger idx, BOOL *stop) {
-                if ([playlist.name isEqualToString:kPlaylistName]) {
-                    foundPlaylist = playlist;
-                    *stop = YES;
-                }
-            }];
-            void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
-                [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
-                    if(!error){
-                        NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'",kPlaylistName];
-                        [[WBSuccessNoticeView successNoticeInView:self.view title:info] show];
-                        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground){
-                            NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
-                            [self playSound:url];
-                        }
-                    } else {
-                        [[WBErrorNoticeView errorNoticeInView:self.view title:@"Problem adding track" message:[error description]] show];
-                        if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground){
-                            NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
-                            [self playSound:url];
-                        }
-                    }
-
-                    NSLog(@"%@", error?error:@"added track to playlist");
-                    self.addToSpotBtn.enabled = YES;
-                }];
-
-            };
-            if(!foundPlaylist){
-                NSLog(@"creating playlist %@",kPlaylistName);
-                [playlistContainer createPlaylistWithName:kPlaylistName callback:addItem];
-            } else {
-                addItem(foundPlaylist);
-            }
+    RACSignal *trackAdded = [[self.btfSpotify search:searchQuery] flattenMap:^RACStream *(SPSearch *search) {
+        return [playlist flattenMap:^RACStream *(SPPlaylist *playlist1) {
+            return [self.btfSpotify addItem:search.tracks.firstObject
+                                 toPlaylist:playlist1
+                                    atIndex:0];
         }];
     }];
+
+    [trackAdded subscribeNext:^(id x) {
+        NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'", kPlaylistName];
+        [[WBSuccessNoticeView successNoticeInView:self.view title:info] show];
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+            NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
+            [self playSound:url];
+        }
+        NSLog(@"added track to playlist");
+        self.addToSpotBtn.enabled = YES;
+
+    } error:^(NSError *error) {
+        [[WBErrorNoticeView errorNoticeInView:self.view title:@"Problem adding track"
+                                      message:[error description]] show];
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+            NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
+            [self playSound:url];
+        }
+        NSLog(@"%@", error);
+        self.addToSpotBtn.enabled = YES;
+
+    }];
+
+
+//    SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
+//    SPPlaylistContainer *playlistContainer = [[SPSession sharedSession] userPlaylists];
+//    [SPAsyncLoading waitUntilLoaded:@[
+//            search,
+//            playlistContainer]
+//                            timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+//
+//        if(!search.tracks.count) {
+//            [[WBErrorNoticeView errorNoticeInView:self.view title:@"Not found on Spotify" message:nil] show];
+//
+//            NSLog(@"no search results");
+//            return;
+//        }
+//
+//        [ subscribeNext:^(id x) {
+//
+//        }]
+//
+//        [SPAsyncLoading waitUntilLoaded:playlistContainer.flattenedPlaylists timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
+//            __block SPPlaylist *foundPlaylist;
+//            [playlistContainer.flattenedPlaylists enumerateObjectsUsingBlock:^(SPPlaylist *playlist, NSUInteger idx, BOOL *stop) {
+//                if ([playlist.name isEqualToString:kPlaylistName]) {
+//                    foundPlaylist = playlist;
+//                    *stop = YES;
+//                }
+//            }];
+//            void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
+//                [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
+//                    if(!error){
+//                    } else {
+//                    }
+//
+//                }];
+//
+//            };
+//            if(!foundPlaylist){
+//                NSLog(@"creating playlist %@",kPlaylistName);
+//                [playlistContainer createPlaylistWithName:kPlaylistName callback:addItem];
+//            } else {
+//                addItem(foundPlaylist);
+//            }
+//        }];
+//    }];
 
 }
 
@@ -333,12 +347,6 @@ NSString *const SpotifyUsername = @"113192706";
     self.spotifyAddingSuccessPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url
                                                                              error:&error];
     [self.spotifyAddingSuccessPlayer play];
-}
-
-- (void)sessionDidLoginSuccessfully:(SPSession *)aSession {
-
-    NSLog(@"logged in!");
-
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event
