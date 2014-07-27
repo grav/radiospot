@@ -294,51 +294,6 @@ static NSString *const kPlaylistName = @"dr-ng";
 
     }];
 
-
-//    SPSearch *search = [SPSearch searchWithSearchQuery:searchQuery inSession:[SPSession sharedSession]];
-//    SPPlaylistContainer *playlistContainer = [[SPSession sharedSession] userPlaylists];
-//    [SPAsyncLoading waitUntilLoaded:@[
-//            search,
-//            playlistContainer]
-//                            timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
-//
-//        if(!search.tracks.count) {
-//            [[WBErrorNoticeView errorNoticeInView:self.view title:@"Not found on Spotify" message:nil] show];
-//
-//            NSLog(@"no search results");
-//            return;
-//        }
-//
-//        [ subscribeNext:^(id x) {
-//
-//        }]
-//
-//        [SPAsyncLoading waitUntilLoaded:playlistContainer.flattenedPlaylists timeout:10 then:^(NSArray *loadedItems, NSArray *notLoadedItems) {
-//            __block SPPlaylist *foundPlaylist;
-//            [playlistContainer.flattenedPlaylists enumerateObjectsUsingBlock:^(SPPlaylist *playlist, NSUInteger idx, BOOL *stop) {
-//                if ([playlist.name isEqualToString:kPlaylistName]) {
-//                    foundPlaylist = playlist;
-//                    *stop = YES;
-//                }
-//            }];
-//            void (^addItem)(SPPlaylist *) = ^(SPPlaylist *playlist) {
-//                [playlist addItem:search.tracks.firstObject atIndex:0 callback:^(NSError *error) {
-//                    if(!error){
-//                    } else {
-//                    }
-//
-//                }];
-//
-//            };
-//            if(!foundPlaylist){
-//                NSLog(@"creating playlist %@",kPlaylistName);
-//                [playlistContainer createPlaylistWithName:kPlaylistName callback:addItem];
-//            } else {
-//                addItem(foundPlaylist);
-//            }
-//        }];
-//    }];
-
 }
 
 - (void)playSound:(NSURL *)url {
