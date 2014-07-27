@@ -11,7 +11,6 @@
 		308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A693067FD49A828A61CA9 /* PlaylistReader.m */; };
 		308A61CA04967E0F67F70A89 /* BTFSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6AA92428DEB5A3124BFA /* BTFSpotify.m */; };
 		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
-		308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 308A666714D52EBFEB4E7462 /* spotify_password.txt */; };
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
 		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A65585D601D209E3BDB0D /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A6CB09935CAB47D6B6B4C /* fail.wav */; };
@@ -287,7 +286,6 @@
 			files = (
 				308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */,
 				308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */,
-				308A63830AE6837BDE354AB7 /* spotify_password.txt in Resources */,
 				308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */,
 				308A65585D601D209E3BDB0D /* fail.wav in Resources */,
 				308A67C87C774233CEECD377 /* success.wav in Resources */,
