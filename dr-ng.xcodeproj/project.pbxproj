@@ -199,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		308A630DA0180F150B28E081 /* dr-ng */ = {
+		308A630DA0180F150B28E081 /* RadioSpot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "dr-ng" */;
+			buildConfigurationList = 308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "RadioSpot" */;
 			buildPhases = (
 				9201EE69B1574BE4BA23A7FB /* Check Pods Manifest.lock */,
 				308A64FC02FF9FD95CBBA2CA /* Sources */,
@@ -213,7 +213,7 @@
 			);
 			dependencies = (
 			);
-			name = "dr-ng";
+			name = RadioSpot;
 			productName = "dr-ng";
 			productReference = 308A6AAF8D5C665089F4C989 /* dr-ng.app */;
 			productType = "com.apple.product-type.application";
@@ -265,7 +265,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				308A630DA0180F150B28E081 /* dr-ng */,
+				308A630DA0180F150B28E081 /* RadioSpot */,
 				308A6A2E4FE41A9CB60A0624 /* dr-ngTests */,
 			);
 		};
@@ -355,7 +355,7 @@
 /* Begin PBXTargetDependency section */
 		308A6BF2D7818FC9A99BE526 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 308A630DA0180F150B28E081 /* dr-ng */;
+			target = 308A630DA0180F150B28E081 /* RadioSpot */;
 			targetProxy = 308A61FD9AFB37049C1406DC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -537,7 +537,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "dr-ng" */ = {
+		308A6E9C96ADD151EEEC1424 /* Build configuration list for PBXNativeTarget "RadioSpot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				308A6F5BB36879E3BA271570 /* Release */,
