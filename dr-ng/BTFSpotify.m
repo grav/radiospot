@@ -3,7 +3,6 @@
 // Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
-#import <NSArray+Functional/NSArray+Functional.h>
 #import <CocoaLibSpotify/SPSession.h>
 #import <CocoaLibSpotify/SPPlaylist.h>
 #include "appkey.c"
@@ -11,6 +10,24 @@
 #import "BTFSpotify.h"
 #import "SPPlaylistContainer.h"
 #import "SPLoginViewController.h"
+
+@interface NSArray (Utils)
+- (id)findFirst:(BOOL(^)(id x))b;
+@end
+
+@implementation NSArray (Utils)
+- (id)findFirst:(BOOL(^)(id x))b {
+    __block id x;
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if(b(obj)) {
+            x = obj;
+            *stop = YES;
+        }
+    }];
+    return x;
+}
+
+@end
 
 @interface BTFSpotify () <SPSessionDelegate>
 @property (nonatomic, strong) SPPlaybackManager *playbackManager;
@@ -108,10 +125,9 @@
     }] flattenMap:^id(SPPlaylistContainer *playlistContainer) {
         return [self load:playlistContainer.flattenedPlaylists];
     }] map:^id(NSArray *playlists) {
-        // TODO - do we have to go out of RAC domain here?
-        return [[playlists filterUsingBlock:^BOOL(SPPlaylist *playlist) {
+        return [playlists findFirst:^BOOL(SPPlaylist *playlist) {
             return [playlist.name isEqualToString:name];
-        }] firstObject];
+        }];
     }];
 
 }
