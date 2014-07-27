@@ -257,10 +257,7 @@ static NSString *const kPlaylistName = @"dr-ng";
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
-    RACSignal *playlist = [[self.btfSpotify allPlaylists] flattenMap:^RACStream *(NSArray *playlists) {
-        SPPlaylist *playlist1 = [[playlists filterUsingBlock:^BOOL(SPPlaylist *obj) {
-            return [obj.name isEqualToString:kPlaylistName];
-        }] firstObject];
+    RACSignal *playlist = [[self.btfSpotify playlistWithName:kPlaylistName] flattenMap:^RACStream *(SPPlaylist *playlist1) {
         return playlist1 ? [RACSignal return:playlist1] : [self.btfSpotify createPlaylist:kPlaylistName];
     }];
 
