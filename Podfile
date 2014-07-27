@@ -9,4 +9,3 @@ pod "MTDates"
 pod "JSONKit", :git => 'https://github.com/juliaPetryshena/JSONKit'
 pod "NSString-UrlEncode"
 pod "NoticeView"
-pod "NSArray+Functional"

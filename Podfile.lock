@@ -31,7 +31,6 @@ PODS:
   - Masonry (0.4.0)
   - MTDates (0.11.0)
   - NoticeView (3.0.7)
-  - NSArray+Functional (1.0.0)
   - NSString-UrlEncode (1.0.0)
   - ReactiveCocoa (2.2.3):
     - ReactiveCocoa/Core
@@ -48,7 +47,6 @@ DEPENDENCIES:
   - Masonry
   - MTDates
   - NoticeView
-  - NSArray+Functional
   - NSString-UrlEncode
   - ReactiveCocoa
 
@@ -70,7 +68,6 @@ SPEC CHECKSUMS:
   Masonry: 392466f4090cb28cc5349adec067453463e2ecd9
   MTDates: d351005772d1087e3d26b985c4248efdce303bcb
   NoticeView: 357545814931eb92428de54449f405f91c84a1b8
-  NSArray+Functional: 2c9ad6ab9b0dc7abe73416d265d569c8b20b9f3c
   NSString-UrlEncode: 9e59aad6b8da015d6f8f77129cebf33fabd1ed3b
   ReactiveCocoa: b751b6d1df73688da1040a3cd5b068765ec118d4
 

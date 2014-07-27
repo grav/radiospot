@@ -12,7 +12,6 @@
 #import "WBSuccessNoticeView.h"
 #import "WBErrorNoticeView.h"
 #import "BTFSpotify.h"
-#import "NSArray+Functional.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 static NSString *const kChannelId = @"channelid";
