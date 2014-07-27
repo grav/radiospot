@@ -120,11 +120,7 @@
 }
 
 - (RACSignal *)playlistWithName:(NSString *)name{
-    return [[[self.session flattenMap:^id(SPSession *session) {
-        return [self load:session.userPlaylists];
-    }] flattenMap:^id(SPPlaylistContainer *playlistContainer) {
-        return [self load:playlistContainer.flattenedPlaylists];
-    }] map:^id(NSArray *playlists) {
+    return [[self allPlaylists] map:^id(NSArray *playlists) {
         return [playlists findFirst:^BOOL(SPPlaylist *playlist) {
             return [playlist.name isEqualToString:name];
         }];
