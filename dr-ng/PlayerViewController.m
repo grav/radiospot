@@ -108,7 +108,7 @@ static NSString *const kPlaylistName = @"dr-ng";
         ];
         
         self.btfSpotify = [BTFSpotify new];
-
+        self.btfSpotify.presentingViewController = self;
 
 
     }
@@ -236,7 +236,6 @@ static NSString *const kPlaylistName = @"dr-ng";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.btfSpotify.presentingViewController = self;
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
 }
@@ -259,8 +258,8 @@ static NSString *const kPlaylistName = @"dr-ng";
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
     RACSignal *playlist = [[self.btfSpotify allPlaylists] flattenMap:^RACStream *(NSArray *playlists) {
-        SPPlaylist *playlist1 = [[playlists filterUsingBlock:^BOOL(id obj) {
-            return [playlist.name isEqualToString:kPlaylistName];
+        SPPlaylist *playlist1 = [[playlists filterUsingBlock:^BOOL(SPPlaylist *obj) {
+            return [obj.name isEqualToString:kPlaylistName];
         }] firstObject];
         return playlist1 ? [RACSignal return:playlist1] : [self.btfSpotify createPlaylist:kPlaylistName];
     }];
