@@ -16,7 +16,7 @@
 
 static NSString *const kChannelId = @"channelid";
 
-static NSString *const kPlaylistName = @"dr-ng";
+static NSString *const kPlaylistName = @"RadioSpot";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
