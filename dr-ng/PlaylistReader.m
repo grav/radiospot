@@ -105,6 +105,8 @@ static const double kPollInterval = 10.0;
             @(ChannelP6Beat) : @"P6B",
             @(ChannelP7Mix) : @"P7M",
             @(ChannelP8Jazz) : @"P8J",
+            @(ChannelRamasjang): @"Ram",
+            @(ChannelDRMama): @"DRM"
 
     };
     NSString *channelStr = channelStrs[@(channel)];
