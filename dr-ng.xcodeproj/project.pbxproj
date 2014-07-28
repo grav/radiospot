@@ -242,6 +242,7 @@
 		308A603AB19EC15929F9C856 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Betafunk;
 				TargetAttributes = {
 					308A630DA0180F150B28E081 = {
