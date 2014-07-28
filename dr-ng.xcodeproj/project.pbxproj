@@ -66,7 +66,7 @@
 		308A69BE642E72AECF137AE5 /* FallbackPlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallbackPlaylistReader.h; sourceTree = "<group>"; };
 		308A69F29FF9897EC620B6CB /* BTFSpotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFSpotify.h; sourceTree = "<group>"; };
 		308A6AA92428DEB5A3124BFA /* BTFSpotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFSpotify.m; sourceTree = "<group>"; };
-		308A6AAF8D5C665089F4C989 /* dr-ng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dr-ng.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		308A6AAF8D5C665089F4C989 /* RadioSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6BA42E649278158146BA /* CSSSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorViewController.h; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -139,7 +139,7 @@
 		308A6A4CCFFA494FA1D85DEB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				308A6AAF8D5C665089F4C989 /* dr-ng.app */,
+				308A6AAF8D5C665089F4C989 /* RadioSpot.app */,
 				308A604B78835DAA916D4703 /* dr-ngTests.xctest */,
 			);
 			name = Products;
@@ -215,7 +215,7 @@
 			);
 			name = RadioSpot;
 			productName = "dr-ng";
-			productReference = 308A6AAF8D5C665089F4C989 /* dr-ng.app */;
+			productReference = 308A6AAF8D5C665089F4C989 /* RadioSpot.app */;
 			productType = "com.apple.product-type.application";
 		};
 		308A6A2E4FE41A9CB60A0624 /* dr-ngTests */ = {

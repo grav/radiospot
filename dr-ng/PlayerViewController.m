@@ -247,6 +247,12 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 }
 
+- (void)stop:(UIButton *)sender
+{
+    sender.hidden = YES;
+    [self.player pause];
+    self.player = nil;
+}
 
 #pragma mark spot
 
