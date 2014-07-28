@@ -6,6 +6,5 @@ pod 'AFNetworking-RACExtensions', :git => 'https://github.com/knshiro/AFNetworki
 pod "Masonry"
 pod "CocoaLibSpotify"
 pod "MTDates"
-pod "JSONKit", :git => 'https://github.com/juliaPetryshena/JSONKit'
 pod "NSString-UrlEncode"
 pod "NoticeView"

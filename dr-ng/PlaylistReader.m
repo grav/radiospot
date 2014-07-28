@@ -5,7 +5,6 @@
 
 #import <AFNetworking-RACExtensions/AFHTTPRequestOperationManager+RACSupport.h>
 #import "PlaylistReader.h"
-#import "JSONKit.h"
 
 static const double kPollInterval = 10.0;
 
@@ -69,10 +68,14 @@ static const double kPollInterval = 10.0;
                     if(!urlString) return [RACSignal return:nil];
                     RACSignal *serviceResponse = [[manager rac_GET:urlString parameters:nil] map:^id(RACTuple *tuple) {
                         AFHTTPRequestOperation *operation = tuple.first;
-                        return [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+                        return operation.responseData;
                     }];
-                    return [[serviceResponse map:^id(NSString *htmlString) {
-                        NSDictionary *json = [htmlString objectFromJSONString];
+                    return [[serviceResponse map:^id(NSData *data) {
+                        NSError *error;
+                        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                             options:0
+                                                                               error:&error];
+                        NSCAssert(!error, @"%@",error);
 
                         NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
                         // filter out 'meta' artist names
