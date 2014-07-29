@@ -13,6 +13,7 @@
 #import "WBErrorNoticeView.h"
 #import "BTFSpotify.h"
 #import <MediaPlayer/MediaPlayer.h>
+#include "appkey.c"
 
 static NSString *const kChannelId = @"channelid";
 
@@ -106,7 +107,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
                 },
         ];
         
-        self.btfSpotify = [BTFSpotify new];
+        self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
 
 

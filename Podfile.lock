@@ -23,6 +23,9 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - BTFSpotify (0.1.0):
+    - CocoaLibSpotify (~> 2.4.5)
+    - ReactiveCocoa (~> 2.3.0)
   - CocoaLibSpotify (2.4.5):
     - libspotify (= 12.1.64)
   - HTMLReader (0.1.1)
@@ -40,7 +43,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking-RACExtensions (from `https://github.com/knshiro/AFNetworking-RACExtensions.git`)
-  - CocoaLibSpotify
+  - BTFSpotify (from `/Users/grav/Dropbox/repo/BTFSpotify`)
+  - CocoaLibSpotify (= 2.4.5)
   - HTMLReader (from `https://github.com/nolanw/HTMLReader`)
   - Masonry
   - MTDates
@@ -51,12 +55,15 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   AFNetworking-RACExtensions:
     :git: https://github.com/knshiro/AFNetworking-RACExtensions.git
+  BTFSpotify:
+    :path: /Users/grav/Dropbox/repo/BTFSpotify
   HTMLReader:
     :git: https://github.com/nolanw/HTMLReader
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AFNetworking-RACExtensions: 4f7633edc5618e771f1c034ec3eb6974fe9eb441
+  BTFSpotify: 74fcfe38c83635ccde7a7c72d72ec3913e9e60a7
   CocoaLibSpotify: d5c2cc8eac1a27618c6f3ff9f656cabb5982f52a
   HTMLReader: 70088dbdc1e28af9f1cd7e01238db085d4fa135a
   libspotify: 1f095010889816da1f68742bbe6e02fd5d09adb1
