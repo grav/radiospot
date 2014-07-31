@@ -13,6 +13,7 @@
 @interface DNGAppDelegate ()
 @property(nonatomic, copy) NSString *html;
 @property(nonatomic, strong) AVAudioPlayer *bgKeepAlivePlayer;
+@property(nonatomic, strong) PlayerViewController *playerViewController;
 @end
 
 @implementation DNGAppDelegate
@@ -32,9 +33,9 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    UIViewController *vc = [[PlayerViewController alloc] init];
-    self.window.rootViewController = vc;
-    vc.view.frame = [[UIScreen mainScreen] applicationFrame];
+    self.playerViewController = [[PlayerViewController alloc] init];
+    self.window.rootViewController = self.playerViewController;
+    self.playerViewController.view.frame = [[UIScreen mainScreen] applicationFrame];
 
     return YES;
 }
@@ -51,7 +52,9 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [self.bgKeepAlivePlayer play];
+    if([self.playerViewController isPlaying]){
+        [self.bgKeepAlivePlayer play];
+    }
 
 }
 

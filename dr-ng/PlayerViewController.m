@@ -196,7 +196,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (void)playChannel:(NSDictionary*)channel
 {
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
+#if DEBUG
     [self startLogging];
+#endif
 
     [self.player play];
 
@@ -310,4 +312,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 {
 }
 
+- (BOOL)isPlaying {
+    return self.player!=nil;
+}
 @end

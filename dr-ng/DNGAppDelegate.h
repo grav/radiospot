@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class AVAudioPlayer;
+@class PlayerViewController;
 
 @interface DNGAppDelegate : UIResponder <UIApplicationDelegate>
 
