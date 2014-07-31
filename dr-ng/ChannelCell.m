@@ -38,7 +38,18 @@
         }];
 
         self.textLabel.font = [UIFont channelName];
+        RAC(self.textLabel,textColor) = [isPlaying map:^id(NSNumber *number) {
+            return number.boolValue ? [UIColor whiteColor] : [UIColor colorWithWhite:0.17 alpha:1];
+        }];
+
+
         self.detailTextLabel.font = [UIFont nowPlaying];
+        RAC(self.detailTextLabel,textColor) = [isPlaying map:^id(NSNumber *number) {
+            UIColor *green = [UIColor colorWithRed:0.81 green:0.96 blue:0.67
+                                             alpha:1];
+            return number.boolValue ? green:[UIColor colorWithWhite:0.51 alpha:1];
+        }];
+
         RAC(self.detailTextLabel,text) = [isPlaying map:^id(NSNumber *number) {
             return number.boolValue ? @"Now playing ..." : @" ";
         }];
