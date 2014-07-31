@@ -102,7 +102,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
                 @{
                         kName:@"DR Nyheder",
                         kUrl:@"http://drradio2-lh.akamaihd.net/i/drnyheder_9@143532/master.m3u8",
-                        kChannelId:@(ChannelP8Jazz)
+                        kChannelId:@(ChannelDRNyheder)
 
                 },
         ];
