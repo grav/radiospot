@@ -118,6 +118,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.view.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
+
     RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
 
     UITableView *tableView = [UITableView new];
@@ -128,7 +130,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
-    tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    tableView.backgroundColor = [UIColor clearColor];
 
     UILabel *label = [UILabel new];
     label.textAlignment = NSTextAlignmentCenter;
@@ -249,6 +251,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [self playChannel:channel];
 
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65.0f;
+}
+
 
 - (void)stop:(UIButton *)sender
 {

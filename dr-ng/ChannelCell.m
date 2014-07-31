@@ -11,9 +11,8 @@
 }
 
 - (id)init {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ReuseId];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReuseId];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
 
         UIButton *stopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [stopButton addTarget:nil action:@selector(stop:)
@@ -21,15 +20,21 @@
 
         [stopButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [stopButton setTitle:@"◼" forState:UIControlStateNormal];
+        self.contentView.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:stopButton];
         [stopButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(stopButton.superview);
             make.right.equalTo(stopButton.superview).offset(-10);
         }];
 
-        RAC(stopButton,hidden) = [[[self rac_signalForSelector:@selector(setSelected:animated:)] map:^id(RACTuple *tuple) {
-            return tuple.first;
-        }] not];
+        RACSignal *isPlaying = [[self rac_signalForSelector:@selector(setSelected:animated:)] map:^id(RACTuple *tuple) {
+                return tuple.first;
+            }];
+        RAC(stopButton,hidden) = [isPlaying not];
+
+        self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
+        self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/cell_bg_selected"]];
+        self.separatorInset = UIEdgeInsetsZero;
     }
 
     return self;

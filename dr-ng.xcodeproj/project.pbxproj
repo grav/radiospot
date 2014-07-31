@@ -19,6 +19,7 @@
 		308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63F772362AD7F7517DA4 /* ChannelCell.m */; };
 		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
 		308A69F6FF8D6D33E7F0C289 /* CSSSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63E9703FD853270A98FC /* CSSSelectorViewController.m */; };
+		308A6AA84FAB2E060A216E43 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 308A636F0D48991D8D12D0FA /* Images */; };
 		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
 		308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */; };
 		308A6BE6237CF1DF6A648312 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */; };
@@ -45,6 +46,7 @@
 		308A60A2CD38A9C95DEAAAA4 /* PlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistReader.h; sourceTree = "<group>"; };
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		308A61B5812D288FA29D19E0 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		308A636F0D48991D8D12D0FA /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		308A63E9703FD853270A98FC /* CSSSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSSelectorViewController.m; sourceTree = "<group>"; };
 		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		308A644339A3C1AC90315B75 /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				308A61B5812D288FA29D19E0 /* Playlist.h */,
 				308A693067FD49A828A61CA9 /* PlaylistReader.m */,
 				308A60A2CD38A9C95DEAAAA4 /* PlaylistReader.h */,
+				308A636F0D48991D8D12D0FA /* Images */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */,
 				308A65585D601D209E3BDB0D /* fail.wav in Resources */,
 				308A67C87C774233CEECD377 /* success.wav in Resources */,
+				308A6AA84FAB2E060A216E43 /* Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
