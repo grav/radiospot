@@ -210,7 +210,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:4] ignore:@YES]
             subscribeNext:^(id x) {
                 NSLog(@"===== buffer empty- lets restart =====");
-                [[WBErrorNoticeView errorNoticeInView:self.view title:@"Trying to restart" message:nil] show];
+                [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
                 
                 [self performSelector:@selector(playChannel:) withObject:channel afterDelay:1];
     }];
@@ -288,7 +288,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     [trackAdded subscribeNext:^(id x) {
         NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'", kPlaylistName];
-        [[WBSuccessNoticeView successNoticeInView:self.view title:info] show];
+        [[WBSuccessNoticeView successNoticeInView:self.navigationController.view title:info] show];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
             [self playSound:url];
@@ -297,7 +297,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         self.addToSpotBtn.enabled = YES;
 
     } error:^(NSError *error) {
-        [[WBErrorNoticeView errorNoticeInView:self.view title:@"Problem adding track"
+        [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Problem adding track"
                                       message:[error description]] show];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
