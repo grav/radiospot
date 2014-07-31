@@ -34,7 +34,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     self.playerViewController = [[PlayerViewController alloc] init];
-    self.window.rootViewController = self.playerViewController;
+    self.playerViewController.title = @"Stations";
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.playerViewController];
     self.playerViewController.view.frame = [[UIScreen mainScreen] applicationFrame];
 
     return YES;
