@@ -45,7 +45,9 @@
 
         self.detailTextLabel.font = [UIFont nowPlaying];
         RAC(self.detailTextLabel,textColor) = [isPlaying map:^id(NSNumber *number) {
-            UIColor *green = [UIColor colorWithRed:0.81 green:0.96 blue:0.67
+            UIColor *green = [UIColor colorWithRed:0.81
+                                             green:0.96
+                                              blue:0.67
                                              alpha:1];
             return number.boolValue ? green:[UIColor colorWithWhite:0.51 alpha:1];
         }];
