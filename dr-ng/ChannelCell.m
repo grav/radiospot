@@ -5,6 +5,7 @@
 
 #import "ChannelCell.h"
 #import "PlayerViewController.h"
+#import "UIFont+DNGFonts.h"
 
 @implementation ChannelCell {
 
@@ -32,6 +33,16 @@
             }];
         RAC(stopButton,hidden) = [isPlaying not];
 
+        RAC(self.imageView,image) = [isPlaying map:^id(NSNumber *number) {
+            return number.boolValue ? [UIImage imageNamed:@"Images/station_icon_generic_selected"] : [UIImage imageNamed:@"Images/station_icon_generic"];
+        }];
+
+        self.textLabel.font = [UIFont channelName];
+        self.detailTextLabel.font = [UIFont nowPlaying];
+        RAC(self.detailTextLabel,text) = [isPlaying map:^id(NSNumber *number) {
+            return number.boolValue ? @"Now playing ..." : @" ";
+        }];
+
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
         self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/cell_bg_selected"]];
         self.separatorInset = UIEdgeInsetsZero;
@@ -40,10 +51,8 @@
     return self;
 }
 
-
 - (void)configure:(NSDictionary *)channel {
     self.textLabel.text = channel[kName];
-//    self.imageView.image = [UIImage imageWithContentsOfFile:channel.iconLocalURL.absoluteString];
 }
 
 @end

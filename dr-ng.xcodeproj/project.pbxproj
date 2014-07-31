@@ -26,6 +26,7 @@
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
+		308A6CF8EED0B39236F1CEB9 /* UIFont+DNGFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A67923E16D43B1D51385E /* UIFont+DNGFonts.m */; };
 		308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A64FAAA0F025D5C718C74 /* nobeep.wav */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
 		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
@@ -59,10 +60,12 @@
 		308A665732BAA5B9AFB642E8 /* dr-ngTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ngTests-Info.plist"; sourceTree = "<group>"; };
 		308A66EDA0BE3AA13A079F6A /* dr-ng-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ng-Info.plist"; sourceTree = "<group>"; };
 		308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dr-ng-Prefix.pch"; sourceTree = "<group>"; };
+		308A67923E16D43B1D51385E /* UIFont+DNGFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DNGFonts.m"; sourceTree = "<group>"; };
 		308A67C052B3C8C906BA873F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		308A67DB7E3D17BD7EBD6426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A693067FD49A828A61CA9 /* PlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistReader.m; sourceTree = "<group>"; };
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DNGFonts.h"; sourceTree = "<group>"; };
 		308A69BE642E72AECF137AE5 /* FallbackPlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallbackPlaylistReader.h; sourceTree = "<group>"; };
 		308A6AAF8D5C665089F4C989 /* RadioSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6BA42E649278158146BA /* CSSSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSSelectorViewController.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				308A693067FD49A828A61CA9 /* PlaylistReader.m */,
 				308A60A2CD38A9C95DEAAAA4 /* PlaylistReader.h */,
 				308A636F0D48991D8D12D0FA /* Images */,
+				308A67923E16D43B1D51385E /* UIFont+DNGFonts.m */,
+				308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */,
 				308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */,
 				308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */,
+				308A6CF8EED0B39236F1CEB9 /* UIFont+DNGFonts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
