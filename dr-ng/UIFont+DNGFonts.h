@@ -11,4 +11,8 @@
 
 + (instancetype)nowPlaying;
 
++ (instancetype)songTitle;
+
++ (instancetype)buttonFont;
+
 @end

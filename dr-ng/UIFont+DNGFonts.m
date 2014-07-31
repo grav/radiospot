@@ -14,4 +14,12 @@
 + (instancetype)nowPlaying {
     return [UIFont fontWithName:@"AvenirNext-Regular" size:13.0f];
 }
+
++ (instancetype)songTitle {
+    return [UIFont fontWithName:@"AvenirNext-Regular" size:16.0f];
+}
+
++ (instancetype)buttonFont {
+    return [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0f];
+}
 @end

@@ -14,6 +14,7 @@
 #import "BTFSpotify.h"
 #import <MediaPlayer/MediaPlayer.h>
 #include "appkey.c"
+#import "UIFont+DNGFonts.h"
 
 static NSString *const kChannelId = @"channelid";
 
@@ -134,7 +135,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     UILabel *label = [UILabel new];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:12];
+    label.font = [UIFont songTitle];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(tableView.mas_bottom).offset(10);
@@ -153,6 +154,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 
     self.addToSpotBtn = [UIButton new];
+    self.addToSpotBtn.titleLabel.font = [UIFont buttonFont];
     self.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
         return @(track!=nil);
     }] signalBlock:^RACSignal *(id input) {
