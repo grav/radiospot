@@ -6,7 +6,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
-#import "FallbackPlaylistReader.h"
 #import "ChannelCell.h"
 #import "PlaylistReader.h"
 #import "WBSuccessNoticeView.h"
@@ -15,10 +14,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #include "appkey.c"
 #import "UIFont+DNGFonts.h"
+#import "PlayerView.h"
 
 static NSString *const kChannelId = @"channelid";
 
 static NSString *const kPlaylistName = @"RadioSpot";
+
+static const int kPlayerHeight = 100;
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
@@ -107,7 +109,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
                 },
         ];
-        
+
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
 
@@ -126,60 +128,72 @@ static NSString *const kPlaylistName = @"RadioSpot";
     UITableView *tableView = [UITableView new];
     tableView.dataSource = self; tableView.delegate = self;
     [self.view addSubview:tableView];
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-    }];
     tableView.backgroundColor = [UIColor clearColor];
 
-    UILabel *label = [UILabel new];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont songTitle];
-    [self.view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(tableView.mas_bottom).offset(10);
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(tableView.superview);
     }];
 
-    RAC(label,text) = [[currentTrackS map:^id(NSDictionary *track) {
-        return track ? [NSString stringWithFormat:@"%@ - %@", track[kArtist], track[kTitle]] : @" ";
-    }] doNext:^(NSString *s) {
-        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
-                 MPMediaItemPropertyTitle : s
-        }];
+    PlayerView *playerView = [PlayerView new];
+    [self.view addSubview:playerView];
+
+    [playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(tableView.mas_bottom);
+        make.left.right.equalTo(playerView.superview);
+        make.height.mas_equalTo(kPlayerHeight);
     }];
 
 
+    RAC(playerView,track) = currentTrackS;
 
-    self.addToSpotBtn = [UIButton new];
-    self.addToSpotBtn.titleLabel.font = [UIFont buttonFont];
-    self.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
-        return @(track!=nil);
+    playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
+        return @(track != nil);
     }] signalBlock:^RACSignal *(id input) {
         [self addTrack:self.playlist.currentTrack];
         return [RACSignal empty];
     }];
-    [self.addToSpotBtn setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
-    [self.addToSpotBtn setTitle:@"Add to Spotify" forState:UIControlStateNormal];
-    [self.addToSpotBtn setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    [self.addToSpotBtn setTitleColor:[UIColor colorWithRed:0 green:0.8 blue:0 alpha:1] forState:UIControlStateNormal];
-    [self.addToSpotBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
 
-    [self.view addSubview:self.addToSpotBtn];
-    [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label.mas_bottom).offset(10);
-        make.bottom.equalTo(self.view).offset(-10);
-        make.left.equalTo(self.view).offset(40);
-        make.right.equalTo(self.view).offset(-40);
+
+
+
+    playerView.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, kPlayerHeight);
+
+
+    RACSignal *diffS = [[RACSignal combineLatest:@[RACObserve(self.view, bounds), RACObserve(playerView, frame)]
+                                          reduce:^id(NSValue *boundsV, NSValue *frameV){
+                CGRect bounds = [boundsV CGRectValue];
+                CGRect frame = [frameV CGRectValue];
+                return @(bounds.size.height - frame.origin.y);
+            }] logNext];
+
+    RAC(tableView,frame) = [diffS map:^id(NSNumber *diff) {
+        CGRect tableViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - diff.floatValue);
+        return [NSValue valueWithCGRect:tableViewFrame];
+    }];
+
+    [[RACObserve(playerView, frame) map:^id(NSValue *frameV) {
+        CGRect frame = [frameV CGRectValue];
+        CGFloat d = self.view.bounds.size.height - frame.origin.y;
+        return @(d);
+//        va
+    }] subscribeNext:^(NSNumber *n) {
+        UIEdgeInsets contentInset = tableView.contentInset;
+        contentInset.bottom = n.floatValue;
+        tableView.contentInset = contentInset;
     }];
 
 
-    [[RACSignal interval:4 onScheduler:[RACScheduler currentScheduler]] subscribeNext:^(id x) {
-        NSLog(@"%@",(__bridge NSString *)CMTimeCopyDescription(NULL, self.player.currentTime));
-    }];
 
+    [RACObserve(self, player) subscribeNext:^(id x) {
+
+
+        [playerView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(playerView.superview.mas_bottom).offset(x==nil?0:-kPlayerHeight);
+        }];
+        [UIView animateWithDuration:0.4 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }];
 }
 
 #pragma mark tblview
@@ -211,13 +225,18 @@ static NSString *const kPlaylistName = @"RadioSpot";
             subscribeNext:^(id x) {
                 NSLog(@"===== buffer empty- lets restart =====");
                 [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
-                
+
                 [self performSelector:@selector(playChannel:) withObject:channel afterDelay:1];
     }];
 
 }
 
 - (void)startLogging {
+
+    [[RACSignal interval:4 onScheduler:[RACScheduler currentScheduler]] subscribeNext:^(id x) {
+        NSLog(@"%@",(__bridge NSString *)CMTimeCopyDescription(NULL, self.player.currentTime));
+    }];
+
     [@[@"status", @"rate", @"currentItem", @"error", @"currentTime"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [[self.player rac_valuesForKeyPath:obj observer:self.player] subscribeNext:^(id x) {
             NSLog(@"%@: %@",obj,x);
