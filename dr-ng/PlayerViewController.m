@@ -13,12 +13,15 @@
 #import "WBErrorNoticeView.h"
 #import "BTFSpotify.h"
 #include "appkey.c"
-#import "UIFont+DNGFonts.h"
 #import "PlayerView.h"
 
 static NSString *const kChannelId = @"channelid";
 
+#if DEBUG
+static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
+#else
 static NSString *const kPlaylistName = @"RadioSpot";
+#endif
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
