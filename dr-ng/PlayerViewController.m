@@ -128,21 +128,12 @@ static const int kPlayerHeight = 100;
     UITableView *tableView = [UITableView new];
     tableView.dataSource = self; tableView.delegate = self;
     [self.view addSubview:tableView];
+    tableView.frame = self.view.bounds;
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     tableView.backgroundColor = [UIColor clearColor];
-
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(tableView.superview);
-    }];
 
     PlayerView *playerView = [PlayerView new];
     [self.view addSubview:playerView];
-
-    [playerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(tableView.mas_bottom);
-        make.left.right.equalTo(playerView.superview);
-        make.height.mas_equalTo(kPlayerHeight);
-    }];
-
 
     RAC(playerView,track) = currentTrackS;
 
@@ -153,45 +144,35 @@ static const int kPlayerHeight = 100;
         return [RACSignal empty];
     }];
 
-
-
-
     playerView.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, kPlayerHeight);
 
 
     RACSignal *diffS = [[RACSignal combineLatest:@[RACObserve(self.view, bounds), RACObserve(playerView, frame)]
-                                          reduce:^id(NSValue *boundsV, NSValue *frameV){
+                                          reduce:^id(NSValue *boundsV, NSValue *centerV){
                 CGRect bounds = [boundsV CGRectValue];
-                CGRect frame = [frameV CGRectValue];
+                CGRect frame = playerView.frame;
                 return @(bounds.size.height - frame.origin.y);
             }] logNext];
 
-    RAC(tableView,frame) = [diffS map:^id(NSNumber *diff) {
-        CGRect tableViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - diff.floatValue);
-        return [NSValue valueWithCGRect:tableViewFrame];
-    }];
+    [diffS subscribeNext:^(id x) {
 
-    [[RACObserve(playerView, frame) map:^id(NSValue *frameV) {
-        CGRect frame = [frameV CGRectValue];
-        CGFloat d = self.view.bounds.size.height - frame.origin.y;
-        return @(d);
-//        va
-    }] subscribeNext:^(NSNumber *n) {
-        UIEdgeInsets contentInset = tableView.contentInset;
-        contentInset.bottom = n.floatValue;
-        tableView.contentInset = contentInset;
     }];
-
 
 
     [RACObserve(self, player) subscribeNext:^(id x) {
+        CGFloat originY = x==nil?self.view.bounds.size.height : self.view.bounds.size.height-kPlayerHeight;
+        CGRect frame = playerView.frame;
+        frame.origin.y = originY;
 
-
-        [playerView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(playerView.superview.mas_bottom).offset(x==nil?0:-kPlayerHeight);
-        }];
+        UIEdgeInsets insets =  tableView.contentInset;
+        insets.bottom = x==nil? 0 : kPlayerHeight;
         [UIView animateWithDuration:0.4 animations:^{
-            [self.view layoutIfNeeded];
+            tableView.contentInset = insets;
+            playerView.frame = frame;
+        } completion:^(BOOL finished) {
+            [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionNone
+                                                         animated:YES];
+
         }];
     }];
 }
