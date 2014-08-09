@@ -139,11 +139,15 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     RAC(playerView,track) = currentTrackS;
 
-    [currentTrackS doNext:^(NSDictionary *track) {
-           [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
-                   MPMediaItemPropertyTitle : track[kTitle],
-                   MPMediaItemPropertyArtist : track[kArtist],
-           }];
+    [currentTrackS subscribeNext:^(NSDictionary *track) {
+        if(track) {
+            [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
+                    MPMediaItemPropertyTitle : track[kTitle],
+                    MPMediaItemPropertyArtist : track[kArtist],
+            }];
+        } else {
+            [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:nil];
+        }
     }];
 
     playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
