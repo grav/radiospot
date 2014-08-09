@@ -16,7 +16,11 @@
 }
 
 + (instancetype)songTitle {
-    return [UIFont fontWithName:@"AvenirNext-Regular" size:16.0f];
+    return [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0f];
+}
+
++ (instancetype)artist {
+    return [UIFont fontWithName:@"AvenirNext-Regular" size:11.0f];
 }
 
 + (instancetype)buttonFont {

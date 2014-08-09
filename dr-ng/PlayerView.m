@@ -16,29 +16,46 @@
 
 }
 
+static UIImage *BgImage;
+
++ (void)load {
+    BgImage = [UIImage imageNamed:@"Images/player_bg"];
+}
+
 - (instancetype)init {
-    if (!(self = [super init])) return nil;
-    self.backgroundColor = [UIColor blackColor];
-    UILabel *label = [UILabel new];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont songTitle];
-    [self addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label.superview).offset(10);
-        make.left.equalTo(label.superview).offset(10);
-        make.right.equalTo(label.superview).offset(-10);
+    if (!(self = [super initWithFrame:(CGRect){0,0,BgImage.size}])) return nil;
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:BgImage];
+    [self addSubview:backgroundImageView];
+    [backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
     }];
 
-    RAC(label,text) = [[RACObserve(self, track) map:^id(NSDictionary *track) {
-        return track ? [NSString stringWithFormat:@"%@ - %@", track[kArtist], track[kTitle]] : @" ";
-    }] doNext:^(NSString *s) {
-//        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
-//                 MPMediaItemPropertyTitle : s
-//        }];
+    UILabel *songTitleLabel = [UILabel new];
+    songTitleLabel.textColor = [UIColor whiteColor];
+    songTitleLabel.font = [UIFont songTitle];
+    [self addSubview:songTitleLabel];
+    [songTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(songTitleLabel.superview).offset(10);
+        make.left.equalTo(songTitleLabel.superview).offset(10);
     }];
 
+    UILabel *artistLabel = [UILabel new];
+    artistLabel.textColor = [UIColor colorWithWhite:0.65 alpha:1];
+    artistLabel.font = [UIFont artist];
+    [self addSubview:artistLabel];
+    [artistLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(songTitleLabel);
+        make.top.equalTo(songTitleLabel.mas_bottom);
+    }];
 
+    RACSignal *trackSignal = RACObserve(self, track);
+    RAC(songTitleLabel,text) = [trackSignal map:^id(NSDictionary *track) {
+        return track ? track[kTitle] : @" ";
+    }];
+
+    RAC(artistLabel,text) = [trackSignal map:^id(NSDictionary *track) {
+        return track ? track[kArtist] : @" ";
+    }];
 
     self.addToSpotBtn = [UIButton new];
     self.addToSpotBtn.titleLabel.font = [UIFont buttonFont];
@@ -50,14 +67,11 @@
 
     [self addSubview:self.addToSpotBtn];
     [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label.mas_bottom).offset(10);
-        make.bottom.equalTo(self.addToSpotBtn.superview).offset(-10);
-        make.left.equalTo(self.addToSpotBtn.superview).offset(40);
-        make.right.equalTo(self.addToSpotBtn.superview).offset(-40);
+        make.centerY.equalTo(self.addToSpotBtn.superview);
+        make.right.equalTo(self.addToSpotBtn.superview).offset(-10);
     }];
 
     return self;
 }
-
 
 @end

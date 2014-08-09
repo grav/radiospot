@@ -4,6 +4,7 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
 #import "ChannelCell.h"
@@ -11,7 +12,6 @@
 #import "WBSuccessNoticeView.h"
 #import "WBErrorNoticeView.h"
 #import "BTFSpotify.h"
-#import <MediaPlayer/MediaPlayer.h>
 #include "appkey.c"
 #import "UIFont+DNGFonts.h"
 #import "PlayerView.h"
@@ -19,8 +19,6 @@
 static NSString *const kChannelId = @"channelid";
 
 static NSString *const kPlaylistName = @"RadioSpot";
-
-static const int kPlayerHeight = 100;
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
@@ -133,9 +131,18 @@ static const int kPlayerHeight = 100;
     tableView.backgroundColor = [UIColor clearColor];
 
     PlayerView *playerView = [PlayerView new];
+    playerView.frame = CGRectOffset(playerView.frame, 0, self.view.bounds.size.height);
     [self.view addSubview:playerView];
 
     RAC(playerView,track) = currentTrackS;
+
+    [currentTrackS doNext:^(NSDictionary *track) {
+           [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
+                   MPMediaItemPropertyTitle : track[kTitle],
+                   MPMediaItemPropertyArtist : track[kArtist],
+           }];
+    }];
+
 
     playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
         return @(track != nil);
@@ -144,28 +151,14 @@ static const int kPlayerHeight = 100;
         return [RACSignal empty];
     }];
 
-    playerView.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, kPlayerHeight);
-
-
-    RACSignal *diffS = [[RACSignal combineLatest:@[RACObserve(self.view, bounds), RACObserve(playerView, frame)]
-                                          reduce:^id(NSValue *boundsV, NSValue *centerV){
-                CGRect bounds = [boundsV CGRectValue];
-                CGRect frame = playerView.frame;
-                return @(bounds.size.height - frame.origin.y);
-            }] logNext];
-
-    [diffS subscribeNext:^(id x) {
-
-    }];
-
-
     [RACObserve(self, player) subscribeNext:^(id x) {
-        CGFloat originY = x==nil?self.view.bounds.size.height : self.view.bounds.size.height-kPlayerHeight;
         CGRect frame = playerView.frame;
+        CGFloat playerHeight = frame.size.height;
+        CGFloat originY = x==nil?self.view.bounds.size.height : self.view.bounds.size.height- playerHeight;
         frame.origin.y = originY;
 
         UIEdgeInsets insets =  tableView.contentInset;
-        insets.bottom = x==nil? 0 : kPlayerHeight;
+        insets.bottom = x==nil? 0 : playerHeight;
         [UIView animateWithDuration:0.4 animations:^{
             tableView.contentInset = insets;
             playerView.frame = frame;
@@ -200,6 +193,7 @@ static const int kPlayerHeight = 100;
 #endif
 
     [self.player play];
+
 
 
     [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:4] ignore:@YES]

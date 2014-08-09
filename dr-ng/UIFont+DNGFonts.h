@@ -13,6 +13,8 @@
 
 + (instancetype)songTitle;
 
++ (instancetype)artist;
+
 + (instancetype)buttonFont;
 
 @end
