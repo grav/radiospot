@@ -15,23 +15,9 @@
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReuseId];
     if (self) {
 
-        UIButton *stopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [stopButton addTarget:nil action:@selector(stop:)
-             forControlEvents:UIControlEventTouchUpInside];
-
-        [stopButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [stopButton setTitle:@"◼" forState:UIControlStateNormal];
-        self.contentView.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:stopButton];
-        [stopButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(stopButton.superview);
-            make.right.equalTo(stopButton.superview).offset(-10);
-        }];
-
         RACSignal *isPlaying = [[self rac_signalForSelector:@selector(setSelected:animated:)] map:^id(RACTuple *tuple) {
                 return tuple.first;
             }];
-        RAC(stopButton,hidden) = [isPlaying not];
 
         RAC(self.imageView,image) = [isPlaying map:^id(NSNumber *number) {
             return number.boolValue ? [UIImage imageNamed:@"Images/station_icon_generic_selected"] : [UIImage imageNamed:@"Images/station_icon_generic"];

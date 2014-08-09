@@ -8,5 +8,6 @@
 
 @interface PlayerView : UIView
 @property (nonatomic, readonly) UIButton *addToSpotBtn;
+@property(nonatomic, readonly) UIButton *stopBtn;
 @property (nonatomic, strong) NSDictionary *track;
 @end

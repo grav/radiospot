@@ -143,13 +143,19 @@ static NSString *const kPlaylistName = @"RadioSpot";
            }];
     }];
 
-
     playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
         return @(track != nil);
     }] signalBlock:^RACSignal *(id input) {
         [self addTrack:self.playlist.currentTrack];
         return [RACSignal empty];
     }];
+
+    playerView.stopBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        [self stop];
+        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+        return [RACSignal empty];
+    }];
+
 
     [RACObserve(self, player) subscribeNext:^(id x) {
         CGRect frame = playerView.frame;
@@ -253,11 +259,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 
-- (void)stop:(UIButton *)sender
+- (void)stop
 {
-    sender.hidden = YES;
     [self.player pause];
     self.player = nil;
+
 }
 
 #pragma mark spot

@@ -9,7 +9,8 @@
 
 
 @interface PlayerView ()
-@property (nonatomic, readwrite) UIButton *addToSpotBtn;
+@property (nonatomic, strong) UIButton *addToSpotBtn;
+@property(nonatomic, strong) UIButton *stopBtn;
 @end
 
 @implementation PlayerView {
@@ -50,25 +51,29 @@ static UIImage *BgImage;
 
     RACSignal *trackSignal = RACObserve(self, track);
     RAC(songTitleLabel,text) = [trackSignal map:^id(NSDictionary *track) {
-        return track ? track[kTitle] : @" ";
+        return track ? track[kTitle] : @"(Unknown)";
     }];
 
     RAC(artistLabel,text) = [trackSignal map:^id(NSDictionary *track) {
-        return track ? track[kArtist] : @" ";
+        return track ? track[kArtist] : @"(Unknown)";
     }];
 
-    self.addToSpotBtn = [UIButton new];
-    self.addToSpotBtn.titleLabel.font = [UIFont buttonFont];
-    [self.addToSpotBtn setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
-    [self.addToSpotBtn setTitle:@"Add to Spotify" forState:UIControlStateNormal];
-    [self.addToSpotBtn setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    [self.addToSpotBtn setTitleColor:[UIColor colorWithRed:0 green:0.8 blue:0 alpha:1] forState:UIControlStateNormal];
-    [self.addToSpotBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
 
+    self.stopBtn = [UIButton new];
+    [self.stopBtn setImage:[UIImage imageNamed:@"Images/stop_btn"] forState:UIControlStateNormal];
+    [self addSubview:self.stopBtn];
+    [self.stopBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.stopBtn.superview);
+        make.right.equalTo(self.stopBtn.superview).offset(-10);
+    }];
+
+
+    self.addToSpotBtn = [UIButton new];
+    [self.addToSpotBtn setImage:[UIImage imageNamed:@"Images/spot_btn"] forState:UIControlStateNormal];
     [self addSubview:self.addToSpotBtn];
     [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.addToSpotBtn.superview);
-        make.right.equalTo(self.addToSpotBtn.superview).offset(-10);
+        make.right.equalTo(self.stopBtn.mas_left).offset(-10);
     }];
 
     return self;
