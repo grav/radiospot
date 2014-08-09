@@ -66,6 +66,9 @@ static UIImage *BgImage;
         make.centerY.equalTo(self.stopBtn.superview);
         make.right.equalTo(self.stopBtn.superview).offset(-10);
     }];
+    // make hit area bigger
+    UIEdgeInsets imageInsets = UIEdgeInsetsMake(-10, -10, -10, -10);
+    self.stopBtn.imageEdgeInsets = imageInsets;
 
 
     self.addToSpotBtn = [UIButton new];
@@ -73,8 +76,9 @@ static UIImage *BgImage;
     [self addSubview:self.addToSpotBtn];
     [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.addToSpotBtn.superview);
-        make.right.equalTo(self.stopBtn.mas_left).offset(-10);
+        make.right.equalTo(self.stopBtn.mas_left).offset(-20);
     }];
+    self.addToSpotBtn.imageEdgeInsets = imageInsets;
 
     return self;
 }
