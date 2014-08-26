@@ -1,7 +1,7 @@
 RadioSpot
 ==========
 
-Radio app with Spotify integration
+Radio app with Spotify integration. Soon free on AppStore! :-)
 
 <a href="http://i.imgur.com/3AVSZaj.png"><img src="http://i.imgur.com/3AVSZaj.png" title="Hosted by imgur.com" /></a>
 
