@@ -30,6 +30,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @property (nonatomic, strong) AVAudioPlayer *spotifyAddingSuccessPlayer;
 @property(nonatomic, strong) BTFSpotify *btfSpotify;
 @property (nonatomic, strong) PlayerViewModel *viewModel;
+@property(nonatomic, strong) AVAudioPlayer *bgKeepAlivePlayer;
 @end
 
 @implementation PlayerViewController {
@@ -52,6 +53,32 @@ static NSString *const kPlaylistName = @"RadioSpot";
             }
         }];
 
+        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlTogglePlayPause;
+        }] subscribeNext:^(id x) {
+            if(self.player.rate==0){
+                [self.player play];
+            } else {
+                [self.player pause];
+            }
+        }];
+
+        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlPlay;
+        }] subscribeNext:^(id x) {
+            if(self.player.rate == 0){
+                [self.player play];
+            }
+        }];
+
+        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlPause;
+        }] subscribeNext:^(id x) {
+            if(self.player.rate == 1){
+                // TODO - the 'pause' status isn't reflected in the UI
+                [self.player pause];
+            }
+        }];
 
         self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
 
@@ -64,6 +91,27 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }
     return self;
 }
+
+- (void)keepAlive{
+    NSURL *audioFileLocationURL = [[NSBundle mainBundle] URLForResource:@"nobeep" withExtension:@"wav"];
+    NSError *error;
+    self.bgKeepAlivePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileLocationURL error:&error];
+    NSCAssert(!error, @"Audio loading error: %@", error);
+    self.bgKeepAlivePlayer.numberOfLoops = -1;
+
+    [self.bgKeepAlivePlayer play];
+
+}
+
+- (void)stopKeepAlive
+{
+    [self.bgKeepAlivePlayer stop];
+    // We need to kill the bg player, else
+    // the play/pause status on the lock screen won't work.
+//    self.bgKeepAlivePlayer = nil;
+
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -121,14 +169,14 @@ static NSString *const kPlaylistName = @"RadioSpot";
         return @(!track.boolValue || !talking.boolValue);
     }];
 
-    [RACObserve(self, player) subscribeNext:^(id x) {
+    [RACObserve(self, player) subscribeNext:^(id player) {
         CGRect frame = playerView.frame;
         CGFloat playerHeight = frame.size.height;
-        CGFloat originY = x==nil?self.view.bounds.size.height : self.view.bounds.size.height- playerHeight;
+        CGFloat originY = player ==nil?self.view.bounds.size.height : self.view.bounds.size.height- playerHeight;
         frame.origin.y = originY;
 
         UIEdgeInsets insets =  tableView.contentInset;
-        insets.bottom = x==nil? 0 : playerHeight;
+        insets.bottom = player ==nil? 0 : playerHeight;
         [UIView animateWithDuration:0.4 animations:^{
             tableView.contentInset = insets;
             playerView.frame = frame;
@@ -164,10 +212,16 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     [self.player play];
 
-
+    [self stopKeepAlive];
 
     [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:4] ignore:@YES]
             subscribeNext:^(id x) {
+
+                // In case we're in background,
+                // we'll start playing (muted) sound, so that the OS
+                // does not kill us
+                [self keepAlive];
+
                 NSLog(@"===== buffer empty- lets restart =====");
                 [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
 
