@@ -254,9 +254,17 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
     RACSignal *trackAdded = [[self.btfSpotify search:searchQuery] flattenMap:^RACStream *(SPSearch *search) {
         return [playlist flattenMap:^RACStream *(SPPlaylist *playlist1) {
-            return [self.btfSpotify addItem:search.tracks.firstObject
-                                 toPlaylist:playlist1
-                                    atIndex:0];
+            if(search.tracks.firstObject){
+                return [self.btfSpotify addItem:search.tracks.firstObject
+                                     toPlaylist:playlist1
+                                        atIndex:0];
+            } else {
+                NSString *string = [NSString stringWithFormat:@"No results for '%@'",searchQuery];
+                NSError *error = [NSError errorWithDomain:@"btf.dr-ng" code:-100
+                                                 userInfo:@{
+                                                         NSLocalizedDescriptionKey: string}];
+                return [RACSignal error:error];
+            }
         }];
     }];
 
@@ -272,7 +280,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     } error:^(NSError *error) {
         [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Problem adding track"
-                                      message:[error description]] show];
+                                      message:[error localizedDescription]] show];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
             [self playSound:url];
