@@ -14,8 +14,7 @@
 #import "BTFSpotify.h"
 #include "appkey.c"
 #import "PlayerView.h"
-
-static NSString *const kChannelId = @"channelid";
+#import "PlayerViewModel.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -25,11 +24,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
-@property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) id<Playlist> playlist;
 @property(nonatomic, strong) UIButton *addToSpotBtn;
 @property (nonatomic, strong) AVAudioPlayer *spotifyAddingSuccessPlayer;
 @property(nonatomic, strong) BTFSpotify *btfSpotify;
+@property (nonatomic, strong) PlayerViewModel *viewModel;
 @end
 
 @implementation PlayerViewController {
@@ -55,61 +54,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
         self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
 
-        self.channels = @[
-                @{
-                        kName:@"P1",
-                        kUrl :@"http://drradio1-lh.akamaihd.net/i/p1_9@143503/master.m3u8",
-                        kChannelId :@(ChannelP1)
-                },
-                @{
-                        kName:@"P2",
-                        kUrl :@"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8",
-                        kChannelId :@(ChannelP2)
-                },
-                @{
-                        kName:@"P3",
-                        kUrl :@"http://drradio3-lh.akamaihd.net/i/p3_9@143506/master.m3u8",
-                        kChannelId :@(ChannelP3)
-                },
-                @{
-                        kName:@"P5",
-                        kUrl :@"http://drradio1-lh.akamaihd.net/i/p5_9@143530/master.m3u8",
-                        kChannelId :@(ChannelP5)
-                },
-                @{
-                        kName:@"P6 Beat",
-                        kUrl:@"http://drradio3-lh.akamaihd.net/i/p6beat_9@143533/master.m3u8",
-                        kChannelId:@(ChannelP6Beat),
-                },
-                @{
-                        kName:@"P7 Mix",
-                        kUrl:@"http://drradio1-lh.akamaihd.net/i/p7mix_9@143522/master.m3u8",
-                        kChannelId:@(ChannelP7Mix),
-                },
-                @{
-                        kName:@"P8 Jazz",
-                        kUrl:@"http://drradio2-lh.akamaihd.net/i/p8jazz_9@143524/master.m3u8",
-                        kChannelId:@(ChannelP8Jazz)
-                },
-                @{
-                        kName:@"DR MAMA",
-                        kUrl:@"http://drradio3-lh.akamaihd.net/i/drmama_9@143520/master.m3u8",
-                        kChannelId:@(ChannelDRMama)
-
-                },
-                @{
-                        kName:@"DR Ramasjang/Ultra Radio",
-                        kUrl:@"http://drradio3-lh.akamaihd.net/i/ramasjang_9@143529/master.m3u8",
-                        kChannelId:@(ChannelRamasjang)
-
-                },
-                @{
-                        kName:@"DR Nyheder",
-                        kUrl:@"http://drradio2-lh.akamaihd.net/i/drnyheder_9@143532/master.m3u8",
-                        kChannelId:@(ChannelDRNyheder)
-
-                },
-        ];
+        self.viewModel = [PlayerViewModel new];
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
@@ -186,7 +131,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 #pragma mark tblview
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.channels.count;
+    return self.viewModel.channels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -194,7 +139,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     if(!cell){
         cell = [ChannelCell new];
     }
-    [cell configure:self.channels[(NSUInteger) indexPath.row]];
+    [cell configure:self.viewModel.channels[(NSUInteger) indexPath.row]];
     return cell;
 }
 
@@ -255,7 +200,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *channel = self.channels[(NSUInteger) indexPath.row];
+    NSDictionary *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
     self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
     [self playChannel:channel];
 

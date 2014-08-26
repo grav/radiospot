@@ -6,6 +6,7 @@
 #import "ChannelCell.h"
 #import "PlayerViewController.h"
 #import "UIFont+DNGFonts.h"
+#import "PlayerViewModel.h"
 
 @implementation ChannelCell {
 

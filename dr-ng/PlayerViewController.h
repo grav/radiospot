@@ -5,8 +5,6 @@
 
 #import <Foundation/Foundation.h>
 #import "SPSession.h"
-static NSString *const kName = @"name";
-static NSString *const kUrl = @"url";
 static NSString *const kTracklistId = @"tracklistUrl";
 static NSString *const kFallbackTracklistId = @"fallbackId";
 

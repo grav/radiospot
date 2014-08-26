@@ -11,6 +11,7 @@
 		308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A693067FD49A828A61CA9 /* PlaylistReader.m */; };
 		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
+		308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */; };
 		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A65585D601D209E3BDB0D /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A6CB09935CAB47D6B6B4C /* fail.wav */; };
 		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
@@ -65,6 +66,7 @@
 		308A693067FD49A828A61CA9 /* PlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistReader.m; sourceTree = "<group>"; };
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DNGFonts.h"; sourceTree = "<group>"; };
+		308A69DEAA74A6F4711CFC24 /* PlayerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewModel.h; sourceTree = "<group>"; };
 		308A6AAF8D5C665089F4C989 /* RadioSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6B5027B9D90718BD6620 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A6F6288EDBC80429C93B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		308A6F9312E5891AE2CA464C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewModel.m; sourceTree = "<group>"; };
 		964942FB652848D1B87A5BFB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +178,8 @@
 				308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */,
 				308A6B5027B9D90718BD6620 /* PlayerView.m */,
 				308A6EC24FCF0CE931D4D95D /* PlayerView.h */,
+				308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */,
+				308A69DEAA74A6F4711CFC24 /* PlayerViewModel.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */,
 				308A6CF8EED0B39236F1CEB9 /* UIFont+DNGFonts.m in Sources */,
 				308A6E076E35D086B7BA8031 /* PlayerView.m in Sources */,
+				308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
