@@ -11,6 +11,7 @@
 @interface PlayerView ()
 @property (nonatomic, strong) UIButton *addToSpotBtn;
 @property(nonatomic, strong) UIButton *stopBtn;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation PlayerView {
@@ -79,6 +80,13 @@ static UIImage *BgImage;
         make.right.equalTo(self.stopBtn.mas_left).offset(-20);
     }];
     self.addToSpotBtn.imageEdgeInsets = imageInsets;
+
+    self.activityIndicatorView = [UIActivityIndicatorView new];
+    [self addSubview:self.activityIndicatorView];
+    [self.activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.addToSpotBtn);
+    }];
+    [self.activityIndicatorView startAnimating];
 
     return self;
 }

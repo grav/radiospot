@@ -95,12 +95,20 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }
     }];
 
-    playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:[currentTrackS map:^id(id track) {
+    RACSignal *talkingToSpotify = RACObserve(self.viewModel, talkingToSpotify);
+    RACSignal *hasTrack = [currentTrackS map:^id(id track) {
         return @(track != nil);
-    }] signalBlock:^RACSignal *(id input) {
-        [self addTrack:self.playlist.currentTrack];
-        return [RACSignal empty];
     }];
+
+    RACSignal *buttonEnabled = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking,NSNumber *track) {
+        return @(track.boolValue && !talking.boolValue);
+    }];
+
+    playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:buttonEnabled
+                                                                  signalBlock:^RACSignal *(id input) {
+                                                                      [self addTrack:self.playlist.currentTrack];
+                                                                      return [RACSignal empty];
+                                                                  }];
 
     playerView.stopBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         [self stop];
@@ -108,6 +116,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
         return [RACSignal empty];
     }];
 
+    RAC(playerView.activityIndicatorView,hidden) = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking, NSNumber *track){
+        return @(!track.boolValue || !talking.boolValue);
+    }];
 
     [RACObserve(self, player) subscribeNext:^(id x) {
         CGRect frame = playerView.frame;
@@ -222,7 +233,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)addTrack:(NSDictionary *)track
 {
-    self.addToSpotBtn.enabled = NO;
+    self.viewModel.talkingToSpotify = YES;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
@@ -246,7 +257,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
             [self playSound:url];
         }
         NSLog(@"added track to playlist");
-        self.addToSpotBtn.enabled = YES;
+        self.viewModel.talkingToSpotify = NO;
 
     } error:^(NSError *error) {
         [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Problem adding track"
@@ -256,8 +267,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
             [self playSound:url];
         }
         NSLog(@"%@", error);
-        self.addToSpotBtn.enabled = YES;
-
+        self.viewModel.talkingToSpotify = NO;
     }];
 
 }
