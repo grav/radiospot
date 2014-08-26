@@ -31,6 +31,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @property(nonatomic, strong) BTFSpotify *btfSpotify;
 @property (nonatomic, strong) PlayerViewModel *viewModel;
 @property(nonatomic, strong) AVAudioPlayer *bgKeepAlivePlayer;
+@property(nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation PlayerViewController {
@@ -80,6 +81,17 @@ static NSString *const kPlaylistName = @"RadioSpot";
             }
         }];
 
+        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlNextTrack;
+        }] subscribeNext:^(id x) {
+            NSInteger row = (self.tableView.indexPathForSelectedRow.row + 1) % self.viewModel.channels.count;
+            NSDictionary *channel = self.viewModel.channels[(NSUInteger) row];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row
+                                                                    inSection:0] animated:YES
+                                  scrollPosition:UITableViewScrollPositionNone];
+            [self playChannel:channel];
+        }];
+
         self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
 
         self.viewModel = [PlayerViewModel new];
@@ -120,12 +132,12 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
 
-    UITableView *tableView = [UITableView new];
-    tableView.dataSource = self; tableView.delegate = self;
-    [self.view addSubview:tableView];
-    tableView.frame = self.view.bounds;
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    tableView.backgroundColor = [UIColor clearColor];
+    self.tableView = [UITableView new];
+    self.tableView.dataSource = self; self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.frame = self.view.bounds;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.tableView.backgroundColor = [UIColor clearColor];
 
     PlayerView *playerView = [PlayerView new];
     playerView.frame = CGRectOffset(playerView.frame, 0, self.view.bounds.size.height);
@@ -161,7 +173,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     playerView.stopBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         [self stop];
-        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
         return [RACSignal empty];
     }];
 
@@ -175,14 +187,14 @@ static NSString *const kPlaylistName = @"RadioSpot";
         CGFloat originY = player ==nil?self.view.bounds.size.height : self.view.bounds.size.height- playerHeight;
         frame.origin.y = originY;
 
-        UIEdgeInsets insets =  tableView.contentInset;
+        UIEdgeInsets insets =  self.tableView.contentInset;
         insets.bottom = player ==nil? 0 : playerHeight;
         [UIView animateWithDuration:0.4 animations:^{
-            tableView.contentInset = insets;
+            self.tableView.contentInset = insets;
             playerView.frame = frame;
         } completion:^(BOOL finished) {
-            [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionNone
-                                                         animated:YES];
+            [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionNone
+                                                              animated:YES];
 
         }];
     }];
