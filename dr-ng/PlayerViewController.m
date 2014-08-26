@@ -22,6 +22,8 @@ static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
 static NSString *const kPlaylistName = @"RadioSpot";
 #endif
 
+#define CREATE_RANDOM_PLAYLIST 0
+
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) id<Playlist> playlist;
@@ -236,10 +238,20 @@ static NSString *const kPlaylistName = @"RadioSpot";
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
-    RACSignal *playlist = [[self.btfSpotify playlistWithName:kPlaylistName] flattenMap:^RACStream *(SPPlaylist *playlist1) {
-        return playlist1 ? [RACSignal return:playlist1] : [self.btfSpotify createPlaylist:kPlaylistName];
-    }];
 
+    NSString *playlistName = kPlaylistName;
+
+    #if DEBUG && CREATE_RANDOM_PLAYLIST
+
+    playlistName = [NSString stringWithFormat:@"RS_%d", arc4random()];
+
+    #endif
+
+    RACSignal *playlist = [[self.btfSpotify playlistWithName:playlistName] catch:^RACSignal *(NSError *error) {
+        return [[self.btfSpotify createPlaylist:playlistName] flattenMap:^RACStream *(id value) {
+            return [self.btfSpotify playlistWithName:playlistName];
+        }];
+    }];
     RACSignal *trackAdded = [[self.btfSpotify search:searchQuery] flattenMap:^RACStream *(SPSearch *search) {
         return [playlist flattenMap:^RACStream *(SPPlaylist *playlist1) {
             return [self.btfSpotify addItem:search.tracks.firstObject
@@ -249,7 +261,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
     [trackAdded subscribeNext:^(id x) {
-        NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'", kPlaylistName];
+        NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'", playlistName];
         [[WBSuccessNoticeView successNoticeInView:self.navigationController.view title:info] show];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
