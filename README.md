@@ -3,7 +3,7 @@ RadioSpot
 
 Radio app with Spotify integration
 
-<a href="http://i.imgur.com/3AVSZaj"><img src="http://i.imgur.com/3AVSZaj" title="Hosted by imgur.com" /></a>
+<a href="http://i.imgur.com/3AVSZaj.png"><img src="http://i.imgur.com/3AVSZaj.png" title="Hosted by imgur.com" /></a>
 
 This app allows you to add the current track of a radio channel (currently only channels from the Danish Broadcasting Company) to Spotify.
 
