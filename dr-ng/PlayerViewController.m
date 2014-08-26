@@ -25,7 +25,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) id<Playlist> playlist;
-@property(nonatomic, strong) UIButton *addToSpotBtn;
 @property (nonatomic, strong) AVAudioPlayer *spotifyAddingSuccessPlayer;
 @property(nonatomic, strong) BTFSpotify *btfSpotify;
 @property (nonatomic, strong) PlayerViewModel *viewModel;
