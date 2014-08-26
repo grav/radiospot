@@ -217,6 +217,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)playChannel:(NSDictionary*)channel
 {
+    self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
 #if DEBUG
     [self startLogging];
@@ -279,7 +280,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
-    self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
     [self playChannel:channel];
 
 }
