@@ -292,6 +292,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event
 {
+    NSLog(@"event received: %d",event.subtype);
 }
 
 - (BOOL)isPlaying {
