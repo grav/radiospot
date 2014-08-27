@@ -15,6 +15,7 @@
 #include "appkey.c"
 #import "PlayerView.h"
 #import "PlayerViewModel.h"
+#import "NSObject+Notifications.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -42,55 +43,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
     self = [super init];
     if(self){
 
-        RACSignal *remoteControlSignal = [[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
-            return tuple.first;
-        }];
+        [self setupRemoteControl];
 
-        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
-            return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
-        }] subscribeNext:^(id x) {
-            if(self.playlist.currentTrack){
-                [self addTrack:self.playlist.currentTrack];
-            }
-        }];
-
-        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
-            return event.subtype == UIEventSubtypeRemoteControlTogglePlayPause;
-        }] subscribeNext:^(id x) {
-            if(self.player.rate==0){
-                [self.player play];
-            } else {
-                [self.player pause];
-            }
-        }];
-
-        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
-            return event.subtype == UIEventSubtypeRemoteControlPlay;
-        }] subscribeNext:^(id x) {
-            if(self.player.rate == 0){
-                [self.player play];
-            }
-        }];
-
-        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
-            return event.subtype == UIEventSubtypeRemoteControlPause;
-        }] subscribeNext:^(id x) {
-            if(self.player.rate == 1){
-                // TODO - the 'pause' status isn't reflected in the UI
-                [self.player pause];
-            }
-        }];
-
-        [[remoteControlSignal filter:^BOOL(UIEvent *event) {
-            return event.subtype == UIEventSubtypeRemoteControlNextTrack;
-        }] subscribeNext:^(id x) {
-            NSInteger row = (self.tableView.indexPathForSelectedRow.row + 1) % self.viewModel.channels.count;
-            NSDictionary *channel = self.viewModel.channels[(NSUInteger) row];
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row
-                                                                    inSection:0] animated:YES
-                                  scrollPosition:UITableViewScrollPositionNone];
-            [self playChannel:channel];
-        }];
+        [self setupNotifications];
 
         self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
 
@@ -102,6 +57,77 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     }
     return self;
+}
+
+- (void)setupNotifications {
+
+    [[self rac_notifyUntilDealloc:AVAudioSessionInterruptionNotification] subscribeNext:^(NSNotification *notification) {
+        AVAudioSessionInterruptionType value;
+        [notification.userInfo[AVAudioSessionInterruptionTypeKey] getValue:&value];
+        switch (value) {
+            case AVAudioSessionInterruptionTypeBegan:
+                break;
+            case AVAudioSessionInterruptionTypeEnded:
+                if(!self.viewModel.playerPaused){
+                    [self.player play];
+                }
+                break;
+        }
+    }];
+
+}
+
+- (void)setupRemoteControl {
+    RACSignal *remoteControlSignal = [[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
+            return tuple.first;
+        }];
+
+    [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
+        }] subscribeNext:^(id x) {
+            if(self.playlist.currentTrack){
+                [self addTrack:self.playlist.currentTrack];
+            }
+        }];
+
+    [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlTogglePlayPause;
+        }] subscribeNext:^(id x) {
+            if(self.player.rate==0){
+                [self.player play];
+            } else {
+                [self.player pause];
+            }
+        }];
+
+    [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlPlay;
+        }] subscribeNext:^(id x) {
+            if(self.player.rate == 0){
+                [self.player play];
+            }
+        }];
+
+    [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlPause;
+        }] subscribeNext:^(id x) {
+            if(self.player.rate == 1){
+                // TODO - the 'pause' status isn't reflected in the UI
+                [self.player pause];
+            }
+        }];
+
+    [[remoteControlSignal filter:^BOOL(UIEvent *event) {
+            return event.subtype == UIEventSubtypeRemoteControlNextTrack;
+        }] subscribeNext:^(id x) {
+            NSInteger row = (self.tableView.indexPathForSelectedRow.row + 1) % self.viewModel.channels.count;
+            NSDictionary *channel = self.viewModel.channels[(NSUInteger) row];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row
+                                                                    inSection:0]
+                    animated:YES
+                    scrollPosition:UITableViewScrollPositionNone];
+            [self playChannel:channel];
+        }];
 }
 
 - (void)keepAlive{
@@ -221,6 +247,14 @@ static NSString *const kPlaylistName = @"RadioSpot";
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
 #if DEBUG
     [self startLogging];
+    [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
+        self.viewModel.playerPaused = YES;
+    }];
+
+    [[self.player rac_signalForSelector:@selector(play)] subscribeNext:^(id x) {
+        self.viewModel.playerPaused = NO;
+    }];
+
 #endif
 
     [self.player play];

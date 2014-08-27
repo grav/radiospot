@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		308A60036EA90DCCC7335243 /* NSObject+Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A631B3478E580146AE562 /* NSObject+Notifications.m */; };
 		308A6074881F0243A27A25BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A60F91D5AC7AACCA84355 /* PlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A693067FD49A828A61CA9 /* PlaylistReader.m */; };
 		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
@@ -48,6 +49,7 @@
 		308A60A2CD38A9C95DEAAAA4 /* PlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistReader.h; sourceTree = "<group>"; };
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		308A61B5812D288FA29D19E0 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		308A631B3478E580146AE562 /* NSObject+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notifications.m"; sourceTree = "<group>"; };
 		308A636F0D48991D8D12D0FA /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		308A644339A3C1AC90315B75 /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		308A6CB09935CAB47D6B6B4C /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
+		308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notifications.h"; sourceTree = "<group>"; };
 		308A6EC24FCF0CE931D4D95D /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
 		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				308A6EC24FCF0CE931D4D95D /* PlayerView.h */,
 				308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */,
 				308A69DEAA74A6F4711CFC24 /* PlayerViewModel.h */,
+				308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */,
+				308A631B3478E580146AE562 /* NSObject+Notifications.m */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				308A6CF8EED0B39236F1CEB9 /* UIFont+DNGFonts.m in Sources */,
 				308A6E076E35D086B7BA8031 /* PlayerView.m in Sources */,
 				308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */,
+				308A60036EA90DCCC7335243 /* NSObject+Notifications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

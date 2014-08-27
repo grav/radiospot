@@ -14,4 +14,5 @@ static NSString *const kUrl = @"url";
 @property (nonatomic, readonly) NSArray *channels;
 // TODO - eventually this should be read-only
 @property (nonatomic) BOOL talkingToSpotify;
+@property(nonatomic) BOOL playerPaused;
 @end
