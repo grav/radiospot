@@ -283,7 +283,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)playChannel:(NSDictionary*)channel
 {
-    if(self.viewModel.currentChannel==channel) return;
+    if(self.player && self.viewModel.currentChannel==channel) return;
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
 
     [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
