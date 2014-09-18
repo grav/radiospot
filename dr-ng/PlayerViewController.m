@@ -16,6 +16,7 @@
 #import "PlayerView.h"
 #import "PlayerViewModel.h"
 #import "NSObject+Notifications.h"
+#import "RACStream+BTFAdditions.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -47,9 +48,16 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
         [self setupNotifications];
 
-        self.playlist = [PlaylistReader new]; // TODO - use fallback if it fails
+        RACSignal *channelSignal = [[self rac_signalForSelector:@selector(playChannel:)] tupleFirst];
+
+        self.playlist = [PlaylistReader new];
+
+        RAC(self.playlist, channel) = [channelSignal map:^id(NSDictionary *channel) {
+            return channel[kChannelId];
+        }];
 
         self.viewModel = [PlayerViewModel new];
+        RAC(self.viewModel,currentChannel) = channelSignal;
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
@@ -72,6 +80,12 @@ static NSString *const kPlaylistName = @"RadioSpot";
                     [self.player play];
                 }
                 break;
+        }
+    }];
+
+    [[self rac_notifyUntilDealloc:UIApplicationDidBecomeActiveNotification] subscribeNext:^(id x) {
+        if(!self.viewModel.playerPaused){
+            [self.player play];
         }
     }];
 
@@ -199,7 +213,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     playerView.stopBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         [self stop];
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
         return [RACSignal empty];
     }];
 
@@ -243,10 +256,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)playChannel:(NSDictionary*)channel
 {
-    self.playlist.channel = (Channel) ((NSNumber*)(channel[kChannelId])).integerValue;
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
-#if DEBUG
-    [self startLogging];
+
     [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
         self.viewModel.playerPaused = YES;
     }];
@@ -254,8 +265,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [[self.player rac_signalForSelector:@selector(play)] subscribeNext:^(id x) {
         self.viewModel.playerPaused = NO;
     }];
-
-#endif
 
     [self.player play];
 
@@ -269,6 +278,13 @@ static NSString *const kPlaylistName = @"RadioSpot";
                 [self keepAlive];
                 [self performSelector:@selector(tryRestarting:) withObject:channel afterDelay:1];
     }];
+
+#if DEBUG
+    [self.player performSelector:@selector(pause) withObject:nil afterDelay:2];
+
+    [self startLogging];
+#endif
+
 
 }
 
@@ -329,6 +345,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)stop
 {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    NSLog(@"stopping");
     [self.player pause];
     self.player = nil;
 

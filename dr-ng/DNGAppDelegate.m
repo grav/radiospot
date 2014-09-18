@@ -39,7 +39,7 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-
+         // here
 
 }
 
