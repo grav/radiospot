@@ -28,12 +28,17 @@ PODS:
     - ReactiveCocoa (~> 2.3.0)
   - CocoaLibSpotify (2.4.5):
     - libspotify (= 12.1.64)
+  - dyci (0.1.5.6):
+    - dyci/Injections
+  - dyci/Injections (0.1.5.6)
   - HTMLReader (0.5.5)
   - libspotify (12.1.64)
   - Masonry (0.5.3)
   - MTDates (0.13.0)
   - NoticeView (3.0.7)
+  - NSArray+Functional (1.0.0)
   - NSString-UrlEncode (1.1.0)
+  - pop (1.0.6)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI
   - ReactiveCocoa/Core (2.3.1):
@@ -46,11 +51,14 @@ DEPENDENCIES:
   - AFNetworking-RACExtensions (from `https://github.com/knshiro/AFNetworking-RACExtensions.git`)
   - BTFSpotify
   - CocoaLibSpotify (= 2.4.5)
+  - dyci
   - HTMLReader (from `https://github.com/nolanw/HTMLReader`)
   - Masonry
   - MTDates
   - NoticeView
+  - NSArray+Functional
   - NSString-UrlEncode
+  - pop
   - ReactiveCocoa
 
 EXTERNAL SOURCES:
@@ -64,12 +72,15 @@ SPEC CHECKSUMS:
   AFNetworking-RACExtensions: 4f7633edc5618e771f1c034ec3eb6974fe9eb441
   BTFSpotify: 47344eba79a249cff32aa0f31c07f46ea00db1e3
   CocoaLibSpotify: d5c2cc8eac1a27618c6f3ff9f656cabb5982f52a
+  dyci: 86668b266b8a281cb6db02843150f6a210c34ee9
   HTMLReader: 16278a4f9ca32ca14a2b46bcc0e10691f9d21370
   libspotify: 1f095010889816da1f68742bbe6e02fd5d09adb1
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   MTDates: 8eb0bfe67c492ba292d0aa3320ad013004e156cb
   NoticeView: 357545814931eb92428de54449f405f91c84a1b8
+  NSArray+Functional: 2c9ad6ab9b0dc7abe73416d265d569c8b20b9f3c
   NSString-UrlEncode: 9b49b5499996dad0439373683820420978731628
+  pop: e518794da38942c05255eb64b36d894e70cb4f00
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
 
 COCOAPODS: 0.33.1

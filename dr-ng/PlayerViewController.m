@@ -18,6 +18,8 @@
 #import "NSObject+Notifications.h"
 #import "RACStream+BTFAdditions.h"
 #import "MessageView.h"
+#import "OverlayView.h"
+#import "MASConstraintMaker+Self.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -66,6 +68,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     }
     return self;
+}
+
+- (void)updateOnClassInjection
+{
+    [self showOverlay];
 }
 
 - (void)setupNotifications {
@@ -263,6 +270,26 @@ static NSString *const kPlaylistName = @"RadioSpot";
                                                               animated:YES];
 
         }];
+    }];
+
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self showOverlay];
+}
+
+- (void)showOverlay {
+    OverlayView *overlay = [OverlayView new];
+    UIView *window = [[UIApplication sharedApplication] keyWindow];
+    [window addSubview:overlay];
+    [overlay mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(make.superview);
+    }];
+    overlay.alpha = 0;
+    [UIView animateWithDuration:0.4 animations:^{
+        overlay.alpha = 1;
     }];
 }
 
