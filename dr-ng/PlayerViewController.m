@@ -284,8 +284,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
 #if DEBUG
-    [self.player performSelector:@selector(pause) withObject:nil afterDelay:2];
-
+//    [self.player performSelector:@selector(pause) withObject:nil afterDelay:2];
+//
     [self startLogging];
 #endif
 
