@@ -19,6 +19,7 @@
 		308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */; };
 		308A67C87C774233CEECD377 /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A644339A3C1AC90315B75 /* success.wav */; };
 		308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63F772362AD7F7517DA4 /* ChannelCell.m */; };
+		308A6880A441CD0FD9A855F3 /* RACStream+BTFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A68B757C4731341C15913 /* RACStream+BTFAdditions.m */; };
 		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
 		308A6AA84FAB2E060A216E43 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 308A636F0D48991D8D12D0FA /* Images */; };
 		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
@@ -65,6 +66,7 @@
 		308A67923E16D43B1D51385E /* UIFont+DNGFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DNGFonts.m"; sourceTree = "<group>"; };
 		308A67C052B3C8C906BA873F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		308A67DB7E3D17BD7EBD6426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		308A68B757C4731341C15913 /* RACStream+BTFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACStream+BTFAdditions.m"; sourceTree = "<group>"; };
 		308A693067FD49A828A61CA9 /* PlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistReader.m; sourceTree = "<group>"; };
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DNGFonts.h"; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		308A6B5027B9D90718BD6620 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		308A6BE2F4D52FCB601C62FE /* RACStream+BTFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACStream+BTFAdditions.h"; sourceTree = "<group>"; };
 		308A6CB09935CAB47D6B6B4C /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
 		308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notifications.h"; sourceTree = "<group>"; };
 		308A6EC24FCF0CE931D4D95D /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				308A69DEAA74A6F4711CFC24 /* PlayerViewModel.h */,
 				308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */,
 				308A631B3478E580146AE562 /* NSObject+Notifications.m */,
+				308A68B757C4731341C15913 /* RACStream+BTFAdditions.m */,
+				308A6BE2F4D52FCB601C62FE /* RACStream+BTFAdditions.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				308A6E076E35D086B7BA8031 /* PlayerView.m in Sources */,
 				308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */,
 				308A60036EA90DCCC7335243 /* NSObject+Notifications.m in Sources */,
+				308A6880A441CD0FD9A855F3 /* RACStream+BTFAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
