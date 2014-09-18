@@ -263,17 +263,21 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:4] ignore:@YES]
             subscribeNext:^(id x) {
-
                 // In case we're in background,
                 // we'll start playing (muted) sound, so that the OS
                 // does not kill us
                 [self keepAlive];
-
-                NSLog(@"===== buffer empty- lets restart =====");
-                [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
-
-                [self performSelector:@selector(playChannel:) withObject:channel afterDelay:1];
+                [self performSelector:@selector(tryRestarting:) withObject:channel afterDelay:1];
     }];
+
+}
+
+- (void)tryRestarting:(NSDictionary*)channel
+{
+    if(!self.player) return;
+    NSLog(@"===== buffer empty- lets restart =====");
+    [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
+    [self playChannel:channel];
 
 }
 
