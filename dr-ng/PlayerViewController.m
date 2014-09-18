@@ -107,6 +107,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [[remoteControlSignal filter:^BOOL(UIEvent *event) {
             return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
         }] subscribeNext:^(id x) {
+            self.viewModel.didAddUsingRemove = YES;
             if(self.playlist.currentTrack){
                 [self addTrack:self.playlist.currentTrack];
             }
@@ -273,11 +274,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
 
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self showOverlay];
 }
 
 - (void)showOverlay {
@@ -460,6 +456,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }
         NSLog(@"added track to playlist");
         self.viewModel.talkingToSpotify = NO;
+        self.viewModel.tracksAdded++;
+        if(!self.viewModel.didAddUsingRemove && (self.viewModel.tracksAdded == 3 || self.viewModel.tracksAdded % 20 == 0)){
+            [self showOverlay];
+        }
 
     } error:^(NSError *error) {
         [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Problem adding track"

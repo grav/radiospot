@@ -17,4 +17,6 @@ static NSString *const kUrl = @"url";
 @property(nonatomic) BOOL userPaused;
 @property (nonatomic, strong) NSDictionary *currentChannel;
 @property(nonatomic) BOOL didDismissMessage;
+@property(nonatomic) int tracksAdded;
+@property(nonatomic) BOOL didAddUsingRemove;
 @end

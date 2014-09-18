@@ -7,6 +7,10 @@
 #import "PlayerViewModel.h"
 
 
+static NSString *const kTracksAdded = @"TracksAdded";
+
+static NSString *const kAddUsingRemote = @"didAddUsingRemote";
+
 @interface PlayerViewModel ()
 @property (nonatomic, strong) NSArray *channels;
 @end
@@ -14,6 +18,27 @@
 @implementation PlayerViewModel {
 
 }
+
+- (instancetype)init {
+    if (!(self = [super init])) return nil;
+    _tracksAdded = [[NSUserDefaults standardUserDefaults] integerForKey:kTracksAdded];
+    _didAddUsingRemove = [[NSUserDefaults standardUserDefaults] boolForKey:kAddUsingRemote];
+    return self;
+}
+
+
+- (void)setTracksAdded:(int)tracksAdded {
+    _tracksAdded = tracksAdded;
+    [[NSUserDefaults standardUserDefaults] setInteger:tracksAdded forKey:kTracksAdded];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setDidAddUsingRemove:(BOOL)didAddUsingRemote {
+    _didAddUsingRemove = didAddUsingRemote;
+    [[NSUserDefaults standardUserDefaults] setBool:didAddUsingRemote forKey:kAddUsingRemote];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 - (NSArray *)channels {
     if(!_channels){
