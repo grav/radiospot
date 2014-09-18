@@ -232,11 +232,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
     RAC(messageView,alpha) = [[RACSignal combineLatest:@[hasTrack, RACObserve(self, player), RACObserve(self.viewModel, didDismissMessage)]
-                                                reduce:^id(NSNumber *hasTrackN, id player, NSNumber *didDismiss) {
-                                                    return (hasTrackN.boolValue && player && !didDismiss.boolValue) ? @1 : @0;
-                                                }] flattenMap:^RACStream *(NSNumber *alpha) {
-        return alpha.boolValue ? [[RACSignal return:alpha] delay:1] : [RACSignal return:alpha];
-    }];
+                                                 reduce:^id(NSNumber *hasTrackN, id player, NSNumber *didDismiss) {
+                                                     return @(hasTrackN.boolValue && player && !didDismiss.boolValue);
+                                                 }] throttle:0.1];
 
     RAC(playerView.activityIndicatorView,hidden) = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking, NSNumber *track){
         return @(!track.boolValue || !talking.boolValue);
@@ -285,6 +283,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)playChannel:(NSDictionary*)channel
 {
+    if(self.viewModel.currentChannel==channel) return;
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
 
     [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
@@ -304,8 +303,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
                 // In case we're in background,
                 // we'll start playing (muted) sound, so that the OS
                 // does not kill us
+                if(!self.player || channel!=self.viewModel.currentChannel) return;
                 [self keepAlive];
-                [self performSelector:@selector(tryRestarting:) withObject:channel afterDelay:1];
+                [self tryRestarting:channel];
     }];
 
 #if DEBUG
@@ -324,7 +324,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)tryRestarting:(NSDictionary*)channel
 {
-    if(!self.player) return;
+    if(!self.player || ![self.viewModel.currentChannel isEqualToDictionary:channel]) return;
     NSLog(@"===== buffer empty- lets restart =====");
     [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
     [self playChannel:channel];
