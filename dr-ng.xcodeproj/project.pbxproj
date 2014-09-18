@@ -16,6 +16,7 @@
 		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A65585D601D209E3BDB0D /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A6CB09935CAB47D6B6B4C /* fail.wav */; };
 		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
+		308A6641DC9253AC23254CF6 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6CAE4785BC8F7DD00DBA /* MessageView.m */; };
 		308A67AEC34B0A333CC43C97 /* DNGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */; };
 		308A67C87C774233CEECD377 /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A644339A3C1AC90315B75 /* success.wav */; };
 		308A684E7A0ED2309AB353A3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63F772362AD7F7517DA4 /* ChannelCell.m */; };
@@ -76,7 +77,9 @@
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		308A6BE2F4D52FCB601C62FE /* RACStream+BTFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACStream+BTFAdditions.h"; sourceTree = "<group>"; };
+		308A6CAE4785BC8F7DD00DBA /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		308A6CB09935CAB47D6B6B4C /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
+		308A6DC64464B0C04A913B25 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notifications.h"; sourceTree = "<group>"; };
 		308A6EC24FCF0CE931D4D95D /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				308A631B3478E580146AE562 /* NSObject+Notifications.m */,
 				308A68B757C4731341C15913 /* RACStream+BTFAdditions.m */,
 				308A6BE2F4D52FCB601C62FE /* RACStream+BTFAdditions.h */,
+				308A6CAE4785BC8F7DD00DBA /* MessageView.m */,
+				308A6DC64464B0C04A913B25 /* MessageView.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 				308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */,
 				308A60036EA90DCCC7335243 /* NSObject+Notifications.m in Sources */,
 				308A6880A441CD0FD9A855F3 /* RACStream+BTFAdditions.m in Sources */,
+				308A6641DC9253AC23254CF6 /* MessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

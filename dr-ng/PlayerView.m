@@ -6,6 +6,8 @@
 #import "PlayerView.h"
 #import "UIFont+DNGFonts.h"
 #import "Playlist.h"
+#import "MessageView.h"
+#import "RACStream+BTFAdditions.h"
 
 
 @interface PlayerView ()

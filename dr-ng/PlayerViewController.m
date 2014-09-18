@@ -17,6 +17,7 @@
 #import "PlayerViewModel.h"
 #import "NSObject+Notifications.h"
 #import "RACStream+BTFAdditions.h"
+#import "MessageView.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -219,6 +220,20 @@ static NSString *const kPlaylistName = @"RadioSpot";
         [self stop];
         return [RACSignal empty];
     }];
+
+
+
+    MessageView *messageView = [MessageView new];
+    [self.view addSubview:messageView];
+    [messageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(messageView.superview).offset(-playerView.frame.size.height+12);
+        make.right.equalTo(messageView.superview).offset(-10);
+    }];
+
+    RAC(messageView,alpha) = [RACSignal combineLatest:@[hasTrack, RACObserve(self,player)]
+                                               reduce:^id(NSNumber *hasTrackN, id player) {
+                                                   return (hasTrackN.boolValue && player) ? @1 : @0;
+                                               }];
 
     RAC(playerView.activityIndicatorView,hidden) = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking, NSNumber *track){
         return @(!track.boolValue || !talking.boolValue);
@@ -434,7 +449,4 @@ static NSString *const kPlaylistName = @"RadioSpot";
     NSLog(@"event received: %d",event.subtype);
 }
 
-- (BOOL)isPlaying {
-    return self.player!=nil;
-}
 @end

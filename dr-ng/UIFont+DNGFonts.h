@@ -17,4 +17,5 @@
 
 + (instancetype)buttonFont;
 
++ (instancetype)messageFont;
 @end

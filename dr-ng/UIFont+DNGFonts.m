@@ -26,4 +26,9 @@
 + (instancetype)buttonFont {
     return [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0f];
 }
+
++ (instancetype)messageFont {
+    return [UIFont systemFontOfSize:14.0f];
+}
+
 @end

@@ -14,5 +14,4 @@ static NSString *const kFallbackTracklistId = @"fallbackId";
 
 
 @interface PlayerViewController : UIViewController
-- (BOOL)isPlaying;
 @end
