@@ -76,7 +76,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
             case AVAudioSessionInterruptionTypeBegan:
                 break;
             case AVAudioSessionInterruptionTypeEnded:
-                if(!self.viewModel.playerPaused){
+                if(!self.viewModel.userPaused){
                     [self.player play];
                 }
                 break;
@@ -84,7 +84,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
     [[self rac_notifyUntilDealloc:UIApplicationDidBecomeActiveNotification] subscribeNext:^(id x) {
-        if(!self.viewModel.playerPaused){
+        if(!self.viewModel.userPaused){
             [self.player play];
         }
     }];
@@ -259,11 +259,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
     self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
 
     [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
-        self.viewModel.playerPaused = YES;
+        self.viewModel.userPaused = YES;
     }];
 
     [[self.player rac_signalForSelector:@selector(play)] subscribeNext:^(id x) {
-        self.viewModel.playerPaused = NO;
+        self.viewModel.userPaused = NO;
     }];
 
     [self.player play];
