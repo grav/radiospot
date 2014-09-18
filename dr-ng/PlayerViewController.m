@@ -212,6 +212,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     playerView.addToSpotBtn.rac_command = [[RACCommand alloc] initWithEnabled:buttonEnabled
                                                                   signalBlock:^RACSignal *(id input) {
+                                                                      self.viewModel.didDismissMessage = YES;
                                                                       [self addTrack:self.playlist.currentTrack];
                                                                       return [RACSignal empty];
                                                                   }];
@@ -230,14 +231,23 @@ static NSString *const kPlaylistName = @"RadioSpot";
         make.right.equalTo(messageView.superview).offset(-10);
     }];
 
-    RAC(messageView,alpha) = [RACSignal combineLatest:@[hasTrack, RACObserve(self,player)]
-                                               reduce:^id(NSNumber *hasTrackN, id player) {
-                                                   return (hasTrackN.boolValue && player) ? @1 : @0;
-                                               }];
+    RAC(messageView,alpha) = [[RACSignal combineLatest:@[hasTrack, RACObserve(self, player), RACObserve(self.viewModel, didDismissMessage)]
+                                                reduce:^id(NSNumber *hasTrackN, id player, NSNumber *didDismiss) {
+                                                    return (hasTrackN.boolValue && player && !didDismiss.boolValue) ? @1 : @0;
+                                                }] flattenMap:^RACStream *(NSNumber *alpha) {
+        return alpha.boolValue ? [[RACSignal return:alpha] delay:1] : [RACSignal return:alpha];
+    }];
 
     RAC(playerView.activityIndicatorView,hidden) = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking, NSNumber *track){
         return @(!track.boolValue || !talking.boolValue);
     }];
+
+    [[messageView rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
+        messageView.alpha = 0;
+        self.viewModel.didDismissMessage = YES;
+    }];
+
+
 
     [RACObserve(self, player) subscribeNext:^(id player) {
         CGRect frame = playerView.frame;

@@ -37,12 +37,6 @@ static UIImage *Image;
         make.centerY.equalTo(label.superview).offset(-5);
     }];
 
-    @weakify(self)
-    [[self rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
-        @strongify(self)
-        self.alpha = 0;
-    }];
-
     return self;
 }
 

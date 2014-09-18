@@ -16,4 +16,5 @@ static NSString *const kUrl = @"url";
 @property (nonatomic) BOOL talkingToSpotify;
 @property(nonatomic) BOOL userPaused;
 @property (nonatomic, strong) NSDictionary *currentChannel;
+@property(nonatomic) BOOL didDismissMessage;
 @end
