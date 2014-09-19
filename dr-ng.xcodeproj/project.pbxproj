@@ -39,6 +39,7 @@
 		308A6FD09DA9372750BD5ADA /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A609C449067EFE73A3F1F /* OverlayView.m */; };
 		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
 		AE15714B19CC67E800F122B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE15714D19CC67E800F122B0 /* Localizable.strings */; };
+		AE9C86B919CC9466004EBFFA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9C86B819CC9466004EBFFA /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		AE15714A19CC671500F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AE15714C19CC67E800F122B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE15714E19CC67FD00F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE9C86B819CC9466004EBFFA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 				308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */,
 				308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */,
 				454B70DA4756466CB2791EAA /* libPods.a in Frameworks */,
+				AE9C86B919CC9466004EBFFA /* Crashlytics.framework in Frameworks */,
 				308A6BE6237CF1DF6A648312 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +178,7 @@
 		308A6C63C23D8DB483E10326 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE9C86B819CC9466004EBFFA /* Crashlytics.framework */,
 				308A6F6288EDBC80429C93B7 /* Foundation.framework */,
 				308A67C052B3C8C906BA873F /* CoreGraphics.framework */,
 				308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */,
@@ -251,6 +255,7 @@
 				308A6D71563530EB6F59D0CC /* Frameworks */,
 				308A6920792AB62623AC805E /* Resources */,
 				71A8BF0C46CC49D58883450F /* Copy Pods Resources */,
+				AE9C86B719CC9423004EBFFA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -371,6 +376,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		AE9C86B719CC9423004EBFFA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 351225013aa8e3584e05a390c49ca599863eea8c 30e1356d9a047da182b58b87523b229bd39baba3a4f6915550feada50b453dae";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -540,6 +558,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
 				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
@@ -556,6 +578,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
 				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";

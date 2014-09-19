@@ -10,6 +10,7 @@
 #import "DNGAppDelegate.h"
 #import "CocoaLibSpotify.h"
 #import "PlayerViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation DNGAppDelegate
 
@@ -26,6 +27,7 @@
     playerViewController.view.frame = [[UIScreen mainScreen] applicationFrame];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:playerViewController];
 
+    [Crashlytics startWithAPIKey:@"351225013aa8e3584e05a390c49ca599863eea8c"];
     return YES;
 }
 
