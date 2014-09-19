@@ -12,6 +12,7 @@ static NSString *const kFallbackTracklistId = @"fallbackId";
 @class AVPlayer;
 @class BTFSpotify;
 @class PlayerView;
+@class MessageView;
 
 
 @interface PlayerViewController : UIViewController

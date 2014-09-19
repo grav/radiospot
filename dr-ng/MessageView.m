@@ -28,7 +28,6 @@ static UIImage *Image;
     }];
 
     UILabel *label = [UILabel new];
-    label.text = @"Add to Spotify";
     label.font = [UIFont messageFont];
     [self addSubview:label];
 
@@ -37,13 +36,33 @@ static UIImage *Image;
         make.centerY.equalTo(label.superview).offset(-5);
     }];
 
+    RAC(label,text) = RACObserve(self,text);
+
     return self;
 }
 
-- (void)setAlpha:(CGFloat)alpha {
+- (void)show
+{
     [UIView animateWithDuration:0.4 animations:^{
-        [super setAlpha:alpha];
+        self.alpha = 1;
     }];
+
+}
+
+- (void)hide
+{
+    [UIView animateWithDuration:0.4 animations:^{
+        self.alpha = 0;
+    }];
+}
+
+- (void)showTextBriefly:(NSString*)text
+{
+    self.text = text;
+    [self show];
+    [self performSelector:@selector(hide)
+               withObject:nil
+               afterDelay:2];
 }
 
 

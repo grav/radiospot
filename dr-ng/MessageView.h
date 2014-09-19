@@ -7,4 +7,11 @@
 
 
 @interface MessageView : UIControl
+@property (nonatomic, copy) NSString *text;
+
+- (void)show;
+
+- (void)hide;
+
+- (void)showTextBriefly:(NSString *)text;
 @end

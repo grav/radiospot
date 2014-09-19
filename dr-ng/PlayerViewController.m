@@ -15,6 +15,7 @@
 #include "appkey.c"
 #import "PlayerView.h"
 #import "PlayerViewModel.h"
+#import "MessageView.h"
 #import "NSObject+Notifications.h"
 #import "RACStream+BTFAdditions.h"
 #import "MessageView.h"
@@ -39,6 +40,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @property(nonatomic, strong) AVAudioPlayer *bgKeepAlivePlayer;
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) PlayerView *playerView;
+@property(nonatomic, strong) MessageView *messageView;
 @end
 
 @implementation PlayerViewController {
@@ -240,29 +242,32 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
 
+    self.messageView = [MessageView new];
 
-    MessageView *messageView = [MessageView new];
-    messageView.hidden = YES;
-
-    RAC(messageView, hidden) = [[[RACObserve(self, player) skip:1] take:1] mapReplace:@NO];
-
-    [self.view addSubview:messageView];
-    [messageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(messageView.superview).offset(-playerView.frame.size.height+12);
-        make.right.equalTo(messageView.superview).offset(-10);
+    [self.view addSubview:self.messageView];
+    [self.messageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.messageView.superview).offset(-playerView.frame.size.height + 12);
+        make.right.equalTo(self.messageView.superview).offset(-10);
     }];
 
-    RAC(messageView,alpha) = [[RACSignal combineLatest:@[hasTrack, RACObserve(self, player), RACObserve(self.viewModel, didDismissMessage)]
-                                                 reduce:^id(NSNumber *hasTrackN, id player, NSNumber *didDismiss) {
-                                                     return @(hasTrackN.boolValue && player && !didDismiss.boolValue);
-                                                 }] throttle:0.1];
+    [[[RACSignal combineLatest:@[hasTrack, RACObserve(self, player), RACObserve(self.viewModel, didDismissMessage)]
+                        reduce:^id(NSNumber *hasTrackN, id player, NSNumber *didDismiss) {
+                            return @(hasTrackN.boolValue && player && !didDismiss.boolValue);
+                        }] throttle:0.1] subscribeNext:^(NSNumber *show) {
+        self.messageView.text = @"Add to Spotify";
+        if(show.boolValue) {
+            [self.messageView show];
+        } else {
+            [self.messageView hide];
+        }
+    }];
 
     RAC(playerView.activityIndicatorView,hidden) = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking, NSNumber *track){
         return @(!track.boolValue || !talking.boolValue);
     }];
 
-    [[messageView rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
-        messageView.alpha = 0;
+    [[self.messageView rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
+        [self.messageView hide];
         self.viewModel.didDismissMessage = YES;
     }];
 
