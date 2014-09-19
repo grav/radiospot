@@ -189,14 +189,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     self.view.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
 
-//    SpotifyButton *button = [SpotifyButton new];
-//    button.enabled = YES;
-//
-//    [self.view addSubview:button];
-//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.equalTo(make.superview);
-//    }];
-
     RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
 
     self.tableView = [UITableView new];
