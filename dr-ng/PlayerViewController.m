@@ -20,6 +20,7 @@
 #import "MessageView.h"
 #import "OverlayView.h"
 #import "MASConstraintMaker+Self.h"
+#import "SpotifyButton.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -72,7 +73,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)updateOnClassInjection
 {
-    [self showOverlay];
+    [self loadView];
+    [self viewDidLoad];
+//    [self showOverlay];
 }
 
 - (void)setupNotifications {
@@ -182,6 +185,16 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [super viewDidLoad];
 
     self.view.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
+
+    SpotifyButton *button = [SpotifyButton new];
+    button.enabled = YES;
+
+    [self.view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(make.superview);
+    }];
+
+    return;
 
     RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
 

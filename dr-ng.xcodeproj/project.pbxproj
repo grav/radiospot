@@ -27,10 +27,12 @@
 		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
 		308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */; };
 		308A6BE6237CF1DF6A648312 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */; };
+		308A6BEE2B83424DEE9AC141 /* SpotifyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6EF8743751530EE36267 /* SpotifyButton.m */; };
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6CF8EED0B39236F1CEB9 /* UIFont+DNGFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A67923E16D43B1D51385E /* UIFont+DNGFonts.m */; };
+		308A6D3F4102C1B7B87E5045 /* UIActivityIndicatorView+BTFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */; };
 		308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A64FAAA0F025D5C718C74 /* nobeep.wav */; };
 		308A6E076E35D086B7BA8031 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6B5027B9D90718BD6620 /* PlayerView.m */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
@@ -56,12 +58,14 @@
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		308A61B5812D288FA29D19E0 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		308A631B3478E580146AE562 /* NSObject+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notifications.m"; sourceTree = "<group>"; };
+		308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+BTFAdditions.m"; sourceTree = "<group>"; };
 		308A636F0D48991D8D12D0FA /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		308A63E5AE7287C510B2A334 /* MASConstraintMaker+Self.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraintMaker+Self.h"; sourceTree = "<group>"; };
 		308A63F772362AD7F7517DA4 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		308A644339A3C1AC90315B75 /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
 		308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		308A64848B7D6473184EBBB2 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
+		308A648E1B7D45CEEB2D6C98 /* UIActivityIndicatorView+BTFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+BTFAdditions.h"; sourceTree = "<group>"; };
 		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
 		308A64FA81BC6E367FDE1514 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
 		308A64FAAA0F025D5C718C74 /* nobeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nobeep.wav; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DNGFonts.h"; sourceTree = "<group>"; };
 		308A69DEAA74A6F4711CFC24 /* PlayerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewModel.h; sourceTree = "<group>"; };
+		308A69F317660DCB25DB3BC0 /* SpotifyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyButton.h; sourceTree = "<group>"; };
 		308A6AAF8D5C665089F4C989 /* RadioSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6B5027B9D90718BD6620 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
@@ -88,6 +93,7 @@
 		308A6DC64464B0C04A913B25 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notifications.h"; sourceTree = "<group>"; };
 		308A6EC24FCF0CE931D4D95D /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		308A6EF8743751530EE36267 /* SpotifyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyButton.m; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
 		308A6F4D2DA04317096591DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A6F6288EDBC80429C93B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -205,6 +211,10 @@
 				308A64FA81BC6E367FDE1514 /* OverlayView.h */,
 				308A60A5DAAC9B2CEE89A582 /* MASConstraintMaker+Self.m */,
 				308A63E5AE7287C510B2A334 /* MASConstraintMaker+Self.h */,
+				308A6EF8743751530EE36267 /* SpotifyButton.m */,
+				308A69F317660DCB25DB3BC0 /* SpotifyButton.h */,
+				308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */,
+				308A648E1B7D45CEEB2D6C98 /* UIActivityIndicatorView+BTFAdditions.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -374,6 +384,8 @@
 				308A6641DC9253AC23254CF6 /* MessageView.m in Sources */,
 				308A6FD09DA9372750BD5ADA /* OverlayView.m in Sources */,
 				308A6AAC17D97E90F9330B8A /* MASConstraintMaker+Self.m in Sources */,
+				308A6BEE2B83424DEE9AC141 /* SpotifyButton.m in Sources */,
+				308A6D3F4102C1B7B87E5045 /* UIActivityIndicatorView+BTFAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,7 +498,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mikkel Gravgaard (A6AAKKNUW9)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -497,6 +509,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "77a8de6b-f361-4c67-9a2e-39d2c4fe4033";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
