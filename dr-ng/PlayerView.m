@@ -8,10 +8,12 @@
 #import "Playlist.h"
 #import "MessageView.h"
 #import "RACStream+BTFAdditions.h"
+#import "SpotifyButton.h"
+#import "SpotifyButton.h"
 
 
 @interface PlayerView ()
-@property (nonatomic, strong) UIButton *addToSpotBtn;
+@property (nonatomic, strong) SpotifyButton *addToSpotBtn;
 @property(nonatomic, strong) UIButton *stopBtn;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @end
@@ -73,15 +75,13 @@ static UIImage *BgImage;
     UIEdgeInsets imageInsets = UIEdgeInsetsMake(-10, -10, -10, -10);
     self.stopBtn.imageEdgeInsets = imageInsets;
 
-
-    self.addToSpotBtn = [UIButton new];
-    [self.addToSpotBtn setImage:[UIImage imageNamed:@"Images/spot_btn"] forState:UIControlStateNormal];
+    self.addToSpotBtn = [SpotifyButton new];
     [self addSubview:self.addToSpotBtn];
     [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.addToSpotBtn.superview);
         make.right.equalTo(self.stopBtn.mas_left).offset(-20);
     }];
-    self.addToSpotBtn.imageEdgeInsets = imageInsets;
+//    self.addToSpotBtn.imageEdgeInsets = imageInsets;
 
     self.activityIndicatorView = [UIActivityIndicatorView new];
     [self addSubview:self.activityIndicatorView];

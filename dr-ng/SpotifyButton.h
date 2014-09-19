@@ -11,6 +11,8 @@ typedef NS_ENUM(NSInteger,SpotifyState){
 };
 
 @interface SpotifyButton : UIControl
+@property (nonatomic) BOOL working;
+
 - (void)work;
 - (void)fail;
 

@@ -8,7 +8,8 @@
 #import "UIActivityIndicatorView+BTFAdditions.h"
 @interface SpotifyButton ()
 @property (nonatomic, strong) UIActivityIndicatorView* activityIndicatorView;
-@property(nonatomic, strong) UIImageView *imageView;
+@property(nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIImageView *actionImageView;
 @end
 
 static CGFloat kDim = 30.0f;
@@ -19,10 +20,19 @@ static CGFloat kDim = 30.0f;
 
 - (instancetype)init {
     if (!(self = [super init])) return nil;
-    self.imageView = [UIImageView new];
-    [self addSubview:self.imageView];
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(make.superview);
+
+
+    self.backgroundImageView = [UIImageView new];
+    [self addSubview:self.backgroundImageView];
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(make.superview);
+    }];
+
+    RAC(self.backgroundImageView, alpha) = [RACSignal combineLatest:@[
+        RACObserve(self, highlighted),
+        RACObserve(self, enabled)
+    ] reduce:^id(NSNumber *highlighted,NSNumber *enabled) {
+        return @(enabled.boolValue && !highlighted.boolValue ? 1.0 : 0.4);
     }];
 
     self.activityIndicatorView = [UIActivityIndicatorView new];
@@ -35,40 +45,61 @@ static CGFloat kDim = 30.0f;
     }];
     [self.activityIndicatorView startAnimating];
 
-    RAC(self.activityIndicatorView,animate) = [RACObserve(self, enabled) not];
+    RAC(self.activityIndicatorView,animate) = RACObserve(self, working);
 
-    RAC(self.imageView,image) = [RACObserve(self, enabled) map:^id(NSNumber *number) {
-        return number.boolValue ? [UIImage imageNamed:@"Images/spot_btn"] : [UIImage imageNamed:@"Images/empty_btn"];
+    RAC(self.backgroundImageView,image) = [RACObserve(self, working) map:^id(NSNumber *number) {
+        return number.boolValue ? [UIImage imageNamed:@"Images/empty_btn"] : [UIImage imageNamed:@"Images/spot_btn"];
+    }];
+
+    self.actionImageView = [UIImageView new];
+    [self addSubview:self.actionImageView];
+    [self.actionImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(make.superview);
     }];
 
     return self;
 }
-
-- (void)regular{
-
-//    self.imageView.image = ;
-}
-
 
 - (void)work {
 //    self.imageView.image = ;
 }
 
 - (void)fail {
-    [self regular];
+    UIImage *image = [UIImage imageNamed:@"Images/success_btn"];
+    self.actionImageView.image = image;
+    [self brieflyShowStatus];
+
 }
 
 - (void)notFound
 {
-    [self regular];
+//    [self regular];
 }
 
 - (void)success{
-    [self regular];
+    UIImage *image = [UIImage imageNamed:@"Images/success_btn"];
+    self.actionImageView.image = image;
+    [self brieflyShowStatus];
+
+}
+
+- (void)brieflyShowStatus {
+    self.actionImageView.alpha = 0;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.actionImageView.alpha = 1;
+        self.backgroundImageView.alpha = 0;
+    }                completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 delay:1
+                            options:0 animations:^{
+                    self.backgroundImageView.alpha = 1;
+                    self.actionImageView.alpha = 0;
+                }
+                         completion:nil];
+    }];
 }
 
 - (CGSize)intrinsicContentSize {
-    return CGSizeMake(kDim, kDim);
+    return CGSizeMake(kDim*2, kDim*2);
 }
 
 
