@@ -4,7 +4,7 @@
 
 "SongTitleUnknown" = "(Unknown)";
 "ArtistUnknown" = "(Unknown)";
-"AddedTrackTitle" = "Added track to playlist '%@'";
+"AddedTrackTitle" = "Added to '%@'";
 "NoResultsMessage" = "No results";
 "MessageAddToSpotify" = "Add to Spotify";
 "TripleClickMessage" = "Triple-click your remote\nto add song to Spotify";
