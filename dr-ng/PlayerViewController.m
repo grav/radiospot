@@ -256,16 +256,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }
     }];
 
-    RAC(playerView.activityIndicatorView,hidden) = [RACSignal combineLatest:@[talkingToSpotify,hasTrack] reduce:^id(NSNumber *talking, NSNumber *track){
-        return @(!track.boolValue || !talking.boolValue);
-    }];
-
     [[self.messageView rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
         [self.messageView hide];
         self.viewModel.didDismissMessage = YES;
     }];
-
-
 
     [RACObserve(self, player) subscribeNext:^(id player) {
         CGRect frame = playerView.frame;

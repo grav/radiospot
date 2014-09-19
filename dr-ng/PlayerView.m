@@ -15,7 +15,6 @@
 @interface PlayerView ()
 @property (nonatomic, strong) SpotifyButton *addToSpotBtn;
 @property(nonatomic, strong) UIButton *stopBtn;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation PlayerView {
@@ -81,14 +80,6 @@ static UIImage *BgImage;
         make.centerY.equalTo(self.addToSpotBtn.superview);
         make.right.equalTo(self.stopBtn.mas_left).offset(-5);
     }];
-//    self.addToSpotBtn.imageEdgeInsets = imageInsets;
-
-    self.activityIndicatorView = [UIActivityIndicatorView new];
-    [self addSubview:self.activityIndicatorView];
-    [self.activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.addToSpotBtn);
-    }];
-    [self.activityIndicatorView startAnimating];
 
     return self;
 }
