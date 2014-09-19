@@ -180,6 +180,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     // We need to kill the bg player, else
     // the play/pause status on the lock screen won't work.
 //    self.bgKeepAlivePlayer = nil;
+    // Hmm, doesn't seem so ...
 
 }
 
