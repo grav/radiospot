@@ -62,7 +62,7 @@ static UIImage *Image;
     [self show];
     [self performSelector:@selector(hide)
                withObject:nil
-               afterDelay:2];
+               afterDelay:3];
 }
 
 
