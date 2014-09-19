@@ -22,7 +22,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     UIViewController *playerViewController = [[PlayerViewController alloc] init];
-    playerViewController.title = @"Stations";
+    playerViewController.title = NSLocalizedString(@"AppWindowTitle", @"Stations");
     playerViewController.view.frame = [[UIScreen mainScreen] applicationFrame];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:playerViewController];
 

@@ -38,6 +38,7 @@
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
 		308A6FD09DA9372750BD5ADA /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A609C449067EFE73A3F1F /* OverlayView.m */; };
 		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
+		AE15714B19CC67E800F122B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE15714D19CC67E800F122B0 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,10 @@
 		308A6F9312E5891AE2CA464C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewModel.m; sourceTree = "<group>"; };
 		964942FB652848D1B87A5BFB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE15714919CC671500F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AE15714A19CC671500F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AE15714C19CC67E800F122B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE15714E19CC67FD00F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD4073667C2D44BEA4379CD0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +220,7 @@
 				308A69F317660DCB25DB3BC0 /* SpotifyButton.h */,
 				308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */,
 				308A648E1B7D45CEEB2D6C98 /* UIActivityIndicatorView+BTFAdditions.h */,
+				AE15714D19CC67E800F122B0 /* Localizable.strings */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				da,
 			);
 			mainGroup = 308A610F6C1B7753F8440C45;
 			productRefGroup = 308A6A4CCFFA494FA1D85DEB /* Products */;
@@ -328,6 +335,7 @@
 				308A65585D601D209E3BDB0D /* fail.wav in Resources */,
 				308A67C87C774233CEECD377 /* success.wav in Resources */,
 				308A6AA84FAB2E060A216E43 /* Images in Resources */,
+				AE15714B19CC67E800F122B0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +420,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				308A6F4D2DA04317096591DB /* en */,
+				AE15714919CC671500F122B0 /* da */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -420,8 +429,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				308A67DB7E3D17BD7EBD6426 /* en */,
+				AE15714A19CC671500F122B0 /* da */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AE15714D19CC67E800F122B0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE15714C19CC67E800F122B0 /* en */,
+				AE15714E19CC67FD00F122B0 /* da */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -56,11 +56,11 @@ static UIImage *BgImage;
 
     RACSignal *trackSignal = RACObserve(self, track);
     RAC(songTitleLabel,text) = [trackSignal map:^id(NSDictionary *track) {
-        return track ? track[kTitle] : @"(Unknown)";
+        return track ? track[kTitle] : NSLocalizedString(@"SongTitleUnknown", @"(Unknown)");
     }];
 
     RAC(artistLabel,text) = [trackSignal map:^id(NSDictionary *track) {
-        return track ? track[kArtist] : @"(Unknown)";
+        return track ? track[kArtist] : NSLocalizedString(@"ArtistUnknown", @"(Unknown)");
     }];
 
 

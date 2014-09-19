@@ -53,7 +53,7 @@
     UILabel *label = [UILabel new];
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"Triple-click your remote\nto add song to Spotify";
+    label.text = NSLocalizedString(@"TripleClickMessage", @"Triple-click your remote\nto add song to Spotify");
     label.font = [UIFont systemFontOfSize:12];
     [white addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -1,0 +1,12 @@
+/****************************************************************************/
+/* Localization file */
+
+
+"SongTitleUnknown" = "(Unknown)";
+"ArtistUnknown" = "(Unknown)";
+"ProblemAddingTitle" = "Problem adding track";
+"AddedTrackTitle" = "Added track to playlist '%@'";
+"NoResultsMessage" = "No results for '%@'";
+"MessageAddToSpotify" = "Add to Spotify";
+"TripleClickMessage" = "Triple-click your remote\nto add song to Spotify";
+"AppWindowTitle" = "Stations";

@@ -28,7 +28,7 @@ static UIImage *Image;
     }];
 
     UILabel *label = [UILabel new];
-    label.text = @"Add to Spotify";
+    label.text = NSLocalizedString(@"MessageAddToSpotify", @"Add to Spotify");
     label.font = [UIFont messageFont];
     [self addSubview:label];
 

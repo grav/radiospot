@@ -447,7 +447,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
                                      toPlaylist:playlist1
                                         atIndex:0];
             } else {
-                NSString *string = [NSString stringWithFormat:@"No results for '%@'",searchQuery];
+                NSString *string = [NSString stringWithFormat:NSLocalizedString(@"NoResultsMessage", @"No results for '%@'"),
+                                                              searchQuery];
                 NSError *error = [NSError errorWithDomain:@"btf.dr-ng" code:-100
                                                  userInfo:@{
                                                          NSLocalizedDescriptionKey: string}];
@@ -457,7 +458,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
     [trackAdded subscribeNext:^(id x) {
-        NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'", playlistName];
+        NSString *info = [NSString stringWithFormat:NSLocalizedString(@"AddedTrackTitle", @"Added track to playlist '%@'"),
+                                                    playlistName];
         [[WBSuccessNoticeView successNoticeInView:self.navigationController.view title:info] show];
         [self.playerView.addToSpotBtn success];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
@@ -472,7 +474,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }
 
     } error:^(NSError *error) {
-        [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Problem adding track"
+        [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:NSLocalizedString(@"ProblemAddingTitle", @"Problem adding track")
                                       message:[error localizedDescription]] show];
         [self.playerView.addToSpotBtn fail];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
