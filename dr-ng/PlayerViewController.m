@@ -38,6 +38,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @property (nonatomic, strong) PlayerViewModel *viewModel;
 @property(nonatomic, strong) AVAudioPlayer *bgKeepAlivePlayer;
 @property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) PlayerView *playerView;
 @end
 
 @implementation PlayerViewController {
@@ -281,7 +282,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }];
     }];
 
-
+    self.playerView = playerView;
 }
 
 - (void)showOverlay {
@@ -458,6 +459,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [trackAdded subscribeNext:^(id x) {
         NSString *info = [NSString stringWithFormat:@"Added track to playlist '%@'", playlistName];
         [[WBSuccessNoticeView successNoticeInView:self.navigationController.view title:info] show];
+        [self.playerView.addToSpotBtn success];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
             [self playSound:url];
@@ -472,6 +474,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     } error:^(NSError *error) {
         [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Problem adding track"
                                       message:[error localizedDescription]] show];
+        [self.playerView.addToSpotBtn fail];
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
             [self playSound:url];

@@ -79,7 +79,7 @@ static UIImage *BgImage;
     [self addSubview:self.addToSpotBtn];
     [self.addToSpotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.addToSpotBtn.superview);
-        make.right.equalTo(self.stopBtn.mas_left).offset(-20);
+        make.right.equalTo(self.stopBtn.mas_left).offset(-5);
     }];
 //    self.addToSpotBtn.imageEdgeInsets = imageInsets;
 

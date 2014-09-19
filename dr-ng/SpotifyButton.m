@@ -9,6 +9,7 @@
 @interface SpotifyButton ()
 @property (nonatomic, strong) UIActivityIndicatorView* activityIndicatorView;
 @property(nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIImageView *notesImageView;
 @property (nonatomic, strong) UIImageView *actionImageView;
 @end
 
@@ -22,13 +23,19 @@ static CGFloat kDim = 30.0f;
     if (!(self = [super init])) return nil;
 
 
-    self.backgroundImageView = [UIImageView new];
+    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/empty_btn"]];
     [self addSubview:self.backgroundImageView];
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(make.superview);
     }];
 
-    RAC(self.backgroundImageView, alpha) = [RACSignal combineLatest:@[
+    self.notesImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/notes"]];
+    [self addSubview:self.notesImageView];
+    [self.notesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(make.superview).offset(-1);
+    }];
+
+    RAC(self, alpha) = [RACSignal combineLatest:@[
         RACObserve(self, highlighted),
         RACObserve(self, enabled)
     ] reduce:^id(NSNumber *highlighted,NSNumber *enabled) {
@@ -47,9 +54,7 @@ static CGFloat kDim = 30.0f;
 
     RAC(self.activityIndicatorView,animate) = RACObserve(self, working);
 
-    RAC(self.backgroundImageView,image) = [RACObserve(self, working) map:^id(NSNumber *number) {
-        return number.boolValue ? [UIImage imageNamed:@"Images/empty_btn"] : [UIImage imageNamed:@"Images/spot_btn"];
-    }];
+    RAC(self.notesImageView,hidden) = RACObserve(self,working);
 
     self.actionImageView = [UIImageView new];
     [self addSubview:self.actionImageView];
@@ -65,7 +70,7 @@ static CGFloat kDim = 30.0f;
 }
 
 - (void)fail {
-    UIImage *image = [UIImage imageNamed:@"Images/success_btn"];
+    UIImage *image = [UIImage imageNamed:@"Images/fail"];
     self.actionImageView.image = image;
     [self brieflyShowStatus];
 
@@ -77,7 +82,7 @@ static CGFloat kDim = 30.0f;
 }
 
 - (void)success{
-    UIImage *image = [UIImage imageNamed:@"Images/success_btn"];
+    UIImage *image = [UIImage imageNamed:@"Images/success"];
     self.actionImageView.image = image;
     [self brieflyShowStatus];
 
@@ -85,13 +90,13 @@ static CGFloat kDim = 30.0f;
 
 - (void)brieflyShowStatus {
     self.actionImageView.alpha = 0;
+    self.notesImageView.alpha = 0;
     [UIView animateWithDuration:0.2 animations:^{
         self.actionImageView.alpha = 1;
-        self.backgroundImageView.alpha = 0;
     }                completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 delay:1
                             options:0 animations:^{
-                    self.backgroundImageView.alpha = 1;
+                    self.notesImageView.alpha = 1;
                     self.actionImageView.alpha = 0;
                 }
                          completion:nil];
