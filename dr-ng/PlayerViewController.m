@@ -242,6 +242,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 
     MessageView *messageView = [MessageView new];
+    messageView.hidden = YES;
+
+    RAC(messageView, hidden) = [[[RACObserve(self, player) skip:1] take:1] mapReplace:@NO];
+
     [self.view addSubview:messageView];
     [messageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(messageView.superview).offset(-playerView.frame.size.height+12);
