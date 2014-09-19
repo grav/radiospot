@@ -358,7 +358,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 {
     if(!self.player || ![self.viewModel.currentChannel isEqualToDictionary:channel]) return;
     NSLog(@"===== buffer empty- lets restart =====");
-    [[WBErrorNoticeView errorNoticeInView:self.navigationController.view title:@"Trying to restart" message:nil] show];
+    [[WBErrorNoticeView errorNoticeInView:self.navigationController.view
+                                    title:NSLocalizedString(@"TryRestartTitle", @"Trying to restart") message:nil] show];
     [self playChannel:channel];
 
 }
