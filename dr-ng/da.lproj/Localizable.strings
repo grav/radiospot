@@ -4,11 +4,9 @@
 
 "SongTitleUnknown" = "(Ukendt)";
 "ArtistUnknown" = "(Ukendt)";
-"ProblemAddingTitle" = "Kunne ikke tilføje sang";
-"AddedTrackTitle" = "Sang tilføjet til '%@'";
-"NoResultsMessage" = "Ingen resultater for '%@'";
+"AddedTrackTitle" = "Føjet til '%@'";
+"NoResultsMessage" = "Ingen resultater";
 "MessageAddToSpotify" = "Tilføj til Spotify";
 "TripleClickMessage" = "Triple-klik dit headsat for at\ntilføje en sang til Spotify";
 "AppWindowTitle" = "Kanaler";
 "TryRestartTitle" = "Prøver at forbinde igen";
-"MessageAddToSpotify" = "Add to Spotify";

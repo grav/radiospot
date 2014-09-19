@@ -4,9 +4,8 @@
 
 "SongTitleUnknown" = "(Unknown)";
 "ArtistUnknown" = "(Unknown)";
-"ProblemAddingTitle" = "Problem adding track";
 "AddedTrackTitle" = "Added track to playlist '%@'";
-"NoResultsMessage" = "No results for '%@'";
+"NoResultsMessage" = "No results";
 "MessageAddToSpotify" = "Add to Spotify";
 "TripleClickMessage" = "Triple-click your remote\nto add song to Spotify";
 "AppWindowTitle" = "Stations";
