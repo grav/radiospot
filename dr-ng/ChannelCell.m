@@ -40,7 +40,7 @@
         }];
 
         RAC(self.detailTextLabel,text) = [isPlaying map:^id(NSNumber *number) {
-            return number.boolValue ? @"Now playing ..." : @" ";
+            return number.boolValue ? NSLocalizedString(@"NowPlayingSubtitle", @"Now playing ...") : @" ";
         }];
 
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
