@@ -58,6 +58,7 @@ static UIImage *Image;
 
 - (void)showTextBriefly:(NSString*)text
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     self.text = text;
     [self show];
     [self performSelector:@selector(hide)
