@@ -9,4 +9,6 @@ pod "MTDates"
 pod "NSString-UrlEncode"
 pod "NoticeView"
 pod "BTFSpotify"
-
+pod 'NSArray+Functional'
+pod 'dyci'
+pod 'pop'
