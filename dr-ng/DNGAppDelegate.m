@@ -27,7 +27,7 @@
     playerViewController.view.frame = [[UIScreen mainScreen] applicationFrame];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:playerViewController];
 
-    [Crashlytics startWithAPIKey:@"351225013aa8e3584e05a390c49ca599863eea8c"];
+    [Crashlytics startWithAPIKey:@"37ecf2e16614ae477adcbd790499b5a4b406f88c"];
     return YES;
 }
 
