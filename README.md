@@ -1,16 +1,24 @@
 RadioSpot
 ==========
 
-Radio app with Spotify integration. Soon free on AppStore! :-)
+##### Radio app with Spotify integration. Soon free on AppStore! :-)
 
-<a href="http://i.imgur.com/3AVSZaj.png"><img src="http://i.imgur.com/3AVSZaj.png" title="Hosted by imgur.com" /></a>
+This iOS app allows you to add the current track of a radio channel (currently only channels from the Danish Broadcasting Company) to Spotify.
 
-This app allows you to add the current track of a radio channel (currently only channels from the Danish Broadcasting Company) to Spotify.
-
+##### Build instructions
 
 To build, you need to get a spotify API key from http://developer.spotify.com and place the appkey.c file in dr-ng/
 
-You also need to get the BTFSpotify wrapper from http://github.com/grav/btfspotify (will be on CocoaPods soon).
+All dependencies are installed via <a href='http://cocoapods.org'>CocoaPods</a>.
 
 Any track that you add to Spotify from the app will show up in a playlist 'RadioSpot' in your Spotify library.
+
+##### Screenshots
+
+<a href="http://i.imgur.com/nRexA9X.png"><img src="http://i.imgur.com/nRexA9X.png" title="Playing a channel"  width='50%'/></a>
+
+<a href="http://i.imgur.com/boOD750.png"><img src="http://i.imgur.com/boOD750.png" title="Adding a track to Spotify"  width='50%'/></a>
+
+<a href="http://i.imgur.com/FpjRPpd.png"><img src="http://i.imgur.com/FpjRPpd.png" title="Using the remote to add a track"  width='50%'/></a>
+
 
