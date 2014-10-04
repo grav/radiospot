@@ -1,7 +1,7 @@
 RadioSpot
 ==========
 
-##### Radio app with Spotify integration. Soon free on AppStore! :-)
+##### Radio app with Spotify integration. Available for free on AppStore - https://appsto.re/dk/S7W42.i
 
 This iOS app allows you to add the current track of a radio channel (currently only channels from the Danish Broadcasting Company) to Spotify.
 
@@ -20,5 +20,4 @@ Any track that you add to Spotify from the app will show up in a playlist 'Radio
 <a href="http://i.imgur.com/boOD750.png"><img src="http://i.imgur.com/boOD750.png" title="Adding a track to Spotify"  width='50%'/></a>
 
 <a href="http://i.imgur.com/FpjRPpd.png"><img src="http://i.imgur.com/FpjRPpd.png" title="Using the remote to add a track"  width='50%'/></a>
-
 
