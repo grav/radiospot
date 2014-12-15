@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.4.1)
+    - AFNetworking/NSURLSession (= 2.4.1)
+    - AFNetworking/Reachability (= 2.4.1)
+    - AFNetworking/Security (= 2.4.1)
+    - AFNetworking/Serialization (= 2.4.1)
+    - AFNetworking/UIKit (= 2.4.1)
   - AFNetworking-RACExtensions (0.1.3):
     - AFNetworking (~> 2.0)
     - ReactiveCocoa (~> 2.0)
@@ -29,9 +29,8 @@ PODS:
   - CocoaLibSpotify (2.4.5):
     - libspotify (= 12.1.64)
   - dyci (0.1.5.6):
-    - dyci/Injections
+    - dyci/Injections (= 0.1.5.6)
   - dyci/Injections (0.1.5.6)
-  - HTMLReader (0.5.5)
   - libspotify (12.1.64)
   - Masonry (0.5.3)
   - MTDates (0.13.0)
@@ -40,7 +39,7 @@ PODS:
   - NSString-UrlEncode (1.1.0)
   - pop (1.0.6)
   - ReactiveCocoa (2.3.1):
-    - ReactiveCocoa/UI
+    - ReactiveCocoa/UI (= 2.3.1)
   - ReactiveCocoa/Core (2.3.1):
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.3.1)
@@ -52,7 +51,6 @@ DEPENDENCIES:
   - BTFSpotify
   - CocoaLibSpotify (= 2.4.5)
   - dyci
-  - HTMLReader (from `https://github.com/nolanw/HTMLReader`)
   - Masonry
   - MTDates
   - NoticeView
@@ -64,8 +62,11 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   AFNetworking-RACExtensions:
     :git: https://github.com/knshiro/AFNetworking-RACExtensions.git
-  HTMLReader:
-    :git: https://github.com/nolanw/HTMLReader
+
+CHECKOUT OPTIONS:
+  AFNetworking-RACExtensions:
+    :commit: d4c6097d3f22be212c66339f850b1be180162747
+    :git: https://github.com/knshiro/AFNetworking-RACExtensions.git
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
@@ -73,8 +74,7 @@ SPEC CHECKSUMS:
   BTFSpotify: 47344eba79a249cff32aa0f31c07f46ea00db1e3
   CocoaLibSpotify: d5c2cc8eac1a27618c6f3ff9f656cabb5982f52a
   dyci: 86668b266b8a281cb6db02843150f6a210c34ee9
-  HTMLReader: 16278a4f9ca32ca14a2b46bcc0e10691f9d21370
-  libspotify: 1f095010889816da1f68742bbe6e02fd5d09adb1
+  libspotify: a64e21dc94594d988213fb5795641d0253132d46
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   MTDates: 8eb0bfe67c492ba292d0aa3320ad013004e156cb
   NoticeView: 357545814931eb92428de54449f405f91c84a1b8
@@ -83,4 +83,4 @@ SPEC CHECKSUMS:
   pop: e518794da38942c05255eb64b36d894e70cb4f00
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.35.0
