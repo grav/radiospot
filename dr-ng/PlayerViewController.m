@@ -396,6 +396,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [self becomeFirstResponder];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
