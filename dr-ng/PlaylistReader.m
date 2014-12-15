@@ -77,7 +77,8 @@ static const double kPollInterval = 10.0;
                                                                                error:&error];
                         NSCAssert(!error, @"%@",error);
 
-                        NSDictionary *track = ((NSArray *) json[@"tracks"]).firstObject;
+                        NSArray *tracks = (NSArray *) json[@"tracks"];
+                        NSDictionary *track = [tracks respondsToSelector:@selector(firstObject)] ? tracks.firstObject : nil;
                         // filter out 'meta' artist names
                         __block NSString *artist;
 
