@@ -45,7 +45,9 @@
 
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
         self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/cell_bg_selected"]];
-        self.separatorInset = UIEdgeInsetsZero;
+        if([self respondsToSelector:@selector(setSeparatorInset:)]){
+            self.separatorInset = UIEdgeInsetsZero;
+        }
     }
 
     return self;
