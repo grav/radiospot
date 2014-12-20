@@ -105,7 +105,7 @@ static const double kPollInterval = 10.0;
             @(ChannelP1) : @"P1",
             @(ChannelP2) : @"P2",
             @(ChannelP3) : @"P3",
-            @(ChannelP5) : @"P5",
+            @(ChannelP5) : @"P5D",
             @(ChannelP6Beat) : @"P6B",
             @(ChannelP7Mix) : @"P7M",
             @(ChannelP8Jazz) : @"P8J",
