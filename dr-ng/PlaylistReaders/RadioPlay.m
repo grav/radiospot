@@ -23,35 +23,31 @@ static NSString *RadioPlay_PlaylistURL = @"http://static.radioplay.dk/data/all_d
 
 + (RACSignal *)currentPlaylists
 {
-    NSURL *url = [NSURL URLWithString:RadioPlay_PlaylistURL];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    RACSignal *testdata = [[NSURLConnection rac_sendAsynchronousRequest:request] map:^id(id value) {
-//        return nil;
-//    }];
 
-    RACSignal *testdata = [[[[RACSignal return:nil] deliverOn:[RACScheduler scheduler]] map:^id(id _) {
+    return [[[[[[RACSignal return:nil] deliverOn:[RACScheduler scheduler]] map:^id(id _) {
+        NSURL *url = [NSURL URLWithString:RadioPlay_PlaylistURL];
         NSError *error;
         NSString *s = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
         return s;
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
-
-//    testdata = [RACSignal return:[self testdata]];
-    return [[[testdata map:^id(NSString *s) {
+    }] map:^id(NSString *s) {
         return [[s
                 stringByReplacingOccurrencesOfString:@"onair_callback(" withString:@""]
                 stringByReplacingOccurrencesOfString:@"\n);" withString:@""];
     }] map:^id(NSString *jsonStr) {
         return [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-    }] map:^id(id value) {
+    }] map:^id(NSData *data) {
         NSError *error;
-        id o = [NSJSONSerialization JSONObjectWithData:value options:0 error:&error];
+        id o = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         NSCAssert(!error, @"%@",error);
         return o;
     }];
 }
 
 - (RACSignal *)currentTrackForChannelWithId:(id)channelId {
-    return nil;
+    return [[RadioPlay currentPlaylists] map:^id(NSDictionary *d) {
+        NSDictionary *channel = d[channelId];
+        return [Track trackWithArtist:channel[@"artist"] title:channel[@"title"]];
+    }];
 }
 
 
