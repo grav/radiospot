@@ -23,7 +23,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - BTFSpotify (0.2.0):
+  - BTFSpotify (0.2.1):
     - CocoaLibSpotify (~> 2.4.5)
     - ReactiveCocoa (~> 2.3.0)
   - CocoaLibSpotify (2.4.5):
@@ -71,7 +71,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   AFNetworking-RACExtensions: 4f7633edc5618e771f1c034ec3eb6974fe9eb441
-  BTFSpotify: 47344eba79a249cff32aa0f31c07f46ea00db1e3
+  BTFSpotify: cce23854a475196982d28cdd9f83134a1f332b0d
   CocoaLibSpotify: d5c2cc8eac1a27618c6f3ff9f656cabb5982f52a
   dyci: 86668b266b8a281cb6db02843150f6a210c34ee9
   libspotify: a64e21dc94594d988213fb5795641d0253132d46
