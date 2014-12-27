@@ -7,6 +7,7 @@
 #import "PlayerViewController.h"
 #import "UIFont+DNGFonts.h"
 #import "PlayerViewModel.h"
+#import "Channel.h"
 
 @implementation ChannelCell {
 
@@ -53,8 +54,8 @@
     return self;
 }
 
-- (void)configure:(NSDictionary *)channel {
-    self.textLabel.text = channel[kName];
+- (void)configure:(Channel *)channel {
+    self.textLabel.text = channel.name;
 }
 
 @end

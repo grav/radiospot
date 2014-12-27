@@ -8,7 +8,6 @@
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
 #import "ChannelCell.h"
-#import "PlaylistReader.h"
 #import "WBSuccessNoticeView.h"
 #import "WBErrorNoticeView.h"
 #import "BTFSpotify.h"
@@ -18,10 +17,11 @@
 #import "MessageView.h"
 #import "NSObject+Notifications.h"
 #import "RACStream+BTFAdditions.h"
-#import "MessageView.h"
 #import "OverlayView.h"
 #import "MASConstraintMaker+Self.h"
 #import "SpotifyButton.h"
+#import "Track.h"
+#import "PlaylistHelper.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -33,7 +33,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 @interface PlayerViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) AVPlayer *player;
-@property (nonatomic, strong) id<Playlist> playlist;
 @property (nonatomic, strong) AVAudioPlayer *spotifyAddingSuccessPlayer;
 @property(nonatomic, strong) BTFSpotify *btfSpotify;
 @property (nonatomic, strong) PlayerViewModel *viewModel;
@@ -41,6 +40,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) PlayerView *playerView;
 @property(nonatomic, strong) MessageView *messageView;
+
+
 @end
 
 @implementation PlayerViewController {
@@ -57,14 +58,16 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
         RACSignal *channelSignal = [[self rac_signalForSelector:@selector(playChannel:)] tupleFirst];
 
-        self.playlist = [PlaylistReader new];
-
-        RAC(self.playlist, channel) = [channelSignal map:^id(NSDictionary *channel) {
-            return channel[kChannelId];
-        }];
-
         self.viewModel = [PlayerViewModel new];
         RAC(self.viewModel,currentChannel) = channelSignal;
+
+        RACSignal *repeatingChannelSignal = [channelSignal flattenMap:^RACStream *(id value) {
+             return [[[[RACSignal interval:10 onScheduler:[RACScheduler mainThreadScheduler]] startWith:nil] takeUntil:channelSignal] mapReplace:value];
+        }];
+
+        RAC(self.viewModel, currentTrack) = [repeatingChannelSignal flattenMap:^RACStream *(Channel *c) {
+            return [[PlaylistHelper currentTrackForChannel:c] deliverOn:[RACScheduler mainThreadScheduler]];
+        }];
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
@@ -114,8 +117,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
             return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
         }] subscribeNext:^(id x) {
             self.viewModel.didAddUsingRemove = YES;
-            if(self.playlist.currentTrack){
-                [self addTrack:self.playlist.currentTrack];
+            if(self.viewModel.currentTrack){
+                [self addTrack:self.viewModel.currentTrack];
             }
         }];
 
@@ -154,7 +157,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
             return event.subtype == UIEventSubtypeRemoteControlNextTrack;
         }] subscribeNext:^(id x) {
             NSInteger row = (self.tableView.indexPathForSelectedRow.row + 1) % self.viewModel.channels.count;
-            NSDictionary *channel = self.viewModel.channels[(NSUInteger) row];
+            Channel *channel = self.viewModel.channels[(NSUInteger) row];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row
                                                                     inSection:0]
                     animated:YES
@@ -177,10 +180,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (void)stopKeepAlive
 {
     [self.bgKeepAlivePlayer stop];
-    // We need to kill the bg player, else
-    // the play/pause status on the lock screen won't work.
-//    self.bgKeepAlivePlayer = nil;
-    // Hmm, doesn't seem so ...
 
 }
 
@@ -190,7 +189,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     self.view.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
 
-    RACSignal *currentTrackS = RACObserve(self.playlist, currentTrack);
+    RACSignal *currentTrackS = RACObserve(self.viewModel, currentTrack);
 
     self.tableView = [UITableView new];
     self.tableView.dataSource = self; self.tableView.delegate = self;
@@ -205,11 +204,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     RAC(playerView,track) = currentTrackS;
 
-    [currentTrackS subscribeNext:^(NSDictionary *track) {
+    [currentTrackS subscribeNext:^(Track *track) {
         if(track) {
             [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{
-                    MPMediaItemPropertyTitle : track[kTitle],
-                    MPMediaItemPropertyArtist : track[kArtist],
+                    MPMediaItemPropertyTitle : track.title,
+                    MPMediaItemPropertyArtist : track.artist
             }];
         } else {
             [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:nil];
@@ -226,7 +225,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     [[playerView.addToSpotBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         self.viewModel.didDismissMessage = YES;
-        [self addTrack:self.playlist.currentTrack];
+        [self addTrack:self.viewModel.currentTrack];
     }];
 
     playerView.stopBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -310,10 +309,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
     return cell;
 }
 
-- (void)playChannel:(NSDictionary*)channel
+- (void)playChannel:(Channel*)channel
 {
     if(self.player && self.viewModel.currentChannel==channel) return;
-    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:channel[kUrl]]];
+    self.player = [AVPlayer playerWithURL:channel.playbackURL];
 
     [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
         self.viewModel.userPaused = YES;
@@ -338,8 +337,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
 #if DEBUG
-//    [self.player performSelector:@selector(pause) withObject:nil afterDelay:2];
-//
     [self startLogging];
 #endif
 
@@ -351,9 +348,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 }
 
-- (void)tryRestarting:(NSDictionary*)channel
+- (void)tryRestarting:(Channel*)channel
 {
-    if(!self.player || ![self.viewModel.currentChannel isEqualToDictionary:channel]) return;
+    if(!self.player || ![self.viewModel.currentChannel isEqual:channel]) return;
     NSLog(@"===== buffer empty- lets restart =====");
     [[WBErrorNoticeView errorNoticeInView:self.navigationController.view
                                     title:NSLocalizedString(@"TryRestartTitle", @"Trying to restart") message:nil] show];
@@ -402,7 +399,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
+    Channel *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
     [self playChannel:channel];
 
 }
@@ -423,10 +420,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 #pragma mark spot
 
-- (void)addTrack:(NSDictionary *)track
+- (void)addTrack:(Track *)track
 {
     self.viewModel.talkingToSpotify = YES;
-    NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track[kArtist],track[kTitle]];
+    NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track.artist,track.title];
     NSLog(@"searching spotify for '%@'...",searchQuery);
 
 

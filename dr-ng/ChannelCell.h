@@ -5,13 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
-
-@class DRPChannel;
+@class Channel;
 
 
 static NSString *const ReuseId = @"ReuseID";
 
 @interface ChannelCell : UITableViewCell
-- (void)configure:(NSDictionary*)channel;
+- (void)configure:(Channel*)channel;
 
 @end

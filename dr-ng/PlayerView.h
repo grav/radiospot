@@ -6,10 +6,11 @@
 #import <Foundation/Foundation.h>
 
 @class SpotifyButton;
+@class Track;
 
 
 @interface PlayerView : UIView
 @property (nonatomic, readonly) SpotifyButton *addToSpotBtn;
 @property(nonatomic, readonly) UIButton *stopBtn;
-@property (nonatomic, strong) NSDictionary *track;
+@property (nonatomic, strong) Track *track;
 @end

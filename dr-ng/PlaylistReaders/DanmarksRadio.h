@@ -4,8 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Playlist.h"
+#import "PlaylistReader.h"
 
 
-@interface PlaylistReader : NSObject<Playlist>
+@interface DanmarksRadio : NSObject<PlaylistReader>
 @end

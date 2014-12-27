@@ -5,11 +5,8 @@
 
 #import "PlayerView.h"
 #import "UIFont+DNGFonts.h"
-#import "Playlist.h"
-#import "MessageView.h"
-#import "RACStream+BTFAdditions.h"
 #import "SpotifyButton.h"
-#import "SpotifyButton.h"
+#import "Track.h"
 
 
 @interface PlayerView ()
@@ -54,12 +51,12 @@ static UIImage *BgImage;
     }];
 
     RACSignal *trackSignal = RACObserve(self, track);
-    RAC(songTitleLabel,text) = [trackSignal map:^id(NSDictionary *track) {
-        return track ? track[kTitle] : NSLocalizedString(@"SongTitleUnknown", @"(Unknown)");
+    RAC(songTitleLabel,text) = [trackSignal map:^id(Track *track) {
+        return track ? track.title : NSLocalizedString(@"SongTitleUnknown", @"(Unknown)");
     }];
 
-    RAC(artistLabel,text) = [trackSignal map:^id(NSDictionary *track) {
-        return track ? track[kArtist] : NSLocalizedString(@"ArtistUnknown", @"(Unknown)");
+    RAC(artistLabel,text) = [trackSignal map:^id(Track *track) {
+        return track ? track.artist : NSLocalizedString(@"ArtistUnknown", @"(Unknown)");
     }];
 
 
