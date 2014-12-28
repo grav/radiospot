@@ -32,7 +32,7 @@ static UIImage *Image;
 
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(label.superview);
-        make.centerY.equalTo(label.superview);
+        make.centerY.equalTo(label.superview).offset(-3);
     }];
 
     RAC(label,text) = RACObserve(self,text);
