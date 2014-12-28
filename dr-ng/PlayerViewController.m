@@ -302,16 +302,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
     [self.tableView setEditing:!self.tableView.isEditing animated:YES];
 
-    if (self.tableView.isEditing && self.player.rate>0) {
-        NSInteger idx = [self.viewModel.channels indexOfObject:self.viewModel.currentChannel];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
-        [cell setSelected:YES animated:NO];
-    }
-    
     if(!self.tableView.isEditing && self.player.rate>0){
         NSIndexPath *indexPath = [self indexPathForCurrentlyPlayingCell];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell setSelected:NO animated:YES];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
@@ -469,13 +461,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)stop
 {
-    if(self.tableView.isEditing){
-        NSIndexPath *indexPath = [self indexPathForCurrentlyPlayingCell];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell setSelected:NO animated:YES];
-    } else {
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    }
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 
     NSLog(@"stopping");
     [self.player pause];
