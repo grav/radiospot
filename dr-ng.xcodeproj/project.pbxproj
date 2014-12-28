@@ -11,6 +11,7 @@
 		308A6074881F0243A27A25BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
 		308A60852673E02B21609A91 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6E1CFC3C1E2FD5ACC46D /* Track.m */; };
 		308A61F0BB3F407D034C6405 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6F9312E5891AE2CA464C /* main.m */; };
+		308A632C1F2471E51DCEBE0D /* DummyPlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A60AF2C0C54CE0D77E9C5 /* DummyPlaylistReader.m */; };
 		308A635CC2B55A34884D8C27 /* PlaylistHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6E7BD0A7CB7FD463333D /* PlaylistHelper.m */; };
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
 		308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */; };
@@ -60,8 +61,10 @@
 		308A604B78835DAA916D4703 /* dr-ngTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dr-ngTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A609C449067EFE73A3F1F /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
 		308A60A5DAAC9B2CEE89A582 /* MASConstraintMaker+Self.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASConstraintMaker+Self.m"; sourceTree = "<group>"; };
+		308A60AF2C0C54CE0D77E9C5 /* DummyPlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyPlaylistReader.m; sourceTree = "<group>"; };
 		308A60FDC59462D5EF2E8362 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		308A62A840566C3CE9ADC97B /* DummyPlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyPlaylistReader.h; sourceTree = "<group>"; };
 		308A631B3478E580146AE562 /* NSObject+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notifications.m"; sourceTree = "<group>"; };
 		308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+BTFAdditions.m"; sourceTree = "<group>"; };
 		308A636F0D48991D8D12D0FA /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				308A6DA47C485A92835E9A92 /* Channel.h */,
 				308A6E7BD0A7CB7FD463333D /* PlaylistHelper.m */,
 				308A6F11AFC59ADAC0091ACF /* PlaylistHelper.h */,
+				308A60AF2C0C54CE0D77E9C5 /* DummyPlaylistReader.m */,
+				308A62A840566C3CE9ADC97B /* DummyPlaylistReader.h */,
 			);
 			path = PlaylistReaders;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				308A60852673E02B21609A91 /* Track.m in Sources */,
 				308A6995A560F24FF65F93ED /* Channel.m in Sources */,
 				308A635CC2B55A34884D8C27 /* PlaylistHelper.m in Sources */,
+				308A632C1F2471E51DCEBE0D /* DummyPlaylistReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
