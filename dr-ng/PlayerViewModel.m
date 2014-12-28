@@ -28,6 +28,7 @@ static NSString *const kChannels = @"channels";
     _didAddUsingRemove = [[NSUserDefaults standardUserDefaults] boolForKey:kAddUsingRemote];
     NSData *channelsData = [[NSUserDefaults standardUserDefaults] dataForKey:kChannels];
     if(channelsData){
+        NSLog(@"Restoring persisted channel order");
         _channels = [NSKeyedUnarchiver unarchiveObjectWithData:channelsData];
     }
     return self;
