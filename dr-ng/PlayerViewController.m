@@ -279,7 +279,41 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
     self.playerView = playerView;
+    UIImage *image = [UIImage imageNamed:@"Images/edit"];
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    [b setImage:image forState:UIControlStateNormal];
+    b.frame = CGRectMake(0, 0, 22, 22);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:b];
+
+    b.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        CGFloat rotation = (CGFloat) (self.tableView.isEditing ? 0 : M_PI_2);
+        [UIView animateWithDuration:0.3 animations:^{
+            UIView *view = self.navigationItem.rightBarButtonItem.customView;
+            view.transform = CGAffineTransformMakeRotation(rotation);
+
+        }];
+        [self.tableView setEditing:!self.tableView.isEditing animated:YES];
+        return [RACSignal empty];
+    }];
+
 }
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
 
 - (void)showOverlay {
     OverlayView *overlay = [OverlayView new];
