@@ -46,7 +46,9 @@ static NSString *RadioPlay_PlaylistURL = @"http://static.radioplay.dk/data/all_d
 - (RACSignal *)currentTrackForChannelWithId:(id)channelId {
     return [[RadioPlay currentPlaylists] map:^id(NSDictionary *d) {
         NSDictionary *channel = d[channelId];
-        return [Track trackWithArtist:channel[@"artist"] title:channel[@"title"]];
+        NSString *artist = channel[@"artist"];
+        BOOL placeholder = [artist isEqualToString:@"Vi er tilbage med mere musik om lidt..."];
+        return placeholder ? nil : [Track trackWithArtist:artist title:channel[@"title"]];
     }];
 }
 
