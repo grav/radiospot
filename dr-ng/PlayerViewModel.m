@@ -83,4 +83,11 @@ static NSString *const kAddUsingRemote = @"didAddUsingRemote";
     return _channels;
 }
 
+- (void)moveChannelFromIndex:(NSUInteger)from toIndex:(NSUInteger)to
+{
+    NSMutableArray *a = [self.channels mutableCopy];
+    [a exchangeObjectAtIndex:from withObjectAtIndex:to];
+    self.channels = a;
+}
+
 @end

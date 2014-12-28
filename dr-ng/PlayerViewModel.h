@@ -19,4 +19,6 @@
 @property(nonatomic) BOOL didDismissMessage;
 @property(nonatomic) int tracksAdded;
 @property(nonatomic) BOOL didAddUsingRemove;
+
+- (void)moveChannelFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;
 @end

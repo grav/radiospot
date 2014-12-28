@@ -303,7 +303,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    
+    [self.viewModel moveChannelFromIndex:(NSUInteger) sourceIndexPath.row toIndex:(NSUInteger) destinationIndexPath.row];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
