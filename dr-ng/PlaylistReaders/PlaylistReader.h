@@ -5,6 +5,6 @@
 
 
 @protocol PlaylistReader <NSObject>
-- (RACSignal *)currentTrackForChannelWithId:(id)channelId;
+- (RACSignal *)currentTrackForChannelWithId:(NSString *)channelId;
 @end
 

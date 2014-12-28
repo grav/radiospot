@@ -9,7 +9,7 @@
 @implementation DummyPlaylistReader {
 
 }
-- (RACSignal *)currentTrackForChannelWithId:(id)channelId {
+- (RACSignal *)currentTrackForChannelWithId:(NSString *)channelId {
     return [RACSignal return:nil];
 }
 

@@ -10,7 +10,7 @@
 
 }
 
-+ (instancetype)channelWithName:(NSString *)name id:(id)channelId readerType:(PlaylistReaderType)readerType urlString:(NSString *)urlString broadcaster:(NSString *)broadcaster {
++ (instancetype)channelWithName:(NSString *)name channelId:(NSString *)channelId readerType:(PlaylistReaderType)readerType urlString:(NSString *)urlString broadcaster:(NSString *)broadcaster {
     Channel *c = [Channel new];
     c->_channelId = channelId;
     c->_name = name;

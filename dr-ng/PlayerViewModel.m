@@ -62,7 +62,7 @@ static NSString *const kChannels = @"channels";
                 RACTuplePack(@"DR Ramasjang/Ultra Radio", @"Ram", @"http://drradio3-lh.akamaihd.net/i/ramasjang_9@143529/master.m3u8"),
                 RACTuplePack(@"DR Nyheder", nil, @"http://drradio2-lh.akamaihd.net/i/drnyheder_9@143532/master.m3u8")] mapUsingBlock:^id(RACTuple *tuple) {
             RACTupleUnpack(NSString *name, NSString *cId, NSString *url) = tuple;
-            return [Channel channelWithName:name id:cId readerType:PlaylistReaderTypeDR urlString:url broadcaster:@"DR"];
+            return [Channel channelWithName:name channelId:cId readerType:PlaylistReaderTypeDR urlString:url broadcaster:@"DR"];
         }];
         
         
@@ -79,11 +79,11 @@ static NSString *const kChannels = @"channels";
 
         ] mapUsingBlock:^id(RACTuple *tuple) {
             RACTupleUnpack(NSString *name, NSString *cId, NSString *url) = tuple;
-            return [Channel channelWithName:name id:cId readerType:PlaylistReaderTypeRadioPlay urlString:url broadcaster:@"SBS"];
+            return [Channel channelWithName:name channelId:cId readerType:PlaylistReaderTypeRadioPlay urlString:url broadcaster:@"SBS"];
         }];
         // Other
 
-        Channel *radio247 = [Channel channelWithName:@"Radio24syv" id:nil readerType:PlaylistReaderTypeDummy urlString:@"http://streaming.radio24syv.dk/pls/24syv_64_IR.pls" broadcaster:@"Radio24syv"];
+        Channel *radio247 = [Channel channelWithName:@"Radio24syv" channelId:nil readerType:PlaylistReaderTypeDummy urlString:@"http://streaming.radio24syv.dk/pls/24syv_64_IR.pls" broadcaster:@"Radio24syv"];
 
         _channels = [[dr arrayByAddingObjectsFromArray:sbs] arrayByAddingObject:radio247];
     }

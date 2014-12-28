@@ -20,7 +20,7 @@
                                                      channelStr] : nil;
 }
 
-- (RACSignal *)currentTrackForChannelWithId:(id)channelId {
+- (RACSignal *)currentTrackForChannelWithId:(NSString*)channelId {
     NSURL *url = [NSURL URLWithString:[DanmarksRadio urlForChannelId:channelId]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     return [[NSURLConnection rac_sendAsynchronousRequest:request] map:^id(RACTuple *tuple) {
