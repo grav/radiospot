@@ -307,6 +307,19 @@ static NSString *const kPlaylistName = @"RadioSpot";
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
         [cell setSelected:YES animated:NO];
     }
+    
+    if(!self.tableView.isEditing && self.player.rate>0){
+        NSIndexPath *indexPath = [self indexPathForCurrentlyPlayingCell];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [cell setSelected:NO animated:YES];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+}
+
+- (NSIndexPath *)indexPathForCurrentlyPlayingCell {
+    NSInteger idx = [self.viewModel.channels indexOfObject:self.viewModel.currentChannel];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+    return indexPath;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -456,11 +469,12 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)stop
 {
-    // Handle case where we have manually selected
-    // a cell by simply deselecting all cells
-    for(NSUInteger i=0;i<self.viewModel.channels.count;i++){
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+    if(self.tableView.isEditing){
+        NSIndexPath *indexPath = [self indexPathForCurrentlyPlayingCell];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         [cell setSelected:NO animated:YES];
+    } else {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     }
 
     NSLog(@"stopping");
