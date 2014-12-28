@@ -17,27 +17,31 @@
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReuseId];
     if (self) {
 
-        RACSignal *isPlaying = [[self rac_signalForSelector:@selector(setSelected:animated:)] map:^id(RACTuple *tuple) {
-                return tuple.first;
-            }];
+        RACSignal *highlight = [[[[self rac_signalForSelector:@selector(setSelected:animated:)] map:^id(RACTuple *tuple) {
+            return tuple.first;
+        }] combineLatestWith:[self rac_signalForSelector:@selector(setHighlighted:animated:)]] map:^id(RACTuple *tuple) {
+            RACTupleUnpack(NSNumber *selected, RACTuple *highlightedT) = tuple;
+            NSNumber *highlighted = highlightedT.first;
+            return @(selected.boolValue || highlighted.boolValue);
+        }];
 
-        RAC(self.imageView,image) = [isPlaying map:^id(NSNumber *number) {
+        RAC(self.imageView,image) = [highlight map:^id(NSNumber *number) {
             return number.boolValue ? [UIImage imageNamed:@"Images/station_icon_generic_selected"] : [UIImage imageNamed:@"Images/station_icon_generic"];
         }];
 
         self.textLabel.font = [UIFont channelName];
-        RAC(self.textLabel,textColor) = [isPlaying map:^id(NSNumber *number) {
+        RAC(self.textLabel,textColor) = [highlight map:^id(NSNumber *number) {
             return number.boolValue ? [UIColor whiteColor] : [UIColor colorWithWhite:0.17 alpha:1];
         }];
 
 
         self.detailTextLabel.font = [UIFont nowPlaying];
-        RAC(self.detailTextLabel,textColor) = [isPlaying map:^id(NSNumber *number) {
+        RAC(self.detailTextLabel,textColor) = [highlight map:^id(NSNumber *number) {
             UIColor *green = [UIColor colorWithRed:0.81
                                              green:0.96
                                               blue:0.67
                                              alpha:1];
-            return number.boolValue ? green:[UIColor colorWithWhite:0.51 alpha:1];
+            return number.boolValue ? green : [UIColor colorWithWhite:0.51 alpha:1];
         }];
 
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
