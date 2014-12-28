@@ -118,7 +118,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }] subscribeNext:^(id x) {
             self.viewModel.didAddUsingRemove = YES;
             if(self.viewModel.currentTrack){
-                [self addTrack:self.viewModel.currentTrack];
+                [self addTrack:self.viewModel.currentTrack usingRemote:YES];
             }
         }];
 
@@ -225,7 +225,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     [[playerView.addToSpotBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         self.viewModel.didDismissMessage = YES;
-        [self addTrack:self.viewModel.currentTrack];
+        [self addTrack:self.viewModel.currentTrack usingRemote:NO];
     }];
 
     playerView.stopBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -471,8 +471,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 #pragma mark spot
 
-- (void)addTrack:(Track *)track
-{
+- (void)addTrack:(Track *)track usingRemote:(BOOL)usingRemote {
     self.viewModel.talkingToSpotify = YES;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track.artist,track.title];
     NSLog(@"searching spotify for '%@'...",searchQuery);
@@ -507,26 +506,27 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }];
     }];
 
+    BOOL playSound = usingRemote || [[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground;
     [trackAdded subscribeNext:^(id x) {
         NSString *info = [NSString stringWithFormat:NSLocalizedString(@"AddedTrackTitle", @"Added track to playlist '%@'"),
                                                     playlistName];
         [self.messageView showTextBriefly:info];
         [self.playerView.addToSpotBtn success];
-        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+        if (playSound) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
             [self playSound:url];
         }
         NSLog(@"added track to playlist");
         self.viewModel.talkingToSpotify = NO;
         self.viewModel.tracksAdded++;
-        if(!self.viewModel.didAddUsingRemove && (self.viewModel.tracksAdded == 3 || self.viewModel.tracksAdded % 20 == 0)){
+        if (!self.viewModel.didAddUsingRemove && (self.viewModel.tracksAdded == 3 || self.viewModel.tracksAdded % 20 == 0)) {
             [self showOverlay];
         }
 
-    } error:^(NSError *error) {
+    }                   error:^(NSError *error) {
         [self.messageView showTextBriefly:[error localizedDescription]];
         [self.playerView.addToSpotBtn fail];
-        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+        if (playSound) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
             [self playSound:url];
         }
