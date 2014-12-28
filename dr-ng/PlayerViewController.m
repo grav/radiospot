@@ -286,16 +286,27 @@ static NSString *const kPlaylistName = @"RadioSpot";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:b];
 
     b.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        CGFloat rotation = (CGFloat) (self.tableView.isEditing ? 0 : M_PI_2);
-        [UIView animateWithDuration:0.3 animations:^{
-            UIView *view = self.navigationItem.rightBarButtonItem.customView;
-            view.transform = CGAffineTransformMakeRotation(rotation);
+        [self toggleEditing];
 
-        }];
-        [self.tableView setEditing:!self.tableView.isEditing animated:YES];
         return [RACSignal empty];
     }];
 
+}
+
+- (void)toggleEditing {
+    CGFloat rotation = (CGFloat) (self.tableView.isEditing ? 0 : M_PI_2);
+    [UIView animateWithDuration:0.3 animations:^{
+        UIView *view = self.navigationItem.rightBarButtonItem.customView;
+        view.transform = CGAffineTransformMakeRotation(rotation);
+
+    }];
+    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
+
+    if (self.tableView.isEditing && self.player.rate>0) {
+        NSInteger idx = [self.viewModel.channels indexOfObject:self.viewModel.currentChannel];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+        [cell setSelected:YES animated:NO];
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -445,7 +456,13 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)stop
 {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    // Handle case where we have manually selected
+    // a cell by simply deselecting all cells
+    for(NSUInteger i=0;i<self.viewModel.channels.count;i++){
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        [cell setSelected:NO animated:YES];
+    }
+
     NSLog(@"stopping");
     [self.player pause];
     self.player = nil;
