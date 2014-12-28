@@ -40,10 +40,6 @@
             return number.boolValue ? green:[UIColor colorWithWhite:0.51 alpha:1];
         }];
 
-        RAC(self.detailTextLabel,text) = [isPlaying map:^id(NSNumber *number) {
-            return number.boolValue ? NSLocalizedString(@"NowPlayingSubtitle", @"Now playing ...") : @" ";
-        }];
-
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
         self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/cell_bg_selected"]];
         if([self respondsToSelector:@selector(setSeparatorInset:)]){
@@ -56,6 +52,7 @@
 
 - (void)configure:(Channel *)channel {
     self.textLabel.text = channel.name;
+    self.detailTextLabel.text = channel.broadcaster;
 }
 
 @end

@@ -9,12 +9,13 @@
 @implementation Channel {
 
 }
-+ (instancetype)channelWithName:(NSString *)name id:(id)channelId readerType:(PlaylistReaderType)readerType urlString:(NSString *)urlString {
++ (instancetype)channelWithName:(NSString *)name id:(id)channelId readerType:(PlaylistReaderType)readerType urlString:(NSString *)urlString broadcaster:(NSString *)broadcaster {
     Channel *c = [Channel new];
     c->_channelId = channelId;
     c->_name = name;
     c->_playlistReaderType = readerType;
     c->_playbackURL = [NSURL URLWithString:urlString];
+    c->_broadcaster = broadcaster;
     return c;
 }
 
@@ -29,6 +30,3 @@
 
 @end
 
-Channel *MakeChannel(NSString *name, id channelId, PlaylistReaderType readerType, NSString *urlString) {
-    return [Channel channelWithName:name id:channelId readerType:readerType urlString:urlString];
-}

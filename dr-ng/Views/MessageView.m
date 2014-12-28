@@ -5,7 +5,6 @@
 
 #import "MessageView.h"
 #import "UIFont+DNGFonts.h"
-#import "RACEXTScope.h"
 
 @implementation MessageView {
 
@@ -33,7 +32,7 @@ static UIImage *Image;
 
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(label.superview);
-        make.centerY.equalTo(label.superview).offset(-5);
+        make.centerY.equalTo(label.superview);
     }];
 
     RAC(label,text) = RACObserve(self,text);

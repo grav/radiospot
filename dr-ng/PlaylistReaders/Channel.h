@@ -14,10 +14,11 @@ typedef NS_ENUM(NSInteger,PlaylistReaderType){
 
 @interface Channel : NSObject
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy) NSString *broadcaster;
 @property (nonatomic, readonly) id channelId;
 @property (nonatomic, readonly) PlaylistReaderType  playlistReaderType;
 @property (nonatomic, readonly) NSURL *playbackURL;
 
-Channel *MakeChannel(NSString *name, id channelId, PlaylistReaderType readerType, NSString *urlString);
++ (instancetype)channelWithName:(NSString *)name id:(id)channelId readerType:(PlaylistReaderType)readerType urlString:(NSString *)urlString broadcaster:(NSString *)broadcaster;
 
 @end
