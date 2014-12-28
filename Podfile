@@ -8,3 +8,4 @@ pod "BTFSpotify"
 pod "NSArray+Functional"
 pod "pop"
 pod "dyci" # remove before prod
+pod "AutoCoding"

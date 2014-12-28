@@ -12,6 +12,8 @@ static NSString *const kTracksAdded = @"TracksAdded";
 
 static NSString *const kAddUsingRemote = @"didAddUsingRemote";
 
+static NSString *const kChannels = @"channels";
+
 @interface PlayerViewModel ()
 @property (nonatomic, strong) NSArray *channels;
 @end
@@ -24,6 +26,10 @@ static NSString *const kAddUsingRemote = @"didAddUsingRemote";
     if (!(self = [super init])) return nil;
     _tracksAdded = [[NSUserDefaults standardUserDefaults] integerForKey:kTracksAdded];
     _didAddUsingRemove = [[NSUserDefaults standardUserDefaults] boolForKey:kAddUsingRemote];
+    NSData *channelsData = [[NSUserDefaults standardUserDefaults] dataForKey:kChannels];
+    if(channelsData){
+        _channels = [NSKeyedUnarchiver unarchiveObjectWithData:channelsData];
+    }
     return self;
 }
 
@@ -88,6 +94,8 @@ static NSString *const kAddUsingRemote = @"didAddUsingRemote";
     NSMutableArray *a = [self.channels mutableCopy];
     [a exchangeObjectAtIndex:from withObjectAtIndex:to];
     self.channels = a;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.channels];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kChannels];
 }
 
 @end

@@ -1,4 +1,5 @@
 PODS:
+  - AutoCoding (2.2.1)
   - BTFSpotify (0.2.1):
     - CocoaLibSpotify (~> 2.4.5)
     - ReactiveCocoa (~> 2.3.0)
@@ -21,6 +22,7 @@ PODS:
     - ReactiveCocoa/Core
 
 DEPENDENCIES:
+  - AutoCoding
   - BTFSpotify
   - CocoaLibSpotify (= 2.4.5)
   - dyci
@@ -31,6 +33,7 @@ DEPENDENCIES:
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
+  AutoCoding: 5165b83fa6199573cc82dfb5d2cc72e11b458a1f
   BTFSpotify: cce23854a475196982d28cdd9f83134a1f332b0d
   CocoaLibSpotify: d5c2cc8eac1a27618c6f3ff9f656cabb5982f52a
   dyci: 86668b266b8a281cb6db02843150f6a210c34ee9

@@ -9,6 +9,7 @@
 @implementation Channel {
 
 }
+
 + (instancetype)channelWithName:(NSString *)name id:(id)channelId readerType:(PlaylistReaderType)readerType urlString:(NSString *)urlString broadcaster:(NSString *)broadcaster {
     Channel *c = [Channel new];
     c->_channelId = channelId;
