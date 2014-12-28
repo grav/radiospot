@@ -43,6 +43,8 @@ static NSString *const kAddUsingRemote = @"didAddUsingRemote";
 - (NSArray *)channels {
     if (!_channels) {
         _channels = @[
+                // Danmarks Radio
+
                 MakeChannel(@"P1", @"P1", PlaylistReaderTypeDR, @"http://drradio1-lh.akamaihd.net/i/p1_9@143503/master.m3u8"),
                 MakeChannel(@"P2", @"P2", PlaylistReaderTypeDR, @"http://drradio2-lh.akamaihd.net/i/p2_9@143504/master.m3u8"),
                 MakeChannel(@"P3", @"P3", PlaylistReaderTypeDR, @"http://drradio3-lh.akamaihd.net/i/p3_9@143506/master.m3u8"),
@@ -54,13 +56,19 @@ static NSString *const kAddUsingRemote = @"didAddUsingRemote";
                 MakeChannel(@"DR Ramasjang/Ultra Radio", @"Ram", PlaylistReaderTypeDR, @"http://drradio3-lh.akamaihd.net/i/ramasjang_9@143529/master.m3u8"),
                 MakeChannel(@"DR Nyheder", nil, PlaylistReaderTypeDR, @"http://drradio2-lh.akamaihd.net/i/drnyheder_9@143532/master.m3u8"),
 
+                // RadioPlay
+
                 MakeChannel(@"NOVA", @"18", PlaylistReaderTypeRadioPlay, @"http://stream.novafm.dk/nova128?ua=WEB"),
                 MakeChannel(@"The Voice", @"17", PlaylistReaderTypeRadioPlay, @"http://stream.voice.dk/voice128?ua=WEB"),
                 MakeChannel(@"Radio 100", @"20", PlaylistReaderTypeRadioPlay, @"http://onair.100fmlive.dk/100fm_live.mp3?ua=WEB"),
                 MakeChannel(@"Pop FM", @"19", PlaylistReaderTypeRadioPlay, @"http://stream.popfm.dk/pop128?ua=WEB"),
                 MakeChannel(@"myROCK", @"56", PlaylistReaderTypeRadioPlay, @"http://stream.popfm.dk/pop128?ua=WEB"),
                 MakeChannel(@"Radio Soft", @"21", PlaylistReaderTypeRadioPlay, @"http://onair.100fmlive.dk/soft_live.mp3?ua=WEB"),
-                MakeChannel(@"Radio Klassisk", @"22", PlaylistReaderTypeRadioPlay, @"http://onair.100fmlive.dk/klassisk_live.mp3?ua=WEB")
+                MakeChannel(@"Radio Klassisk", @"22", PlaylistReaderTypeRadioPlay, @"http://onair.100fmlive.dk/klassisk_live.mp3?ua=WEB"),
+
+                // Other
+
+                MakeChannel(@"Radio24syv",nil,PlaylistReaderTypeDummy,@"http://streaming.radio24syv.dk/pls/24syv_64_IR.pls")
         ];
     }
     return _channels;
