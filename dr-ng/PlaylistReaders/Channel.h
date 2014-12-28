@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger,PlaylistReaderType){
     PlaylistReaderTypeRadioPlay,
 };
 
-@interface Channel : NSObject<NSCoding>
+@interface Channel : NSObject
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy) NSString *broadcaster;
 @property (nonatomic, readonly) id channelId;
