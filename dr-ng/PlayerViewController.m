@@ -66,6 +66,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         }];
 
         RAC(self.viewModel, currentTrack) = [repeatingChannelSignal flattenMap:^RACStream *(Channel *c) {
+            if(self.player.rate==0) return [RACSignal return:nil];
             return [[PlaylistHelper currentTrackForChannel:c] deliverOn:[RACScheduler mainThreadScheduler]];
         }];
 
