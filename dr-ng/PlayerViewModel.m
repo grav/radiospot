@@ -67,16 +67,15 @@ static NSString *const kChannels = @"channels";
 
         NSArray *drRegional = [@[
                 RACTuplePack(@"P4 København", @"KH4", @"http://drradio3-lh.akamaihd.net/i/p4kobenhavn_9@143509/master.m3u8"),
-                RACTuplePack(@"P4 Nordjylland", @"ÅL4", @"http://drradio2-lh.akamaihd.net/i/p4nordjylland_9@143511/master.m3u8"),
-                RACTuplePack(@"P4 Østjylland", @"ÅR4", @"http://drradio3-lh.akamaihd.net/i/p4ostjylland_9@143515/master.m3u8"),
+                RACTuplePack(@"P4 Nordjylland", @"AL4", @"http://drradio2-lh.akamaihd.net/i/p4nordjylland_9@143511/master.m3u8"),
+                RACTuplePack(@"P4 Østjylland", @"AR4", @"http://drradio3-lh.akamaihd.net/i/p4ostjylland_9@143515/master.m3u8"),
                 RACTuplePack(@"P4 Midt & Vest", @"HO4", @"http://drradio1-lh.akamaihd.net/i/p4midtvest_9@143510/master.m3u8"),
                 RACTuplePack(@"P4 Trekanten", @"TR4", @"http://drradio2-lh.akamaihd.net/i/p4trekanten_9@143514/master.m3u8"),
                 RACTuplePack(@"P4 Esbjerg", @"ES4", @"http://drradio1-lh.akamaihd.net/i/p4esbjerg_9@143516/master.m3u8"),
-                RACTuplePack(@"P4 Syd", @"ÅB4", @"http://drradio1-lh.akamaihd.net/i/p4syd_9@143513/master.m3u8"),
+                RACTuplePack(@"P4 Syd", @"AB4", @"http://drradio1-lh.akamaihd.net/i/p4syd_9@143513/master.m3u8"),
                 RACTuplePack(@"P4 Fyn", @"OD4", @"http://drradio2-lh.akamaihd.net/i/p4fyn_9@143508/master.m3u8"),
                 RACTuplePack(@"P4 Sjælland", @"NV4", @"http://drradio3-lh.akamaihd.net/i/p4sjaelland_9@143512/master.m3u8"),
-                // TODO - cannot figure out id for old playlist service
-                RACTuplePack(@"P4 Bornholm", nil, @"http://drradio1-lh.akamaihd.net/i/p4bornholm_9@143507/master.m3u8"),
+                RACTuplePack(@"P4 Bornholm", @"RO4", @"http://drradio1-lh.akamaihd.net/i/p4bornholm_9@143507/master.m3u8"),
         ] mapUsingBlock:^(RACTuple *tuple) {
             RACTupleUnpack(NSString *name, NSString *cId, NSString *url) = tuple;
             return [Channel channelWithName:name channelId:cId readerType:PlaylistReaderTypeDR urlString:url broadcaster:@"DR Regional"];
