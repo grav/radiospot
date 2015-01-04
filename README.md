@@ -3,7 +3,7 @@ RadioSpot
 
 ##### Radio app with Spotify integration. Available for free on AppStore - https://appsto.re/dk/S7W42.i
 
-This iOS app allows you to add the current track of a radio channel (currently only channels from the Danish Broadcasting Company) to Spotify.
+This iOS app allows you to add the current track of a radio channel to Spotify. Currently the channels of DR (Danish Broadcasting Company) and SBS are supported.
 
 ##### Build instructions
 
