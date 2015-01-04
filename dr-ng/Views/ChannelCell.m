@@ -23,8 +23,22 @@
 
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage new]];
         self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/cell_bg_selected"]];
+
+        // From http://stackoverflow.com/a/25877725
+
+        // Remove seperator inset
         if([self respondsToSelector:@selector(setSeparatorInset:)]){
             self.separatorInset = UIEdgeInsetsZero;
+        }
+
+        // Prevent the cell from inheriting the Table View's margin settings
+        if ([self respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+            [self setPreservesSuperviewLayoutMargins:NO];
+        }
+
+        // Explictly set your cell's layout margins
+        if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+            [self setLayoutMargins:UIEdgeInsetsZero];
         }
     }
 
