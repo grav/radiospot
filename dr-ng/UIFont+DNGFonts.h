@@ -7,6 +7,8 @@
 
 @interface UIFont (DNGFonts)
 
++ (instancetype)titleName;
+
 + (instancetype)channelName;
 
 + (instancetype)nowPlaying;

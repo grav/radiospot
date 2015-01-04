@@ -12,6 +12,7 @@
 #import "PlayerViewController.h"
 #import <Crashlytics/Crashlytics.h>
 #import "RadioPlay.h"
+#import "UIFont+DNGFonts.h"
 
 @implementation DNGAppDelegate
 
@@ -26,7 +27,21 @@
     UIViewController *playerViewController = [[PlayerViewController alloc] init];
     playerViewController.title = NSLocalizedString(@"AppWindowTitle", @"Stations");
     playerViewController.view.frame = [[UIScreen mainScreen] applicationFrame];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:playerViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:playerViewController];
+
+
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Do iOS 6 specific stuff
+        navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        NSDictionary *attributes = @{
+                UITextAttributeTextColor : [UIColor blackColor],
+                UITextAttributeTextShadowColor : [UIColor clearColor],
+                UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+                UITextAttributeFont : [UIFont titleName]
+        };
+        [navigationController.navigationBar setTitleTextAttributes:attributes];
+    }
+    self.window.rootViewController = navigationController;
 
     [Crashlytics startWithAPIKey:@"37ecf2e16614ae477adcbd790499b5a4b406f88c"];
     return YES;

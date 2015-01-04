@@ -7,6 +7,11 @@
 
 
 @implementation UIFont (DNGFonts)
+
++ (instancetype)titleName {
+    return [UIFont fontWithName:@"AvenirNext-DemiBold" size:20.0f];
+}
+
 + (instancetype)channelName {
     return [UIFont fontWithName:@"AvenirNext-DemiBold" size:18.0f];
 }
