@@ -40,7 +40,11 @@
         if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
             [self setLayoutMargins:UIEdgeInsetsZero];
         }
+
+        [self updateLayout];
+
     }
+
 
     return self;
 }
@@ -57,6 +61,12 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self updateLayout];
+
+
+}
+
+- (void)updateLayout {
     BOOL highOrSel = self.highlighted || self.selected;
     self.imageView.image = highOrSel ? [UIImage imageNamed:@"Images/station_icon_generic_selected"] : [UIImage imageNamed:@"Images/station_icon_generic"];
 
@@ -67,8 +77,6 @@
                                                                   blue:0.67
                                                                  alpha:1] :
             [UIColor colorWithWhite:0.51 alpha:1];
-
-
 }
 
 - (void)configure:(Channel *)channel {
