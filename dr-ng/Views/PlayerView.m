@@ -35,6 +35,7 @@ static UIImage *BgImage;
     UILabel *songTitleLabel = [UILabel new];
     songTitleLabel.textColor = [UIColor whiteColor];
     songTitleLabel.font = [UIFont songTitle];
+    songTitleLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:songTitleLabel];
     [songTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(songTitleLabel.superview).offset(10);
@@ -44,6 +45,7 @@ static UIImage *BgImage;
     UILabel *artistLabel = [UILabel new];
     artistLabel.textColor = [UIColor colorWithWhite:0.65 alpha:1];
     artistLabel.font = [UIFont artist];
+    artistLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:artistLabel];
     [artistLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(songTitleLabel);
