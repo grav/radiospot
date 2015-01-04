@@ -4,17 +4,15 @@
 //
 
 #import "ChannelCell.h"
-#import "PlayerViewController.h"
 #import "UIFont+DNGFonts.h"
-#import "PlayerViewModel.h"
 #import "Channel.h"
 
 @implementation ChannelCell {
 
 }
 
-- (id)init {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReuseId];
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
 
         RACSignal *highlight = [[[[self rac_signalForSelector:@selector(setSelected:animated:)] map:^id(RACTuple *tuple) {

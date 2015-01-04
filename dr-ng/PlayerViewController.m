@@ -193,6 +193,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     RACSignal *currentTrackS = RACObserve(self.viewModel, currentTrack);
 
     self.tableView = [UITableView new];
+    [self.tableView registerClass:[ChannelCell class] forCellReuseIdentifier:ReuseId];
     self.tableView.dataSource = self; self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     self.tableView.frame = self.view.bounds;
@@ -352,10 +353,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChannelCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseId];
-    if(!cell){
-        cell = [ChannelCell new];
-    }
+    ChannelCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseId forIndexPath:indexPath];
     [cell configure:self.viewModel.channels[(NSUInteger) indexPath.row]];
     return cell;
 }
