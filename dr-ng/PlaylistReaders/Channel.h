@@ -10,6 +10,7 @@ typedef NS_ENUM(NSInteger,PlaylistReaderType){
     PlaylistReaderTypeDummy,
     PlaylistReaderTypeDR,
     PlaylistReaderTypeRadioPlay,
+    PlaylistReaderTypeMock
 };
 
 @interface Channel : NSObject

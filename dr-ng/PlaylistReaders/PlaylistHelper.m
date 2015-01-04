@@ -8,6 +8,7 @@
 #import "DanmarksRadio.h"
 #import "RadioPlay.h"
 #import "DummyPlaylistReader.h"
+#import "MockPlaylistReader.h"
 
 
 @implementation PlaylistHelper {
@@ -22,6 +23,8 @@
             return [RadioPlay new];
         case PlaylistReaderTypeDummy:
             return [DummyPlaylistReader new];
+        case PlaylistReaderTypeMock:
+            return [MockPlaylistReader new];
     }
     NSCAssert(false, @"");
     return nil;

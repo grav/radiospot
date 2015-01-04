@@ -241,7 +241,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [self.view addSubview:self.messageView];
     [self.messageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.messageView.superview).offset(-playerView.frame.size.height + 12);
-        make.right.equalTo(self.messageView.superview).offset(-10);
+        make.right.equalTo(self.messageView.superview).offset(-5);
     }];
 
     RACSignal *racSignal = [RACObserve(self.viewModel, didDismissMessage) distinctUntilChanged];

@@ -25,7 +25,7 @@
 }
 
 + (instancetype)artist {
-    return [UIFont fontWithName:@"AvenirNext-Regular" size:11.0f];
+    return [UIFont fontWithName:@"AvenirNext-Regular" size:12.0f];
 }
 
 + (instancetype)buttonFont {

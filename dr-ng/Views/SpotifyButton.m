@@ -103,9 +103,5 @@ static CGFloat kDim = 30.0f;
     }];
 }
 
-- (CGSize)intrinsicContentSize {
-    return CGSizeMake(kDim*2, kDim*2);
-}
-
 
 @end

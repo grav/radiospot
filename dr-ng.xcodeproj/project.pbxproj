@@ -16,6 +16,7 @@
 		308A63CA3D95109D246B53CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A67C052B3C8C906BA873F /* CoreGraphics.framework */; };
 		308A63F26C11B804E77CF04D /* PlayerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6FEB81DAF6944B141A63 /* PlayerViewModel.m */; };
 		308A65237335A5D1F3AC9E2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6F6288EDBC80429C93B7 /* Foundation.framework */; };
+		308A65463B66CB23EF9F9381 /* MockPlaylistReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6263B48B4F2AC5539146 /* MockPlaylistReader.m */; };
 		308A65585D601D209E3BDB0D /* fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A6CB09935CAB47D6B6B4C /* fail.wav */; };
 		308A65AC3DD6F50A833E30F4 /* DanmarksRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6E2E0532A1AFA88E9BAB /* DanmarksRadio.m */; };
 		308A65E6535C2A3E4EC9DFA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A694204B38545106A0520 /* XCTest.framework */; };
@@ -64,6 +65,7 @@
 		308A60E9DE1A79F2E1075224 /* SpotifyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyButton.m; sourceTree = "<group>"; };
 		308A60FDC59462D5EF2E8362 /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
 		308A61140F6E6E058EC06C31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		308A6263B48B4F2AC5539146 /* MockPlaylistReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPlaylistReader.m; sourceTree = "<group>"; };
 		308A62A840566C3CE9ADC97B /* DummyPlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyPlaylistReader.h; sourceTree = "<group>"; };
 		308A631B3478E580146AE562 /* NSObject+Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Notifications.m"; sourceTree = "<group>"; };
 		308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+BTFAdditions.m"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A69538FB3CDC0C4BF587A /* DanmarksRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanmarksRadio.h; sourceTree = "<group>"; };
 		308A695B58BEDFB2FE51FFD9 /* UIFont+DNGFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DNGFonts.h"; sourceTree = "<group>"; };
+		308A69A3977382208E9E2698 /* MockPlaylistReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPlaylistReader.h; sourceTree = "<group>"; };
 		308A69DEAA74A6F4711CFC24 /* PlayerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewModel.h; sourceTree = "<group>"; };
 		308A6AAF8D5C665089F4C989 /* RadioSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308A6B9BBC03EAD608024BB3 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				308A6F11AFC59ADAC0091ACF /* PlaylistHelper.h */,
 				308A60AF2C0C54CE0D77E9C5 /* DummyPlaylistReader.m */,
 				308A62A840566C3CE9ADC97B /* DummyPlaylistReader.h */,
+				308A6263B48B4F2AC5539146 /* MockPlaylistReader.m */,
+				308A69A3977382208E9E2698 /* MockPlaylistReader.h */,
 			);
 			path = PlaylistReaders;
 			sourceTree = "<group>";
@@ -364,8 +369,6 @@
 			mainGroup = 308A610F6C1B7753F8440C45;
 			productRefGroup = 308A6A4CCFFA494FA1D85DEB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				308A630DA0180F150B28E081 /* RadioSpot */,
@@ -470,6 +473,7 @@
 				308A6BAAE8B104A6E6C9787B /* ChannelCell.m in Sources */,
 				308A6DFBB884D463BAA10243 /* OverlayView.m in Sources */,
 				308A6E965F343C3457111E8C /* SpotifyButton.m in Sources */,
+				308A65463B66CB23EF9F9381 /* MockPlaylistReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -644,6 +649,7 @@
 				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
 				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;

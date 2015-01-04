@@ -100,6 +100,11 @@ static NSString *const kChannels = @"channels";
         Channel *radio247 = [Channel channelWithName:@"Radio24syv" channelId:nil readerType:PlaylistReaderTypeDummy urlString:@"http://streaming.radio24syv.dk/pls/24syv_64_IR.pls" broadcaster:@"Radio24syv"];
 
         _channels = [[[dr arrayByAddingObjectsFromArray:drRegional] arrayByAddingObjectsFromArray:sbs] arrayByAddingObject:radio247];
+        #if DEBUG
+        Channel *c  = [Channel channelWithName:@"Mock Channel" channelId:@"SomeChannel" readerType:PlaylistReaderTypeMock urlString:@"http://drradio3-lh.akamaihd.net/i/p6beat_9@143533/master.m3u8" broadcaster:@"Mock Broadcaster"];
+        _channels = [@[c] arrayByAddingObjectsFromArray:_channels];
+        #endif
+
     }
     return _channels;
 }
