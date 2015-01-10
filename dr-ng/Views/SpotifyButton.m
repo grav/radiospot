@@ -6,14 +6,13 @@
 #import "SpotifyButton.h"
 #import "MASConstraintMaker+Self.h"
 #import "UIActivityIndicatorView+BTFAdditions.h"
+
 @interface SpotifyButton ()
 @property (nonatomic, strong) UIActivityIndicatorView* activityIndicatorView;
 @property(nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *notesImageView;
 @property (nonatomic, strong) UIImageView *actionImageView;
 @end
-
-static CGFloat kDim = 30.0f;
 
 @implementation SpotifyButton {
 
@@ -65,24 +64,21 @@ static CGFloat kDim = 30.0f;
     return self;
 }
 
-- (void)work {
-//    self.imageView.image = ;
-}
-
-- (void)fail {
-    UIImage *image = [UIImage imageNamed:@"Images/fail"];
-    self.actionImageView.image = image;
-    [self brieflyShowStatus];
-
-}
-
-- (void)notFound
+- (void)showStatus:(ButtonStatus)status
 {
-//    [self regular];
-}
+    UIImage *image;
+    switch (status){
 
-- (void)success{
-    UIImage *image = [UIImage imageNamed:@"Images/success"];
+        case ButtonStatusSuccess:
+            image = [UIImage imageNamed:@"Images/success"];
+            break;
+        case ButtonStatusFail:
+            image = [UIImage imageNamed:@"Images/fail"];
+            break;
+        case ButtonStatusNotFound:
+            image = [UIImage imageNamed:@"Images/notfound"];
+            break;
+    }
     self.actionImageView.image = image;
     [self brieflyShowStatus];
 
@@ -94,7 +90,7 @@ static CGFloat kDim = 30.0f;
     [UIView animateWithDuration:0.2 animations:^{
         self.actionImageView.alpha = 1;
     }                completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 delay:1
+        [UIView animateWithDuration:0.2 delay:3
                             options:0 animations:^{
                     self.notesImageView.alpha = 1;
                     self.actionImageView.alpha = 0;

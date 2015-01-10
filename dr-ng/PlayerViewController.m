@@ -500,7 +500,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
                                         atIndex:0];
             } else {
                 NSString *string = NSLocalizedString(@"NoResultsMessage", @"No results");
-                NSError *error = [NSError errorWithDomain:@"btf.dr-ng" code:-100
+                NSError *error = [NSError errorWithDomain:@"btf.dr-ng" code:kRadioSpotNoResults
                                                  userInfo:@{
                                                          NSLocalizedDescriptionKey: string}];
                 return [RACSignal error:error];
@@ -513,7 +513,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         NSString *info = [NSString stringWithFormat:NSLocalizedString(@"AddedTrackTitle", @"Added track to playlist '%@'"),
                                                     playlistName];
         [self.messageView showTextBriefly:info];
-        [self.playerView.addToSpotBtn success];
+        [self.playerView.addToSpotBtn showStatus:ButtonStatusSuccess];
         if (playSound) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
             [self playSound:url];
@@ -527,7 +527,15 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     }                   error:^(NSError *error) {
         [self.messageView showTextBriefly:[error localizedDescription]];
-        [self.playerView.addToSpotBtn fail];
+
+        BOOL notFound = error.code == kRadioSpotNoResults;
+        if(notFound){
+            [self.playerView.addToSpotBtn showStatus:ButtonStatusNotFound];
+        } else {
+            [self.playerView.addToSpotBtn showStatus:ButtonStatusFail];
+
+        }
+
         if (playSound) {
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"fail" withExtension:@"wav"];
             [self playSound:url];

@@ -10,14 +10,16 @@ typedef NS_ENUM(NSInteger,SpotifyState){
     SpotifyStateWorking
 };
 
+typedef NS_ENUM(NSInteger,ButtonStatus){
+    ButtonStatusSuccess,
+    ButtonStatusFail,
+    ButtonStatusNotFound
+};
+
+
 @interface SpotifyButton : UIControl
 @property (nonatomic) BOOL working;
 
-- (void)work;
-- (void)fail;
 
-- (void)notFound;
-
-- (void)success;
-
+- (void)showStatus:(ButtonStatus)status;
 @end

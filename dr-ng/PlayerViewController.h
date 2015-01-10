@@ -5,5 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+static const int kRadioSpotNoResults = -100;
+
 @interface PlayerViewController : UIViewController
 @end
