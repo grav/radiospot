@@ -13,6 +13,7 @@ PODS:
   - NoticeView (3.0.7)
   - NSArray+Functional (1.0.0)
   - pop (1.0.6)
+  - Reachability (3.2)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI (= 2.3.1)
   - ReactiveCocoa/Core (2.3.1):
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - NoticeView
   - NSArray+Functional
   - pop
+  - Reachability
   - ReactiveCocoa
 
 SPEC CHECKSUMS:
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   NoticeView: 357545814931eb92428de54449f405f91c84a1b8
   NSArray+Functional: 2c9ad6ab9b0dc7abe73416d265d569c8b20b9f3c
   pop: e518794da38942c05255eb64b36d894e70cb4f00
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
 
 COCOAPODS: 0.35.0

@@ -22,6 +22,7 @@
 #import "SpotifyButton.h"
 #import "Track.h"
 #import "PlaylistHelper.h"
+#import "ConnectionThresholdCalculator.h"
 
 #if DEBUG
 static NSString *const kPlaylistName = @"RadioSpot-DEBUG";
@@ -375,7 +376,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     [self stopKeepAlive];
 
-    [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:4] ignore:@YES]
+    NSInteger threshold = [ConnectionThresholdCalculator currentConnectionThreshold];
+    NSLog(@"Will reconnect in %d seconds if unlikely to keep up!",threshold);
+    [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:threshold] ignore:@YES]
             subscribeNext:^(id x) {
                 // In case we're in background,
                 // we'll start playing (muted) sound, so that the OS

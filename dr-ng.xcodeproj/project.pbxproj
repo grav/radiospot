@@ -28,6 +28,7 @@
 		308A6995A560F24FF65F93ED /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6921608D48F883B43617 /* Channel.m */; };
 		308A6AA84FAB2E060A216E43 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 308A636F0D48991D8D12D0FA /* Images */; };
 		308A6AAC17D97E90F9330B8A /* MASConstraintMaker+Self.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A60A5DAAC9B2CEE89A582 /* MASConstraintMaker+Self.m */; };
+		308A6B14681EBD145ED1580F /* ConnectionThresholdCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6E9DB86C6A79534FBB87 /* ConnectionThresholdCalculator.m */; };
 		308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308A61140F6E6E058EC06C31 /* Images.xcassets */; };
 		308A6B89CC1516F467194015 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6449AE5A9BD2AF3DFB4A /* PlayerViewController.m */; };
 		308A6BAAE8B104A6E6C9787B /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63FA1C61476D5B4885AA /* ChannelCell.m */; };
@@ -90,6 +91,7 @@
 		308A67DB7E3D17BD7EBD6426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		308A6820D316814D2BEAFD0C /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		308A68B757C4731341C15913 /* RACStream+BTFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACStream+BTFAdditions.m"; sourceTree = "<group>"; };
+		308A68C29974E47F97C5FF97 /* ConnectionThresholdCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionThresholdCalculator.h; sourceTree = "<group>"; };
 		308A6921608D48F883B43617 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		308A694204B38545106A0520 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		308A69538FB3CDC0C4BF587A /* DanmarksRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanmarksRadio.h; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		308A6E5AD5631DFAE4EBADA6 /* SpotifyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyButton.h; sourceTree = "<group>"; };
 		308A6E7BD0A7CB7FD463333D /* PlaylistHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistHelper.m; sourceTree = "<group>"; };
 		308A6E8954E022128F0C78C2 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		308A6E9DB86C6A79534FBB87 /* ConnectionThresholdCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionThresholdCalculator.m; sourceTree = "<group>"; };
 		308A6EBEE87A7EE146C6741A /* NSObject+Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Notifications.h"; sourceTree = "<group>"; };
 		308A6F11AFC59ADAC0091ACF /* PlaylistHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistHelper.h; sourceTree = "<group>"; };
 		308A6F3BCEA21FEE207C3BB3 /* DNGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNGAppDelegate.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				AE15714D19CC67E800F122B0 /* Localizable.strings */,
 				308A68740816D871771EFFAD /* PlaylistReaders */,
 				308A6F888FBE042449CF80E2 /* Views */,
+				308A6E9DB86C6A79534FBB87 /* ConnectionThresholdCalculator.m */,
+				308A68C29974E47F97C5FF97 /* ConnectionThresholdCalculator.h */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				308A6DFBB884D463BAA10243 /* OverlayView.m in Sources */,
 				308A6E965F343C3457111E8C /* SpotifyButton.m in Sources */,
 				308A65463B66CB23EF9F9381 /* MockPlaylistReader.m in Sources */,
+				308A6B14681EBD145ED1580F /* ConnectionThresholdCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
