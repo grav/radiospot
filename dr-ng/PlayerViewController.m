@@ -546,6 +546,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 }
 
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
 - (void)playSound:(NSURL *)url {
     NSError *error;
     self.spotifyAddingSuccessPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url
