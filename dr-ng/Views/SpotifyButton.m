@@ -28,17 +28,18 @@
         make.center.equalTo(make.superview);
     }];
 
-    self.notesImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/notes"]];
+    self.notesImageView = [UIImageView new];
+    RAC(self.notesImageView,image) = [RACObserve(self, enabled) map:^id(NSNumber *n) {
+        return n.boolValue?[UIImage imageNamed:@"Images/notes"] : [UIImage imageNamed:@"Images/unavail"];
+    }];
+
     [self addSubview:self.notesImageView];
     [self.notesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(make.superview).offset(-1);
     }];
 
-    RAC(self, alpha) = [RACSignal combineLatest:@[
-        RACObserve(self, highlighted),
-        RACObserve(self, enabled)
-    ] reduce:^id(NSNumber *highlighted,NSNumber *enabled) {
-        return @(enabled.boolValue && !highlighted.boolValue ? 1.0 : 0.4);
+    RAC(self, alpha) = [RACObserve(self, highlighted) map:^id(NSNumber *n) {
+        return @(n.boolValue ? 0.4 : 1);
     }];
 
     self.activityIndicatorView = [UIActivityIndicatorView new];
