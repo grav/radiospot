@@ -204,7 +204,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
     self.tableView.backgroundColor = [UIColor clearColor];
 
     PlayerView *playerView = [PlayerView new];
-    playerView.frame = CGRectOffset(playerView.frame, 0, self.view.bounds.size.height);
+    playerView.frame = CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 56);
+    playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:playerView];
 
     RAC(playerView,track) = currentTrackS;

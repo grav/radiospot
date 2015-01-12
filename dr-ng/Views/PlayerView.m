@@ -20,19 +20,10 @@
 
 }
 
-static UIImage *BgImage;
-
-+ (void)load {
-    BgImage = [UIImage imageNamed:@"Images/player_bg"];
-}
-
 - (instancetype)init {
-    if (!(self = [super initWithFrame:(CGRect){0,0,BgImage.size}])) return nil;
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:BgImage];
-    [self addSubview:backgroundImageView];
-    [backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
-    }];
+    if (!(self = [super init])) return nil;
+
+    self.backgroundColor = [UIColor colorWithWhite:0.17 alpha:1];
 
     self.songTitleLabel = [UILabel new];
     self.songTitleLabel.textColor = [UIColor whiteColor];
