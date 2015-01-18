@@ -66,11 +66,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
              return [[[[RACSignal interval:10 onScheduler:[RACScheduler mainThreadScheduler]] startWith:nil] takeUntil:channelSignal] mapReplace:value];
         }];
 
-        RAC(self.viewModel, currentTrack) = [[repeatingChannelSignal flattenMap:^RACStream *(Channel *c) {
+        RAC(self.viewModel, currentTrack) = [repeatingChannelSignal flattenMap:^RACStream *(Channel *c) {
             if (self.player.rate == 0) return [RACSignal return:nil];
-            return [[PlaylistHelper currentTrackForChannel:c] deliverOn:[RACScheduler mainThreadScheduler]];
-        }] catch:^RACSignal *(NSError *error) {
-            return [RACSignal return:nil];
+            return [[[PlaylistHelper currentTrackForChannel:c] catch:^RACSignal *(NSError *error) {
+                return [RACSignal return:nil];
+            }] deliverOn:[RACScheduler mainThreadScheduler]];
         }];
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
