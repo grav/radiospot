@@ -23,7 +23,7 @@ static NSString *RadioPlay_PlaylistURL = @"http://static.radioplay.dk/data/all_d
     }] map:^id(NSString *s) {
         return [[s
                 stringByReplacingOccurrencesOfString:@"onair_callback(" withString:@""]
-                stringByReplacingOccurrencesOfString:@"\n);" withString:@""];
+                stringByReplacingOccurrencesOfString:@");" withString:@"\n"];
     }] map:^id(NSString *jsonStr) {
         return [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
     }] map:^id(NSData *data) {
