@@ -26,6 +26,7 @@
 		308A6880A441CD0FD9A855F3 /* RACStream+BTFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A68B757C4731341C15913 /* RACStream+BTFAdditions.m */; };
 		308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6EE853A9FA6B616570F3 /* InfoPlist.strings */; };
 		308A6995A560F24FF65F93ED /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6921608D48F883B43617 /* Channel.m */; };
+		308A6A9E401451EB6D37818F /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A6BE9DBB7DE24145475C3 /* beep.wav */; };
 		308A6AA84FAB2E060A216E43 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 308A636F0D48991D8D12D0FA /* Images */; };
 		308A6AAC17D97E90F9330B8A /* MASConstraintMaker+Self.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A60A5DAAC9B2CEE89A582 /* MASConstraintMaker+Self.m */; };
 		308A6B14681EBD145ED1580F /* ConnectionThresholdCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6E9DB86C6A79534FBB87 /* ConnectionThresholdCalculator.m */; };
@@ -34,11 +35,11 @@
 		308A6BAAE8B104A6E6C9787B /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A63FA1C61476D5B4885AA /* ChannelCell.m */; };
 		308A6BE6237CF1DF6A648312 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */; };
 		308A6C0DF3029BC1C4A75252 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
+		308A6C40A8176AD6263C5B1B /* nobeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A664B0B6012CC1B1B13F6 /* nobeep.wav */; };
 		308A6C96F371D4FDC0E38F9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 308A6F9B14332E3F2A60E480 /* InfoPlist.strings */; };
 		308A6CD0E18371941FABDE50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */; };
 		308A6CF8EED0B39236F1CEB9 /* UIFont+DNGFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A67923E16D43B1D51385E /* UIFont+DNGFonts.m */; };
 		308A6D3F4102C1B7B87E5045 /* UIActivityIndicatorView+BTFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A631DAC0299E62C20F094 /* UIActivityIndicatorView+BTFAdditions.m */; };
-		308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 308A64FAAA0F025D5C718C74 /* nobeep.wav */; };
 		308A6DB7B0F1CAB630958A23 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6E8954E022128F0C78C2 /* PlayerView.m */; };
 		308A6DFBB884D463BAA10243 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6D9E4C756339A3331D3E /* OverlayView.m */; };
 		308A6E17AE22AECA0ACF812F /* dr_ngTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6534CE4F9A8E24227C05 /* dr_ngTests.m */; };
@@ -79,10 +80,10 @@
 		308A6474B13AD7DC872CF9DA /* RadioPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioPlay.h; sourceTree = "<group>"; };
 		308A648E1B7D45CEEB2D6C98 /* UIActivityIndicatorView+BTFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+BTFAdditions.h"; sourceTree = "<group>"; };
 		308A64C81EB3FD599641FBEA /* DNGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNGAppDelegate.m; sourceTree = "<group>"; };
-		308A64FAAA0F025D5C718C74 /* nobeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nobeep.wav; sourceTree = "<group>"; };
 		308A6534CE4F9A8E24227C05 /* dr_ngTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dr_ngTests.m; sourceTree = "<group>"; };
 		308A654310CCFB4A499C2212 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
 		308A65CB51AE6DFB6FF16BF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		308A664B0B6012CC1B1B13F6 /* nobeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nobeep.wav; sourceTree = "<group>"; };
 		308A665732BAA5B9AFB642E8 /* dr-ngTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ngTests-Info.plist"; sourceTree = "<group>"; };
 		308A66EDA0BE3AA13A079F6A /* dr-ng-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "dr-ng-Info.plist"; sourceTree = "<group>"; };
 		308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dr-ng-Prefix.pch"; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		308A6BAC2CD8D31FF9872536 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		308A6BB069CEC191BA684EB6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		308A6BE2F4D52FCB601C62FE /* RACStream+BTFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACStream+BTFAdditions.h"; sourceTree = "<group>"; };
+		308A6BE9DBB7DE24145475C3 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		308A6CB09935CAB47D6B6B4C /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
 		308A6D9E4C756339A3331D3E /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
 		308A6DA47C485A92835E9A92 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
@@ -260,6 +262,8 @@
 				308A6F888FBE042449CF80E2 /* Views */,
 				308A6E9DB86C6A79534FBB87 /* ConnectionThresholdCalculator.m */,
 				308A68C29974E47F97C5FF97 /* ConnectionThresholdCalculator.h */,
+				308A6BE9DBB7DE24145475C3 /* beep.wav */,
+				308A664B0B6012CC1B1B13F6 /* nobeep.wav */,
 			);
 			path = "dr-ng";
 			sourceTree = "<group>";
@@ -271,7 +275,6 @@
 				308A6EE853A9FA6B616570F3 /* InfoPlist.strings */,
 				308A6F9312E5891AE2CA464C /* main.m */,
 				308A678DDB8B7AB650A43E63 /* dr-ng-Prefix.pch */,
-				308A64FAAA0F025D5C718C74 /* nobeep.wav */,
 				308A6CB09935CAB47D6B6B4C /* fail.wav */,
 				308A644339A3C1AC90315B75 /* success.wav */,
 			);
@@ -397,11 +400,12 @@
 			files = (
 				308A68DB9DB6F580903E2C48 /* InfoPlist.strings in Resources */,
 				308A6B521C5EAA996E0AC5F6 /* Images.xcassets in Resources */,
-				308A6DB2ECA69AC4F90367FA /* nobeep.wav in Resources */,
 				308A65585D601D209E3BDB0D /* fail.wav in Resources */,
 				308A67C87C774233CEECD377 /* success.wav in Resources */,
 				308A6AA84FAB2E060A216E43 /* Images in Resources */,
 				AE15714B19CC67E800F122B0 /* Localizable.strings in Resources */,
+				308A6A9E401451EB6D37818F /* beep.wav in Resources */,
+				308A6C40A8176AD6263C5B1B /* nobeep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

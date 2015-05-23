@@ -53,6 +53,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     self = [super init];
     if(self){
 
+
         [self setupRemoteControl];
 
         [self setupNotifications];
@@ -75,6 +76,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
+        [self foo];
 
 
     }
@@ -171,7 +173,13 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (void)keepAlive{
-    NSURL *audioFileLocationURL = [[NSBundle mainBundle] URLForResource:@"nobeep" withExtension:@"wav"];
+#ifdef DEBUG
+    NSString *sound = @"beep";
+#else
+    NSString *sound = "nobeep";
+#endif
+    NSLog(@"Starting keepAlive");
+    NSURL *audioFileLocationURL = [[NSBundle mainBundle] URLForResource:sound withExtension:@"wav"];
     NSError *error;
     self.bgKeepAlivePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileLocationURL error:&error];
     NSCAssert(!error, @"Audio loading error: %@", error);
@@ -183,6 +191,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)stopKeepAlive
 {
+    NSLog(@"Stopping keepAlive");
     [self.bgKeepAlivePlayer stop];
 
 }
@@ -362,8 +371,33 @@ static NSString *const kPlaylistName = @"RadioSpot";
     return cell;
 }
 
+
+- (void)foo{
+    RACSignal *connectionThresholdSignal = [ConnectionThresholdCalculator currentConnectionThresholdSignal];
+    RACSignal *likelyAndChannelSignal = [RACObserve(self, player) flattenMap:^RACStream *(AVPlayer *player) {
+        return [[player.currentItem rac_valuesForKeyPath:@keypath(player.currentItem,playbackLikelyToKeepUp) observer:player.currentItem] map:^id(NSNumber *likely) {
+            return RACTuplePack(likely, self.viewModel.currentChannel);
+
+        }];
+    }];
+
+   RACSignal *currentChannelSignal = [RACObserve(self.viewModel, currentChannel) logNext];
+
+    [[RACSignal combineLatest:@[
+            connectionThresholdSignal,
+            likelyAndChannelSignal,
+            currentChannelSignal
+
+    ]] subscribeNext:^(RACTuple *tuple) {
+        // if selected channel and
+        NSLog(@"%@",tuple);
+    }];
+}
+
 - (void)playChannel:(Channel*)channel
 {
+//    [self keepAlive];
+
     if(self.player && self.viewModel.currentChannel==channel) return;
     self.player = [AVPlayer playerWithURL:channel.playbackURL];
 
@@ -375,24 +409,34 @@ static NSString *const kPlaylistName = @"RadioSpot";
         self.viewModel.userPaused = NO;
     }];
 
+    NSLog(@"and we're playing");
     [self.player play];
 
-    [self stopKeepAlive];
+//    [[[self.player.currentItem rac_valuesForKeyPath:@"playbackLikelyToKeepUp" observer:self.player.currentItem]
+//            distinctUntilChanged]
+//            subscribeNext:^(NSNumber *likelyToKeepUp) {
+//                if (likelyToKeepUp.boolValue) {
+//                    [self stopKeepAlive];
+//                } else {
+//                    [self keepAlive];
+//                }
+//    }];
 
-    NSInteger threshold = [ConnectionThresholdCalculator currentConnectionThreshold];
-    NSLog(@"Will reconnect in %d seconds if unlikely to keep up!",threshold);
-    [[[RACObserve(self.player.currentItem, playbackLikelyToKeepUp) throttle:threshold] ignore:@YES]
-            subscribeNext:^(id x) {
-                // In case we're in background,
-                // we'll start playing (muted) sound, so that the OS
-                // does not kill us
-                if(!self.player || channel!=self.viewModel.currentChannel) return;
-                [self keepAlive];
-                [self tryRestarting:channel];
-    }];
+//    NSInteger threshold = [ConnectionThresholdCalculator currentConnectionThreshold];
+//    NSLog(@"Will reconnect in %d seconds if unlikely to keep up!",threshold);
+//    [[[[self.player.currentItem rac_valuesForKeyPath:@"playbackLikelyToKeepUp" observer:self.player.currentItem]
+//            ignore:@YES]
+//            throttle:threshold]
+//            subscribeNext:^(id x) {
+//                // In case we're in background,
+//                // we'll start playing (muted) sound, so that the OS
+//                // does not kill us
+//                if(!self.player || channel!=self.viewModel.currentChannel) return;
+//                [self tryRestarting:channel];
+//    }];
 
 #if DEBUG
-    [self startLogging];
+//    [self startLogging];
 #endif
 
     [[[self.player rac_signalForSelector:@selector(pause)] delay:10] subscribeNext:^(id x) {
@@ -405,7 +449,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)tryRestarting:(Channel*)channel
 {
-    if(!self.player || ![self.viewModel.currentChannel isEqual:channel]) return;
+    if(!self.player || ![self.viewModel.currentChannel isEqual:channel] || self.player.currentItem.playbackLikelyToKeepUp) return;
     NSLog(@"===== buffer empty- lets restart =====");
     [[WBErrorNoticeView errorNoticeInView:self.navigationController.view
                                     title:NSLocalizedString(@"TryRestartTitle", @"Trying to restart") message:nil] show];

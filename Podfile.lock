@@ -1,25 +1,25 @@
 PODS:
   - AutoCoding (2.2.1)
-  - BTFSpotify (0.2.1):
+  - BTFSpotify (0.2.2):
     - CocoaLibSpotify (~> 2.4.5)
-    - ReactiveCocoa (~> 2.3.0)
+    - ReactiveCocoa (~> 2.3)
   - CocoaLibSpotify (2.4.5):
     - libspotify (= 12.1.64)
   - dyci (0.1.5.6):
     - dyci/Injections (= 0.1.5.6)
   - dyci/Injections (0.1.5.6)
   - libspotify (12.1.64)
-  - Masonry (0.5.3)
+  - Masonry (0.6.1)
   - NoticeView (3.0.7)
   - NSArray+Functional (1.0.0)
-  - pop (1.0.6)
+  - pop (1.0.7)
   - Reachability (3.2)
-  - ReactiveCocoa (2.3.1):
-    - ReactiveCocoa/UI (= 2.3.1)
-  - ReactiveCocoa/Core (2.3.1):
+  - ReactiveCocoa (2.4.7):
+    - ReactiveCocoa/UI (= 2.4.7)
+  - ReactiveCocoa/Core (2.4.7):
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.3.1)
-  - ReactiveCocoa/UI (2.3.1):
+  - ReactiveCocoa/no-arc (2.4.7)
+  - ReactiveCocoa/UI (2.4.7):
     - ReactiveCocoa/Core
 
 DEPENDENCIES:
@@ -32,19 +32,19 @@ DEPENDENCIES:
   - NSArray+Functional
   - pop
   - Reachability
-  - ReactiveCocoa
+  - ReactiveCocoa (~> 2.4.0)
 
 SPEC CHECKSUMS:
-  AutoCoding: 5165b83fa6199573cc82dfb5d2cc72e11b458a1f
-  BTFSpotify: cce23854a475196982d28cdd9f83134a1f332b0d
-  CocoaLibSpotify: d5c2cc8eac1a27618c6f3ff9f656cabb5982f52a
-  dyci: 86668b266b8a281cb6db02843150f6a210c34ee9
-  libspotify: a64e21dc94594d988213fb5795641d0253132d46
-  Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
-  NoticeView: 357545814931eb92428de54449f405f91c84a1b8
-  NSArray+Functional: 2c9ad6ab9b0dc7abe73416d265d569c8b20b9f3c
-  pop: e518794da38942c05255eb64b36d894e70cb4f00
-  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
+  AutoCoding: b47e528426c84346371dd532b8e6458929e4da34
+  BTFSpotify: 65614bc027834b98ea0bee289a764b4ddd97755e
+  CocoaLibSpotify: 908295917d06c2a975323fcbc56ecb52548579cf
+  dyci: 099c2e6dc98abb8f21b370cabbf1443ff700608a
+  libspotify: 51a32efa68ea2901380dd703ed499415197d3e62
+  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  NoticeView: 20178f60a5ab0b7fc496a2da6518df72bf14c0b0
+  NSArray+Functional: 70450a935ad6cf933f675251311c14385815506d
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.0.beta.1

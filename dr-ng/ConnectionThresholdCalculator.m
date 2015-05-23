@@ -6,6 +6,7 @@
 #import "Reachability.h"
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import "ConnectionThresholdCalculator.h"
+#import "NSObject+Notifications.h"
 
 static NSInteger Slow = 50;
 static NSInteger Semi = 10;
@@ -14,6 +15,12 @@ static NSInteger Fast = 5;
 @implementation ConnectionThresholdCalculator {
 
 }
++ (RACSignal *)currentConnectionThresholdSignal {
+    return [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:kReachabilityChangedNotification object:nil] map:^id(id value) {
+        return @([self currentConnectionThreshold]);
+    }] startWith:@([self currentConnectionThreshold])];
+}
+
 + (NSInteger)currentConnectionThreshold
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];

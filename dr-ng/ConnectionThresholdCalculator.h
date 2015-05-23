@@ -8,4 +8,5 @@
 
 @interface ConnectionThresholdCalculator : NSObject
 + (NSInteger)currentConnectionThreshold;
++ (RACSignal*)currentConnectionThresholdSignal;
 @end
