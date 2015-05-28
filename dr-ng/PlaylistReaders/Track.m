@@ -12,6 +12,12 @@
 @implementation Track {
 
 }
+
+
+- (NSString *)description{
+    return [NSString stringWithFormat:@"%@: %@",self.artist,self.title];
+}
+
 + (instancetype)trackWithArtist:(NSString *)artist title:(id)title {
     Track *t = [Track new];
     t->_artist = artist;
