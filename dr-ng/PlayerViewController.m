@@ -191,7 +191,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 #else
     NSString *sound = @"nobeep";
 #endif
-    NSLog(@"Starting keepAlive");
     NSURL *audioFileLocationURL = [[NSBundle mainBundle] URLForResource:sound withExtension:@"wav"];
     NSError *error;
     self.bgKeepAlivePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileLocationURL error:&error];
@@ -204,7 +203,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)stopKeepAlive
 {
-    NSLog(@"Stopping keepAlive");
+
     [self.bgKeepAlivePlayer stop];
 
 }
@@ -408,13 +407,13 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     RAC(self.viewModel, currentChannel) = channelConn.signal;
 
-    RACSignal *connectionThresholdSignal = [[[ConnectionThresholdCalculator currentConnectionThresholdSignal] setNameWithFormat:@"connTresh"] logNext];
+    RACSignal *connectionThresholdSignal = [ConnectionThresholdCalculator currentConnectionThresholdSignal];
 
     // Necessary as a property, to keep it alive for some reason ...
     self.retrySubj = [[RACSubject subject] setNameWithFormat:@"retrysubj"];
 
     RACSignal *s = [self retryingSignalWithValue:channelConn.signal
-                                           retry:[self.retrySubj logNext]
+                                           retry:self.retrySubj
                                    retryInterval:connectionThresholdSignal];
 
     [channelConn connect];
@@ -478,7 +477,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
         return playing.boolValue ? @(!keepUp.boolValue) : @NO;
     }] distinctUntilChanged] setNameWithFormat:@"retry?"];
 
-    [[keepAlive logNext] subscribeNext:^(NSNumber *b) {
+    [keepAlive subscribeNext:^(NSNumber *b) {
         if(b.boolValue){
             [self keepAlive];
         } else {
@@ -552,7 +551,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (void)addTrack:(Track *)track usingRemote:(BOOL)usingRemote {
     self.viewModel.talkingToSpotify = YES;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track.artist,track.title];
-    NSLog(@"searching spotify for '%@'...",searchQuery);
 
 
     NSString *playlistName = kPlaylistName;
@@ -594,7 +592,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"success" withExtension:@"wav"];
             [self playSound:url];
         }
-        NSLog(@"added track to playlist");
         self.viewModel.talkingToSpotify = NO;
         self.viewModel.tracksAdded++;
         if (!self.viewModel.didAddUsingRemove && (self.viewModel.tracksAdded == 3 || self.viewModel.tracksAdded % 20 == 0)) {
@@ -636,7 +633,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event
 {
-    NSLog(@"event received: %d",event.subtype);
+    // For signaling
 }
 
 
