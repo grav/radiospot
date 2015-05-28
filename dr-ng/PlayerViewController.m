@@ -193,7 +193,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 #ifdef DEBUG
     NSString *sound = @"beep";
 #else
-    NSString *sound = "nobeep";
+    NSString *sound = @"nobeep";
 #endif
     NSLog(@"Starting keepAlive");
     NSURL *audioFileLocationURL = [[NSBundle mainBundle] URLForResource:sound withExtension:@"wav"];
