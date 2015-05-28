@@ -75,20 +75,22 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
         self.viewModel = [PlayerViewModel new];
 
-        RACSignal *channelSignal = [[RACObserve(self.viewModel, currentChannel) setNameWithFormat:@"chann"] logNext];
+        RACSignal *channelSignal = RACObserve(self.viewModel, currentChannel);
         RACMulticastConnection *conn = [channelSignal publish];
-        RACSignal *repeatingChannelSignal = [[[conn.signal flattenMap:^RACStream *(id value) {
-            return [[[[RACSignal interval:10 onScheduler:[RACScheduler mainThreadScheduler]] startWith:nil] takeUntil:conn.signal] mapReplace:value];
-        }] setNameWithFormat:@"repeatChan"] logNext];
+        RACSignal *repeatingChannelSignal = [conn.signal flattenMap:^RACStream *(Channel *c) {
+            if(!c) return [RACSignal return:nil];
+            return [[[[RACSignal interval:10 onScheduler:[RACScheduler mainThreadScheduler]] startWith:[NSDate date]] takeUntil:conn.signal] mapReplace:c];
+        }];
 
         [conn connect];
 
-        RAC(self.viewModel, currentTrack) = [[repeatingChannelSignal flattenMap:^RACStream *(Channel *c) {
-            if (self.player.rate == 0) return [RACSignal return:nil];
+        RAC(self.viewModel, currentTrack) = [repeatingChannelSignal flattenMap:^RACStream *(Channel *c) {
+            if (!c) return [RACSignal return:nil];
             return [[[PlaylistHelper currentTrackForChannel:c] catch:^RACSignal *(NSError *error) {
+                NSLog(@"%@",error);
                 return [RACSignal return:nil];
             }] deliverOn:[RACScheduler mainThreadScheduler]];
-        }] logNext];
+        }];
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
