@@ -43,17 +43,20 @@ static NSString *const kPlaylistName = @"RadioSpot";
 @property(nonatomic, strong) MessageView *messageView;
 
 
+@property(nonatomic, strong) RACSubject *retrySubj;
+@property(nonatomic, strong) RACSubject *thresSubj;
 @end
 
 @implementation PlayerViewController {
 
 }
-
 - (instancetype)init{
     self = [super init];
     if(self){
-
-
+//#ifdef DEBUG
+        // Make logNext etc show names to aid debugging
+        setenv("RAC_DEBUG_SIGNAL_NAMES","true",1);
+//#endif
         [self setupRemoteControl];
 
         [self setupNotifications];
@@ -76,8 +79,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
         self.btfSpotify = [[BTFSpotify alloc] initWithAppKey:g_appkey size:g_appkey_size];
         self.btfSpotify.presentingViewController = self;
-        [self foo];
-
 
     }
     return self;
@@ -85,9 +86,12 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)updateOnClassInjection
 {
+    [self.thresSubj sendNext:@5];
+/*
     [self loadView];
     [self viewDidLoad];
-//    [self showOverlay];
+    //    [self showOverlay];
+    */
 }
 
 - (void)setupNotifications {
@@ -168,7 +172,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
                                                                     inSection:0]
                     animated:YES
                     scrollPosition:UITableViewScrollPositionNone];
-            [self playChannel:channel];
         }];
 }
 
@@ -306,6 +309,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
         return [RACSignal empty];
     }];
 
+
+    [self foo];
+
 }
 
 - (void)toggleEditing {
@@ -373,33 +379,108 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 
 - (void)foo{
-    RACSignal *connectionThresholdSignal = [ConnectionThresholdCalculator currentConnectionThresholdSignal];
-    RACSignal *likelyAndChannelSignal = [RACObserve(self, player) flattenMap:^RACStream *(AVPlayer *player) {
-        return [[player.currentItem rac_valuesForKeyPath:@keypath(player.currentItem,playbackLikelyToKeepUp) observer:player.currentItem] map:^id(NSNumber *likely) {
-            return RACTuplePack(likely, self.viewModel.currentChannel);
 
-        }];
+    self.thresSubj = [RACSubject subject];
+    
+    RACSignal *didSelect = [[[[self rac_signalForSelector:@selector(tableView:didSelectRowAtIndexPath:)] setNameWithFormat:@"didselect"] logNext] distinctUntilChanged];
+    RACSignal *selectedChannel = [[[didSelect map:^id(RACTuple *t) {
+        NSIndexPath *indexPath = t.second;
+        return self.viewModel.channels[(NSUInteger) indexPath.row];
+    }] setNameWithFormat:@"selected"] logNext];
+
+    RACSignal *connectionThresholdSignal = [[[ConnectionThresholdCalculator currentConnectionThresholdSignal] setNameWithFormat:@"connTresh"] logNext];
+
+    self.retrySubj = [[RACSubject subject] setNameWithFormat:@"retrysubj"];
+
+    RACSignal *s = [[[self retryingSignalWithValue:selectedChannel
+                                             retry:[self.retrySubj logNext]
+                                     retryInterval:connectionThresholdSignal]
+            setNameWithFormat:@"retrysig"] logNext];
+    [self.thresSubj sendNext:@3];
+
+
+
+    RACSignal *player = [[s map:^id(Channel *c) {
+        AVPlayer *p = [AVPlayer playerWithURL:c.playbackURL];
+        // TODO - side effect, can we avoid?
+
+        [p play];
+        return p;
+    }] merge:[[self rac_signalForSelector:@selector(stop)] map:^id(id value) {
+        return nil;
+    }]];
+
+    RACMulticastConnection *conn = [player publish];
+
+    // TODO - necessary?
+    RAC(self,player) = conn.signal;
+    RACSignal *currentItem = [[conn.signal map:^id(AVPlayer *p) {
+        return p.currentItem;
+    }] setNameWithFormat:@"currentItem"];
+
+    RACSignal *likelyToKeepUp = [[[currentItem flattenMap:^RACStream *(AVPlayerItem *item) {
+        return [item rac_valuesForKeyPath:@"playbackLikelyToKeepUp" observer:item];
+    }] setNameWithFormat:@"likelyToKeepUp"] logNext];
+
+
+
+    RACSignal *playing = [[conn.signal map:^id(AVPlayer *p) {
+        return @(p != nil && p.rate > 0);
+    }] setNameWithFormat:@"playing?"];
+
+    [conn connect];
+
+    RACSignal *retry = [[[[RACSignal combineLatest:@[
+            playing,
+            likelyToKeepUp,
+
+    ]] map:^id(RACTuple *tuple) {
+        RACTupleUnpack(NSNumber *playing, NSNumber *keepUp) = tuple;
+        return playing.boolValue ? @(!keepUp.boolValue) : @NO;
+    }] distinctUntilChanged] setNameWithFormat:@"retry?"];
+
+    [[retry logNext] subscribeNext:^(id x) {
+        [self.retrySubj sendNext:x];
     }];
 
-   RACSignal *currentChannelSignal = [RACObserve(self.viewModel, currentChannel) logNext];
+//
+//    RACMulticastConnection *connection = [retry publish];
+//
+//
+//    RACSignal *retryAndThres = [RACSignal combineLatest:@[connection.signal,connectionThresholdSignal]];
+//
+//    RACSignal *doRetry = [[retryAndThres flattenMap:^RACStream *(RACTuple *tuple) {
+//        RACTupleUnpack(NSNumber *retryV, NSNumber *interval) = tuple;
+//        if (retryV.boolValue) return [[RACSignal interval:interval.integerValue onScheduler:[RACScheduler mainThreadScheduler]] takeUntil:retryAndThres];
+//        return [RACSignal empty];
+//    }] setNameWithFormat:@"doRetry"];
+//
+//
+//    [
+//            @[
+//                    selectedChannel,
+//                    currentItem,
+//                    likelyToKeepUp,
+//                    connectionThresholdSignal,
+//                    playing,
+//                    connection.signal,
+//                    doRetry] enumerateObjectsUsingBlock:^(RACSignal *s, NSUInteger idx, BOOL *stop) {
+//        [[s logNext] subscribeNext:^(id x) {
+//        }];
+//    }];
+//
+//    [connection connect];
 
-    [[RACSignal combineLatest:@[
-            connectionThresholdSignal,
-            likelyAndChannelSignal,
-            currentChannelSignal
-
-    ]] subscribeNext:^(RACTuple *tuple) {
-        // if selected channel and
-        NSLog(@"%@",tuple);
-    }];
 }
 
 - (void)playChannel:(Channel*)channel
 {
+    NSCAssert(false, @"deprecated");
 //    [self keepAlive];
 
-    if(self.player && self.viewModel.currentChannel==channel) return;
     self.player = [AVPlayer playerWithURL:channel.playbackURL];
+
+    // TODO - RAC elsewhere
 
     [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
         self.viewModel.userPaused = YES;
@@ -409,34 +490,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
         self.viewModel.userPaused = NO;
     }];
 
-    NSLog(@"and we're playing");
     [self.player play];
 
-//    [[[self.player.currentItem rac_valuesForKeyPath:@"playbackLikelyToKeepUp" observer:self.player.currentItem]
-//            distinctUntilChanged]
-//            subscribeNext:^(NSNumber *likelyToKeepUp) {
-//                if (likelyToKeepUp.boolValue) {
-//                    [self stopKeepAlive];
-//                } else {
-//                    [self keepAlive];
-//                }
-//    }];
-
-//    NSInteger threshold = [ConnectionThresholdCalculator currentConnectionThreshold];
-//    NSLog(@"Will reconnect in %d seconds if unlikely to keep up!",threshold);
-//    [[[[self.player.currentItem rac_valuesForKeyPath:@"playbackLikelyToKeepUp" observer:self.player.currentItem]
-//            ignore:@YES]
-//            throttle:threshold]
-//            subscribeNext:^(id x) {
-//                // In case we're in background,
-//                // we'll start playing (muted) sound, so that the OS
-//                // does not kill us
-//                if(!self.player || channel!=self.viewModel.currentChannel) return;
-//                [self tryRestarting:channel];
-//    }];
 
 #if DEBUG
-//    [self startLogging];
+    [self startLogging];
 #endif
 
     [[[self.player rac_signalForSelector:@selector(pause)] delay:10] subscribeNext:^(id x) {
@@ -447,16 +505,16 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 }
 
-- (void)tryRestarting:(Channel*)channel
-{
-    if(!self.player || ![self.viewModel.currentChannel isEqual:channel] || self.player.currentItem.playbackLikelyToKeepUp) return;
-    NSLog(@"===== buffer empty- lets restart =====");
-    [[WBErrorNoticeView errorNoticeInView:self.navigationController.view
-                                    title:NSLocalizedString(@"TryRestartTitle", @"Trying to restart") message:nil] show];
-    self.viewModel.currentChannel = nil;
-    [self playChannel:channel];
-
-}
+//- (void)tryRestarting:(Channel*)channel
+//{
+//    if(!self.player || ![self.viewModel.currentChannel isEqual:channel] || self.player.currentItem.playbackLikelyToKeepUp) return;
+//    NSLog(@"===== buffer empty- lets restart =====");
+//    [[WBErrorNoticeView errorNoticeInView:self.navigationController.view
+//                                    title:NSLocalizedString(@"TryRestartTitle", @"Trying to restart") message:nil] show];
+//    self.viewModel.currentChannel = nil;
+//    [self playChannel:channel];
+//
+//}
 
 - (void)startLogging {
 
@@ -498,8 +556,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Channel *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
-    [self playChannel:channel];
+//    Channel *channel = self.viewModel.channels[(NSUInteger) indexPath.row];
+//    [self playChannel:channel];
 
 }
 
@@ -512,13 +570,11 @@ static NSString *const kPlaylistName = @"RadioSpot";
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 
-    NSLog(@"stopping");
-    [self.player pause];
-    self.player = nil;
-
 }
 
 #pragma mark spot
+
+// TODO - move out
 
 - (void)addTrack:(Track *)track usingRemote:(BOOL)usingRemote {
     self.viewModel.talkingToSpotify = YES;
@@ -608,6 +664,48 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event
 {
     NSLog(@"event received: %d",event.subtype);
+}
+
+
+
+// value: a signal with values
+// retry: a signal with retry yes/no
+// retryInterval: a signal with the retry interval
+- (RACSignal*)retryingSignalWithValue:(RACSignal *)value
+                                retry:(RACSignal *)retry
+                        retryInterval:(RACSignal *)interval
+{
+    RACSignal *retryThres = [retry combineLatestWith:interval];
+    RACMulticastConnection *connection = [retryThres publish];
+
+    RACSignal *s = [[[connection.signal map:^id(RACTuple *t) {
+        return [t.first boolValue] ? t.second : nil;
+    }] ignore:nil] setNameWithFormat:@"retry true=>thres"];
+
+
+    RACSignal *retryRepeat = [s flattenMap:^RACStream *(NSNumber *t) {
+        return [[RACSignal interval:t.doubleValue onScheduler:[RACScheduler currentScheduler]] takeUntil:connection.signal];
+    }];
+
+    [connection connect];
+
+    RACSignal *retryBlock = [retryRepeat map:^id(id _) {
+        return ^NSNumber*(NSNumber *x){
+            return x;
+        };
+    }];
+
+    RACSignal *valueBlock = [value map:^id(NSNumber *val) {
+        return ^NSNumber *(id _){
+            return val;
+        };
+    }];
+
+    return [[valueBlock merge:retryBlock]
+            scanWithStart:@1
+                   reduce:^id(NSNumber *running, NSNumber *(^next)(NSNumber *)) {
+                       return next(running);
+                   }];
 }
 
 @end
