@@ -46,6 +46,7 @@
 		308A6F994D1951C04CB710A7 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A6FBB41B37E7CF8EE9B2F /* MessageView.m */; };
 		454B70DA4756466CB2791EAA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 964942FB652848D1B87A5BFB /* libPods.a */; };
 		AE15714B19CC67E800F122B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE15714D19CC67E800F122B0 /* Localizable.strings */; };
+		AE71B2681B175A11001B11FE /* dr-ng-Info_debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE71B2671B175A11001B11FE /* dr-ng-Info_debug.plist */; };
 		AE9C86B919CC9466004EBFFA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9C86B819CC9466004EBFFA /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +128,7 @@
 		AE15714A19CC671500F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AE15714C19CC67E800F122B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE15714E19CC67FD00F122B0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE71B2671B175A11001B11FE /* dr-ng-Info_debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dr-ng-Info_debug.plist"; sourceTree = "<group>"; };
 		AE9C86B819CC9466004EBFFA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C73063F13F00E21DCF6D74A0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CBBE9323F1E049DCBE0C67A8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		308A6DF32B949846F763F7AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AE71B2671B175A11001B11FE /* dr-ng-Info_debug.plist */,
 				308A66EDA0BE3AA13A079F6A /* dr-ng-Info.plist */,
 				308A6EE853A9FA6B616570F3 /* InfoPlist.strings */,
 				308A6F9312E5891AE2CA464C /* main.m */,
@@ -402,6 +405,9 @@
 				308A67C87C774233CEECD377 /* success.wav in Resources */,
 				308A6AA84FAB2E060A216E43 /* Images in Resources */,
 				AE15714B19CC67E800F122B0 /* Localizable.strings in Resources */,
+				308A6A9E401451EB6D37818F /* beep.wav in Resources */,
+				AE71B2681B175A11001B11FE /* dr-ng-Info_debug.plist in Resources */,
+				308A6C40A8176AD6263C5B1B /* nobeep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +638,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dr-ng/dr-ng-Prefix.pch";
-				INFOPLIST_FILE = "dr-ng/dr-ng-Info.plist";
+				INFOPLIST_FILE = "dr-ng/dr-ng-Info_debug.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
