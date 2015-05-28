@@ -3,6 +3,13 @@
 // Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
+@interface UIEventMock : NSObject
+@property int subtype;
+@end
+
+@implementation UIEventMock
+@end
+
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "PlayerViewController.h"
@@ -45,6 +52,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 @property(nonatomic, strong) RACSubject *retrySubj;
 @property(nonatomic, strong) RACSubject *thresSubj;
+@property(nonatomic, strong) RACSubject *remoteSubj;
+@property(nonatomic, strong) RACSubject *channelFromRemote;
 @end
 
 @implementation PlayerViewController {
@@ -53,6 +62,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (instancetype)init{
     self = [super init];
     if(self){
+        
+        self.remoteSubj = [RACSubject subject];
+
 #ifdef DEBUG
         // Make logNext etc show names to aid debugging
         setenv("RAC_DEBUG_SIGNAL_NAMES","true",1);
@@ -87,7 +99,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)updateOnClassInjection
 {
-    [self.thresSubj sendNext:@5];
 /*
     [self loadView];
     [self viewDidLoad];
@@ -120,9 +131,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (void)setupRemoteControl {
-    RACSignal *remoteControlSignal = [[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
-            return tuple.first;
-        }];
+    RACSignal *remoteControlSignal = [[[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
+        return tuple.first;
+    }] merge:self.remoteSubj];
 
     [[remoteControlSignal filter:^BOOL(UIEvent *event) {
             return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
@@ -139,7 +150,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
             if(self.player && self.player.rate==0) {
                 [self.player play];
             } else if(!self.player){
-                [self playChannel:self.viewModel.currentChannel];
+                [self.channelFromRemote sendNext:self.viewModel.currentChannel];
             } else {
                 [self.player pause];
             }
@@ -151,7 +162,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
             if(self.player && self.player.rate == 0){
                 [self.player play];
             } else {
-                [self playChannel:self.viewModel.currentChannel];
+                [self.channelFromRemote sendNext:self.viewModel.currentChannel];
             }
         }];
 
@@ -168,13 +179,14 @@ static NSString *const kPlaylistName = @"RadioSpot";
             return event.subtype == UIEventSubtypeRemoteControlNextTrack;
         }] subscribeNext:^(id x) {
             NSInteger row = (self.tableView.indexPathForSelectedRow.row + 1) % self.viewModel.channels.count;
-            Channel *channel = self.viewModel.channels[(NSUInteger) row];
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row
-                                                                    inSection:0]
-                    animated:YES
-                    scrollPosition:UITableViewScrollPositionNone];
-            [self playChannel:channel];
-        }];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row
+                                                                        inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionNone];
+        Channel *channel = self.viewModel.channels[(NSUInteger) row];
+        [self.channelFromRemote sendNext:channel];
+    }];
 }
 
 - (void)keepAlive{
@@ -312,7 +324,20 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
 
-    [self setupRetry];
+
+    RACSignal *didSelect = [self rac_signalForSelector:@selector(tableView:didSelectRowAtIndexPath:)];
+
+    RACSignal *noChannel = [[self rac_signalForSelector:@selector(stop)] mapReplace:nil];
+
+    self.channelFromRemote = [RACSubject subject];
+
+    RACSignal *selectedChannel = [[[[didSelect tupleSecond] map:^id(NSIndexPath *indexPath) {
+        return self.viewModel.channels[(NSUInteger) indexPath.row];
+    }] merge:noChannel] merge:self.channelFromRemote];
+
+
+
+    [self setupRetry:selectedChannel];
 
 }
 
@@ -380,12 +405,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 
-- (void)setupRetry {
-
-    RACSignal *didSelect = [[self rac_signalForSelector:@selector(tableView:didSelectRowAtIndexPath:)] distinctUntilChanged];
-    RACSignal *selectedChannel = [[[[didSelect tupleSecond] map:^id(NSIndexPath *indexPath) {
-        return self.viewModel.channels[(NSUInteger) indexPath.row];
-    }] setNameWithFormat:@"selectedCHannel"] logNext];
+- (void)setupRetry:(RACSignal*)selectedChannel {
 
     // Used both to update viewmodel and triggering player
     RACMulticastConnection *channelConn = [selectedChannel publish];
@@ -405,7 +425,27 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
     RACSignal *player = [[s map:^id(Channel *c) {
         AVPlayer *p = [AVPlayer playerWithURL:c.playbackURL];
+
+        [[p rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
+            self.viewModel.userPaused = YES;
+        }];
+
+        [[p rac_signalForSelector:@selector(play)] subscribeNext:^(id x) {
+            self.viewModel.userPaused = NO;
+        }];
+
+#if DEBUG
+        [self startLogging];
+#endif
+
+        [[[p rac_signalForSelector:@selector(pause)] delay:10] subscribeNext:^(id x) {
+            if(p.rate == 0){
+                [self stop];
+            }
+        }];
+
         [p play];
+
         return p;
     }] merge:[[self rac_signalForSelector:@selector(stop)] map:^id(id value) {
         return nil;
@@ -449,37 +489,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
         };
 
         [self.retrySubj sendNext:b];
-    }];
-
-}
-
-- (void)playChannel:(Channel*)channel
-{
-    NSCAssert(false, @"deprecated");
-
-    self.player = [AVPlayer playerWithURL:channel.playbackURL];
-
-    // TODO - RAC elsewhere
-
-    [[self.player rac_signalForSelector:@selector(pause)] subscribeNext:^(id x) {
-        self.viewModel.userPaused = YES;
-    }];
-
-    [[self.player rac_signalForSelector:@selector(play)] subscribeNext:^(id x) {
-        self.viewModel.userPaused = NO;
-    }];
-
-    [self.player play];
-
-
-#if DEBUG
-    [self startLogging];
-#endif
-
-    [[[self.player rac_signalForSelector:@selector(pause)] delay:10] subscribeNext:^(id x) {
-        if(self.player.rate == 0){
-            [self stop];
-        }
     }];
 
 }
@@ -544,6 +553,10 @@ static NSString *const kPlaylistName = @"RadioSpot";
 // TODO - move out
 
 - (void)addTrack:(Track *)track usingRemote:(BOOL)usingRemote {
+    UIEventMock *event = [UIEventMock new];
+    event.subtype = UIEventSubtypeRemoteControlNextTrack;
+    [self.remoteSubj sendNext:event];
+    return;
     self.viewModel.talkingToSpotify = YES;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track.artist,track.title];
     NSLog(@"searching spotify for '%@'...",searchQuery);
