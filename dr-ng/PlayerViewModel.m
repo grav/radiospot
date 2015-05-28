@@ -87,7 +87,7 @@ static NSString *const kChannels = @"channels";
                 RACTuplePack(@"The Voice", @"17", @"http://stream.voice.dk/voice128?ua=WEB"),
                 RACTuplePack(@"Radio 100", @"20", @"http://onair.100fmlive.dk/100fm_live.mp3?ua=WEB"),
                 RACTuplePack(@"Pop FM", @"19", @"http://stream.popfm.dk/pop128?ua=WEB"),
-                RACTuplePack(@"myROCK", @"56", @"http://stream.popfm.dk/pop128?ua=WEB"),
+                RACTuplePack(@"myROCK", @"56", @"http://stream.myrock.fm/myrock128?ua=WEB"),
                 RACTuplePack(@"Radio Soft", @"21", @"http://onair.100fmlive.dk/soft_live.mp3?ua=WEB"),
                 RACTuplePack(@"Radio Klassisk", @"22", @"http://onair.100fmlive.dk/klassisk_live.mp3?ua=WEB")
 
