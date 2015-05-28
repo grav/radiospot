@@ -312,7 +312,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     }];
 
 
-    [self foo];
+    [self setupRetry];
 
 }
 
@@ -380,7 +380,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 
-- (void)foo{
+- (void)setupRetry {
 
     RACSignal *didSelect = [[self rac_signalForSelector:@selector(tableView:didSelectRowAtIndexPath:)] distinctUntilChanged];
     RACSignal *selectedChannel = [[[[didSelect tupleSecond] map:^id(NSIndexPath *indexPath) {
