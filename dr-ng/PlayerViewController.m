@@ -147,10 +147,8 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [[remoteControlSignal filter:^BOOL(UIEvent *event) {
             return event.subtype == UIEventSubtypeRemoteControlTogglePlayPause;
         }] subscribeNext:^(id x) {
-            if(self.player && self.player.rate==0) {
+            if(self.player.rate==0) {
                 [self.player play];
-            } else if(!self.player){
-                [self.channelFromRemote sendNext:self.viewModel.currentChannel];
             } else {
                 [self.player pause];
             }
@@ -159,11 +157,7 @@ static NSString *const kPlaylistName = @"RadioSpot";
     [[remoteControlSignal filter:^BOOL(UIEvent *event) {
             return event.subtype == UIEventSubtypeRemoteControlPlay;
         }] subscribeNext:^(id x) {
-            if(self.player && self.player.rate == 0){
-                [self.player play];
-            } else {
-                [self.channelFromRemote sendNext:self.viewModel.currentChannel];
-            }
+            [self.player play];
         }];
 
     [[remoteControlSignal filter:^BOOL(UIEvent *event) {
