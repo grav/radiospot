@@ -437,8 +437,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 #if DEBUG
         [self startLogging];
 #endif
-
+        @weakify(p)
         [[[p rac_signalForSelector:@selector(pause)] delay:10] subscribeNext:^(id x) {
+            @strongify(p)
             if(p.rate == 0){
                 [self stop];
             }
@@ -553,10 +554,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 // TODO - move out
 
 - (void)addTrack:(Track *)track usingRemote:(BOOL)usingRemote {
-    UIEventMock *event = [UIEventMock new];
-    event.subtype = UIEventSubtypeRemoteControlNextTrack;
-    [self.remoteSubj sendNext:event];
-    return;
     self.viewModel.talkingToSpotify = YES;
     NSString *searchQuery = [NSString stringWithFormat:@"%@ %@",track.artist,track.title];
     NSLog(@"searching spotify for '%@'...",searchQuery);
