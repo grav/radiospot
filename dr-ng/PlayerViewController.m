@@ -380,8 +380,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)foo{
 
-    self.thresSubj = [RACSubject subject];
-    
     RACSignal *didSelect = [[[[self rac_signalForSelector:@selector(tableView:didSelectRowAtIndexPath:)] setNameWithFormat:@"didselect"] logNext] distinctUntilChanged];
     RACSignal *selectedChannel = [[[didSelect map:^id(RACTuple *t) {
         NSIndexPath *indexPath = t.second;
@@ -396,9 +394,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
                                              retry:[self.retrySubj logNext]
                                      retryInterval:connectionThresholdSignal]
             setNameWithFormat:@"retrysig"] logNext];
-    [self.thresSubj sendNext:@3];
-
-
 
     RACSignal *player = [[s map:^id(Channel *c) {
         AVPlayer *p = [AVPlayer playerWithURL:c.playbackURL];
@@ -678,9 +673,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
     RACSignal *retryThres = [retry combineLatestWith:interval];
     RACMulticastConnection *connection = [retryThres publish];
 
-    RACSignal *s = [[[connection.signal map:^id(RACTuple *t) {
+    RACSignal *s = [[connection.signal map:^id(RACTuple *t) {
         return [t.first boolValue] ? t.second : nil;
-    }] ignore:nil] setNameWithFormat:@"retry true=>thres"];
+    }] ignore:nil];
 
 
     RACSignal *retryRepeat = [s flattenMap:^RACStream *(NSNumber *t) {
