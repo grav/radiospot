@@ -51,8 +51,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 
 @property(nonatomic, strong) RACSubject *retrySubj;
-@property(nonatomic, strong) RACSubject *thresSubj;
-@property(nonatomic, strong) RACSubject *remoteSubj;
 @property(nonatomic, strong) RACSubject *channelFromRemote;
 @end
 
@@ -62,8 +60,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 - (instancetype)init{
     self = [super init];
     if(self){
-        
-        self.remoteSubj = [RACSubject subject];
 
 #ifdef DEBUG
         // Make logNext etc show names to aid debugging
@@ -133,9 +129,9 @@ static NSString *const kPlaylistName = @"RadioSpot";
 }
 
 - (void)setupRemoteControl {
-    RACSignal *remoteControlSignal = [[[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
+    RACSignal *remoteControlSignal = [[self rac_signalForSelector:@selector(remoteControlReceivedWithEvent:)] map:^id(RACTuple *tuple) {
         return tuple.first;
-    }] merge:self.remoteSubj];
+    }];
 
     [[remoteControlSignal filter:^BOOL(UIEvent *event) {
             return event.subtype == UIEventSubtypeRemoteControlPreviousTrack;
