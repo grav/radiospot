@@ -97,11 +97,6 @@ static NSString *const kPlaylistName = @"RadioSpot";
 
 - (void)updateOnClassInjection
 {
-/*
-    [self loadView];
-    [self viewDidLoad];
-    //    [self showOverlay];
-    */
 }
 
 - (void)setupNotifications {
