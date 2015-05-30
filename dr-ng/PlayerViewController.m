@@ -3,20 +3,11 @@
 // Copyright (c) 2014 Betafunk. All rights reserved.
 //
 
-@interface UIEventMock : NSObject
-@property int subtype;
-@end
-
-@implementation UIEventMock
-@end
-
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "PlayerViewController.h"
 #import "CocoaLibSpotify.h"
 #import "ChannelCell.h"
-#import "WBSuccessNoticeView.h"
-#import "WBErrorNoticeView.h"
 #import "BTFSpotify.h"
 #include "appkey.c"
 #import "PlayerView.h"

@@ -10,7 +10,6 @@ PODS:
   - dyci/Injections (0.1.5.6)
   - libspotify (12.1.64)
   - Masonry (0.6.1)
-  - NoticeView (3.0.7)
   - NSArray+Functional (1.0.0)
   - pop (1.0.7)
   - Reachability (3.2)
@@ -28,7 +27,6 @@ DEPENDENCIES:
   - CocoaLibSpotify (= 2.4.5)
   - dyci
   - Masonry
-  - NoticeView
   - NSArray+Functional
   - pop
   - Reachability
@@ -41,7 +39,6 @@ SPEC CHECKSUMS:
   dyci: 099c2e6dc98abb8f21b370cabbf1443ff700608a
   libspotify: 51a32efa68ea2901380dd703ed499415197d3e62
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
-  NoticeView: 20178f60a5ab0b7fc496a2da6518df72bf14c0b0
   NSArray+Functional: 70450a935ad6cf933f675251311c14385815506d
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
